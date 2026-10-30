@@ -43,8 +43,8 @@ async function verifyProposalPDF() {
 
   const pageOneXObjects = pdfDoc.getPage(0).node.Resources()
     .lookup(PDFName.of('XObject'))?.keys().length || 0;
-  if (pageOneXObjects < 3) {
-    throw new Error(`La página 1 debe incluir las tres fotografías originales de los pilares; se encontraron ${pageOneXObjects}.`);
+  if (pageOneXObjects < 1) {
+    throw new Error(`La página 1 debe incluir el collage original de los pilares; se encontraron ${pageOneXObjects}.`);
   }
 
   const annotations = pdfDoc.getPage(3).node.Annots();
@@ -83,7 +83,7 @@ async function verifyProposalPDF() {
     { page: 1, key: 'Bogot', label: 'Presencia Bogotá y Antioquia' },
     { page: 1, key: 'Por coordinar con Mundimotos', label: 'Fechas pendientes de coordinación' },
     { page: 1, key: 'El Sentido de Hacer una Pausa', label: 'Propósito sin encabezado repetido' },
-    { page: 1, key: 'TRES PILARES INMEDIATOS', label: 'Tres Pilares Inmediatos con fotografías originales' },
+    { page: 1, key: 'TRES PILARES INMEDIATOS', label: 'Tres Pilares Inmediatos con collage original' },
     { page: 2, key: 'CONECTAR', label: 'Momento 01 Conectar' },
     { page: 2, key: 'CERRAR', label: 'Momento 06 Cerrar' },
     { page: 2, key: 'Reflexión, Aprendizajes y Reconocimiento', label: 'Nuevo título del momento 06' },

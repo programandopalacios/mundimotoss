@@ -194,12 +194,11 @@
     }
 
     .pillar-photo-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      grid-template-rows: repeat(2, minmax(0, 1fr));
-      gap: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       width: 100%;
-      height: 300px;
+      height: 340px;
       flex: none;
       min-height: 0;
       padding: 6px;
@@ -208,6 +207,15 @@
       background: var(--bg-surface-elevated);
       border: 1px solid var(--border-subtle);
       box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .pillar-photo-grid img {
+      display: block;
+      width: auto;
+      max-width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 8px;
     }
 
     .col-12 { grid-column: span 12; }
@@ -1439,9 +1447,7 @@
           </div>
 
           <div id="pillarPhotoGrid" class="pillar-photo-grid">
-            <img src="assets/pilares/pilar-01.jpg" alt="Encuentro presencial con equipos de trabajo" style="width: 100%; height: 100%; min-height: 0; object-fit: cover; border-radius: 8px;" />
-            <img src="assets/pilares/pilar-02.jpg" alt="Jornada de formación y escucha a los participantes" style="width: 100%; height: 100%; min-height: 0; object-fit: cover; border-radius: 8px;" />
-            <img src="assets/pilares/pilar-04.jpg" alt="Experiencia vivencial de servicio con equipos" style="grid-column: 1 / -1; width: 100%; height: 100%; min-height: 0; object-fit: cover; border-radius: 8px;" />
+            <img src="assets/pilares/collage_fotos.jpg" alt="Collage de experiencias formativas con equipos de trabajo" />
           </div>
         </div>
       </div>
@@ -3272,7 +3278,7 @@
   doc.setFontSize(7.5);
   doc.setTextColor(...cGrayText);
   const propP1 = "Una pausa para escuchar a los equipos, reconocer sus aportes y proyectar la experiencia de servicio. Reúne a Bogotá y Antioquia alrededor de la cultura de servicio, la comunicación, la colaboración y la experiencia del cliente; transforma retos cotidianos en aprendizajes y oportunidades de mejora para Mundimotos.";
-  const splitP1 = doc.splitTextToSize(propP1, cw - 12);
+  const splitP1 = doc.splitTextToSize(propP1, cw - 52);
   doc.text(splitP1, margin + 6, y + 13.5);
 
   doc.setFont('helvetica', 'bold');
@@ -3281,18 +3287,13 @@
   doc.text("TRES PILARES INMEDIATOS", margin + 6, y + 25);
 
   const pillarPhotoElements = Array.from(document.querySelectorAll('#pillarPhotoGrid img'));
-  if (pillarPhotoElements.length !== 3 || pillarPhotoElements.some(image => !image.complete || !image.naturalWidth)) {
-    throw new Error('No se pudieron cargar las fotografías originales de Tres Pilares Inmediatos para el PDF.');
+  if (pillarPhotoElements.length !== 1 || pillarPhotoElements.some(image => !image.complete || !image.naturalWidth)) {
+    throw new Error('No se pudo cargar el collage original de Tres Pilares Inmediatos para el PDF.');
   }
-  const pillarCellW = (cw - 18) / 3;
-  const pillarImageH = 25;
-  const pillarImageY = y + 27;
-  pillarPhotoElements.forEach((photo, idx) => {
-    const imageW = pillarImageH * (16 / 9);
-    const cellX = margin + 6 + idx * (pillarCellW + 3);
-    const imageX = cellX + (pillarCellW - imageW) / 2;
-    doc.addImage(photo, 'JPEG', imageX, pillarImageY, imageW, pillarImageH);
-  });
+  const pillarPhoto = pillarPhotoElements[0];
+  const pillarImageW = 40;
+  const pillarImageH = pillarImageW * (pillarPhoto.naturalHeight / pillarPhoto.naturalWidth);
+  doc.addImage(pillarPhoto, 'JPEG', margin + cw - pillarImageW - 6, y + 4, pillarImageW, pillarImageH);
 
   y += propH + 9;
 

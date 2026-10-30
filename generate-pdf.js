@@ -239,7 +239,7 @@ function buildProposalPDF(options = {}) {
   doc.setFontSize(7.5);
   doc.setTextColor(...cGrayText);
   const propP1 = "Una pausa para escuchar a los equipos, reconocer sus aportes y proyectar la experiencia de servicio. Reúne a Bogotá y Antioquia alrededor de la cultura de servicio, la comunicación, la colaboración y la experiencia del cliente; transforma retos cotidianos en aprendizajes y oportunidades de mejora para Mundimotos.";
-  const splitP1 = doc.splitTextToSize(propP1, cw - 12);
+  const splitP1 = doc.splitTextToSize(propP1, cw - 52);
   doc.text(splitP1, margin + 6, y + 13.5);
 
   doc.setFont('helvetica', 'bold');
@@ -247,19 +247,10 @@ function buildProposalPDF(options = {}) {
   doc.setTextColor(...cBlue);
   doc.text("TRES PILARES INMEDIATOS", margin + 6, y + 25);
 
-  const pillarPhotoNames = ['pilar-01.jpg', 'pilar-02.jpg', 'pilar-04.jpg'];
-  const pillarPhotos = pillarPhotoNames.map(name =>
-    `data:image/jpeg;base64,${fs.readFileSync(path.join(__dirname, 'assets', 'pilares', name)).toString('base64')}`
-  );
-  const pillarCellW = (cw - 18) / 3;
-  const pillarImageH = 25;
-  const pillarImageY = y + 27;
-  pillarPhotos.forEach((photo, idx) => {
-    const imageW = pillarImageH * (16 / 9);
-    const cellX = margin + 6 + idx * (pillarCellW + 3);
-    const imageX = cellX + (pillarCellW - imageW) / 2;
-    doc.addImage(photo, 'JPEG', imageX, pillarImageY, imageW, pillarImageH);
-  });
+  const pillarPhoto = `data:image/jpeg;base64,${fs.readFileSync(path.join(__dirname, 'assets', 'pilares', 'collage_fotos.jpg')).toString('base64')}`;
+  const pillarImageW = 40;
+  const pillarImageH = pillarImageW * (1280 / 1080);
+  doc.addImage(pillarPhoto, 'JPEG', margin + cw - pillarImageW - 6, y + 4, pillarImageW, pillarImageH);
 
   y += propH + 9;
 
