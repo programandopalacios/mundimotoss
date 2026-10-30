@@ -239,29 +239,13 @@ function buildProposalPDF(options = {}) {
   doc.setFontSize(7.5);
   doc.setTextColor(...cGrayText);
   const propP1 = "Una pausa para escuchar a los equipos, reconocer sus aportes y proyectar la experiencia de servicio. Reúne a los equipos alrededor de la cultura de servicio, la comunicación, la colaboración y la experiencia del cliente; transforma retos cotidianos en aprendizajes y oportunidades de mejora para Mundimotos.";
-  const pillarPhotoW = 46;
+  const pillarPhotoW = 42;
   const splitP1 = doc.splitTextToSize(propP1, cw - pillarPhotoW - 18);
   doc.text(splitP1, margin + 6, y + 13.5);
 
-  const pillarPhotos = [
-    { name: 'pilar-01.jpg', width: 1280, height: 720 },
-    { name: 'pilar-02.jpg', width: 1599, height: 899 },
-    { name: 'pilar-04.jpg', width: 1280, height: 960 }
-  ].map(photo => ({
-    ...photo,
-    data: `data:image/jpeg;base64,${fs.readFileSync(path.join(__dirname, 'assets', 'pilares', photo.name)).toString('base64')}`
-  }));
-  const pillarPhotoX = margin + cw - pillarPhotoW - 6;
-  const pillarPhotoY = y + 2;
-  const pillarPhotoGap = 1.5;
-  const pillarCellW = (pillarPhotoW - pillarPhotoGap) / 2;
-  const topPhotoH = pillarCellW * (pillarPhotos[0].height / pillarPhotos[0].width);
-  pillarPhotos.slice(0, 2).forEach((photo, idx) => {
-    doc.addImage(photo.data, 'JPEG', pillarPhotoX + idx * (pillarCellW + pillarPhotoGap), pillarPhotoY, pillarCellW, topPhotoH);
-  });
-  const lastPhoto = pillarPhotos[2];
-  const lastPhotoH = pillarPhotoW * (lastPhoto.height / lastPhoto.width);
-  doc.addImage(lastPhoto.data, 'JPEG', pillarPhotoX, pillarPhotoY + topPhotoH + pillarPhotoGap, pillarPhotoW, lastPhotoH);
+  const pillarPhoto = `data:image/jpeg;base64,${fs.readFileSync(path.join(__dirname, 'assets', 'pilares', 'collage_fotos.jpg')).toString('base64')}`;
+  const pillarPhotoH = pillarPhotoW * (1280 / 1080);
+  doc.addImage(pillarPhoto, 'JPEG', margin + cw - pillarPhotoW - 6, y + (propH - pillarPhotoH) / 2, pillarPhotoW, pillarPhotoH);
 
   y += propH + 9;
 

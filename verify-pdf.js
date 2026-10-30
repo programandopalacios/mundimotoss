@@ -16,11 +16,12 @@ async function verifyProposalPDF() {
     return section[0];
   };
   const purposeSection = getHtmlSection('proposito');
-  ['pilar-01.jpg', 'pilar-02.jpg', 'pilar-04.jpg'].forEach(image => {
-    if (!purposeSection.includes(image)) {
-      throw new Error(`Falta la fotografía original "${image}" en Tres Pilares.`);
-    }
-  });
+  if (!purposeSection.includes('collage_fotos.jpg')) {
+    throw new Error('Falta el collage original solicitado en la sección de propósito.');
+  }
+  if (/assets\/pilares\/pilar-0[124]\.jpg/.test(purposeSection)) {
+    throw new Error('La sección de propósito no debe reemplazar el collage por fotografías individuales.');
+  }
   if (/TRES PILARES INMEDIATOS/i.test(purposeSection)) {
     throw new Error('La sección web conserva el título eliminado sobre las fotografías.');
   }
@@ -35,7 +36,7 @@ async function verifyProposalPDF() {
       throw new Error(`La distribución de encuentros está repetida en la sección web "${sectionId}".`);
     }
   }
-  console.log('Verificación web: tres fotos originales, sin título, cantidades solo en el cuadro principal.');
+  console.log('Verificación web: collage original, sin título, cantidades solo en el cuadro principal.');
 
   // 1. Generate compressed PDF for final delivery
   const docCompressed = buildProposalPDF({
@@ -72,8 +73,8 @@ async function verifyProposalPDF() {
 
   const pageOneXObjects = pdfDoc.getPage(0).node.Resources()
     .lookup(PDFName.of('XObject'))?.keys().length || 0;
-  if (pageOneXObjects < 3) {
-    throw new Error(`La página 1 debe incluir las tres fotografías originales; se encontraron ${pageOneXObjects}.`);
+  if (pageOneXObjects < 1) {
+    throw new Error(`La página 1 debe incluir el collage original; se encontraron ${pageOneXObjects} imágenes.`);
   }
 
   const annotations = pdfDoc.getPage(3).node.Annots();

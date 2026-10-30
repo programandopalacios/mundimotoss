@@ -194,23 +194,20 @@
     }
 
     .pillar-photo-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      align-items: start;
-      gap: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       width: 100%;
+      height: 340px;
     }
 
     .pillar-photo-grid img {
       display: block;
-      width: 100%;
-      height: auto;
+      width: auto;
+      max-width: 100%;
+      height: 100%;
       object-fit: contain;
       border-radius: 8px;
-    }
-
-    .pillar-photo-grid img:last-child {
-      grid-column: 1 / -1;
     }
 
     .col-12 { grid-column: span 12; }
@@ -239,6 +236,7 @@
       .purpose-pillar-grid { grid-template-columns: minmax(0, 1fr); }
       .purpose-pillar-grid > .purpose-copy-card,
       .purpose-pillar-grid > .purpose-photo-card { grid-column: 1; }
+      .pillar-photo-grid { height: 280px; }
     }
 
     @media (max-width: 860px) {
@@ -1435,11 +1433,9 @@
 
         <!-- Card 2: 3 Focos Inmediatos (Col 4) -->
         <div class="bento-card col-4 purpose-photo-card">
-          <div id="pillarPhotoGrid" class="pillar-photo-grid">
-            <img src="assets/pilares/pilar-01.jpg" alt="Encuentro presencial con equipos de trabajo" />
-            <img src="assets/pilares/pilar-02.jpg" alt="Jornada de formación y escucha a los participantes" />
-            <img src="assets/pilares/pilar-04.jpg" alt="Experiencia vivencial de servicio con equipos" />
-          </div>
+        <div id="pillarPhotoGrid" class="pillar-photo-grid">
+          <img src="assets/pilares/collage_fotos.jpg" alt="Collage de experiencias formativas con equipos de trabajo" />
+        </div>
         </div>
       </div>
     </section>
@@ -3271,20 +3267,12 @@
   doc.text(splitP1, margin + 6, y + 13.5);
 
   const pillarPhotoElements = Array.from(document.querySelectorAll('#pillarPhotoGrid img'));
-  if (pillarPhotoElements.length !== 3 || pillarPhotoElements.some(image => !image.complete || !image.naturalWidth)) {
-    throw new Error('No se pudieron cargar las tres fotografías originales para el PDF.');
+  if (pillarPhotoElements.length !== 1 || !pillarPhotoElements[0].complete || !pillarPhotoElements[0].naturalWidth) {
+    throw new Error('No se pudo cargar el collage original para el PDF.');
   }
-  const pillarPhotoX = margin + cw - pillarPhotoW - 6;
-  const pillarPhotoY = y + 2;
-  const pillarPhotoGap = 1.5;
-  const pillarCellW = (pillarPhotoW - pillarPhotoGap) / 2;
-  const topPhotoH = pillarCellW * (pillarPhotoElements[0].naturalHeight / pillarPhotoElements[0].naturalWidth);
-  pillarPhotoElements.slice(0, 2).forEach((photo, idx) => {
-    doc.addImage(photo, 'JPEG', pillarPhotoX + idx * (pillarCellW + pillarPhotoGap), pillarPhotoY, pillarCellW, topPhotoH);
-  });
-  const lastPhoto = pillarPhotoElements[2];
-  const lastPhotoH = pillarPhotoW * (lastPhoto.naturalHeight / lastPhoto.naturalWidth);
-  doc.addImage(lastPhoto, 'JPEG', pillarPhotoX, pillarPhotoY + topPhotoH + pillarPhotoGap, pillarPhotoW, lastPhotoH);
+  const pillarPhoto = pillarPhotoElements[0];
+  const pillarPhotoH = pillarPhotoW * (pillarPhoto.naturalHeight / pillarPhoto.naturalWidth);
+  doc.addImage(pillarPhoto, 'JPEG', margin + cw - pillarPhotoW - 6, y + (propH - pillarPhotoH) / 2, pillarPhotoW, pillarPhotoH);
 
   y += propH + 9;
 
