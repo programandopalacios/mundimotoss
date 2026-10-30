@@ -194,28 +194,23 @@
     }
 
     .pillar-photo-grid {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: start;
+      gap: 8px;
       width: 100%;
-      height: 340px;
-      flex: none;
-      min-height: 0;
-      padding: 6px;
-      border-radius: var(--radius-md, 12px);
-      overflow: hidden;
-      background: var(--bg-surface-elevated);
-      border: 1px solid var(--border-subtle);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     }
 
     .pillar-photo-grid img {
       display: block;
-      width: auto;
-      max-width: 100%;
-      height: 100%;
+      width: 100%;
+      height: auto;
       object-fit: contain;
       border-radius: 8px;
+    }
+
+    .pillar-photo-grid img:last-child {
+      grid-column: 1 / -1;
     }
 
     .col-12 { grid-column: span 12; }
@@ -244,7 +239,6 @@
       .purpose-pillar-grid { grid-template-columns: minmax(0, 1fr); }
       .purpose-pillar-grid > .purpose-copy-card,
       .purpose-pillar-grid > .purpose-photo-card { grid-column: 1; }
-      .pillar-photo-grid { height: 280px; }
     }
 
     @media (max-width: 860px) {
@@ -1381,12 +1375,12 @@
           <span>Presenta: <strong>GRUPO VE POR MÁS</strong> · Juan Manuel Restrepo y Eduardo Gómez</span>
         </div>
 
-        <!-- 4 Stat Bento Blocks -->
+        <!-- Summary metrics: the single detailed meeting breakdown -->
         <div class="hero-stats-row">
           <div class="hero-stat-item">
             <div class="hero-stat-num">9</div>
             <div class="hero-stat-lbl">Encuentros Totales</div>
-            <div class="hero-stat-sub">5 en Bogotá y 4 en Antioquia</div>
+            <div class="hero-stat-sub">Antioquia y Bogotá</div>
           </div>
 
           <div class="hero-stat-item">
@@ -1441,13 +1435,10 @@
 
         <!-- Card 2: 3 Focos Inmediatos (Col 4) -->
         <div class="bento-card col-4 purpose-photo-card">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
-            <span class="badge-pill">TRES PILARES INMEDIATOS</span>
-            <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--badge-blue-text, #0284c7); letter-spacing: 0.08em; text-transform: uppercase;">VIVENCIAL</span>
-          </div>
-
           <div id="pillarPhotoGrid" class="pillar-photo-grid">
-            <img src="assets/pilares/collage_fotos.jpg" alt="Collage de experiencias formativas con equipos de trabajo" />
+            <img src="assets/pilares/pilar-01.jpg" alt="Encuentro presencial con equipos de trabajo" />
+            <img src="assets/pilares/pilar-02.jpg" alt="Jornada de formación y escucha a los participantes" />
+            <img src="assets/pilares/pilar-04.jpg" alt="Experiencia vivencial de servicio con equipos" />
           </div>
         </div>
       </div>
@@ -1461,7 +1452,7 @@
         <span class="badge-pill">POBLACIÓN Y COBERTURA TERRITORIAL</span>
         <h2 class="section-title">Cobertura Territorial: Antioquia &amp; Bogotá</h2>
         <p class="section-desc">
-          Planificación logística estructurada para 9 encuentros presenciales en total, con una población de referencia de 140 colaboradores (60 en Antioquia y 80 en Bogotá).
+          Planificación logística para una población de referencia de 140 colaboradores (60 en Antioquia y 80 en Bogotá).
         </p>
       </div>
 
@@ -1495,14 +1486,14 @@
             </div>
           </div>
           <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 20px; line-height: 1.65;">
-            Población de referencia: <strong>80 colaboradores</strong>. Se propone organizar las jornadas en distribución 2-2-1 para optimizar desplazamientos, viáticos y costos operativos de la organización.
+            Población de referencia: <strong>80 colaboradores</strong>. La programación logística se coordinará con Mundimotos para optimizar desplazamientos, viáticos y costos operativos.
           </p>
           <div style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 16px 18px; font-size: 13px; color: var(--text-secondary); line-height: 1.7;">
             <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
               <i data-lucide="clock" class="w-4 h-4 text-amber-500"></i>
-              <strong>Distribución Operativa Propuesta:</strong>
+              <strong>Coordinación Operativa:</strong>
             </div>
-            <span>Dos jornadas con dos encuentros cada una y una jornada con un encuentro. Las fechas concretas se coordinarán con Mundimotos.</span>
+            <span>Las fechas y los desplazamientos se coordinarán con Mundimotos.</span>
           </div>
         </div>
 
@@ -1513,7 +1504,7 @@
             <h4 style="font-size: 14.5px; font-weight: 700;">Organización de jornadas en Antioquia</h4>
           </div>
           <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">
-            Una jornada por día para garantizar que los equipos comerciales y de servicio participen con tranquilidad sin comprometer la operación diaria.
+            La programación se coordinará para facilitar la participación de los equipos sin comprometer la operación diaria.
           </p>
         </div>
 
@@ -1523,7 +1514,7 @@
             <h4 style="font-size: 14.5px; font-weight: 700;">Organización de jornadas en Bogotá</h4>
           </div>
           <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">
-            Distribución 2-2-1 para optimizar la logística.
+            Planeación logística coordinada con Mundimotos.
           </p>
         </div>
 
@@ -1695,12 +1686,11 @@
           <div>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
               <span class="badge-pill badge-blue" style="font-size: 10px;">PROGRAMA INTEGRAL LLAVE EN MANO</span>
-              <span style="font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: var(--mm-yellow);">9 ENCUENTROS PRESENCIALES</span>
             </div>
             
             <h3 style="font-size: 26px; font-weight: 900; margin-bottom: 8px;">Paquete Integral de Experiencia y Servicio</h3>
             <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 24px; line-height: 1.65;">
-              Nueve jornadas vivenciales de alto impacto con facilitación directiva senior, diseñadas para transformar la atención habitual en una cultura de servicio cercana, empática y diferenciadora.
+              Jornadas vivenciales de alto impacto con facilitación directiva senior, diseñadas para transformar la atención habitual en una cultura de servicio cercana, empática y diferenciadora.
             </p>
 
             <div style="display: flex; flex-direction: column; gap: 16px; font-size: 13.5px; color: var(--text-secondary);">
@@ -1709,7 +1699,7 @@
                   <i data-lucide="check" class="w-3.5 h-3.5 text-amber-500"></i>
                 </div>
                 <div>
-                  <strong>4 Encuentros presenciales en Antioquia:</strong> Cuatro encuentros para la población de referencia de 60 colaboradores; sus fechas se coordinarán con Mundimotos.
+                  Coordinación de jornadas presenciales en las sedes acordadas, conforme al cuadro principal de encuentros.
                 </div>
               </div>
 
@@ -1718,7 +1708,7 @@
                   <i data-lucide="check" class="w-3.5 h-3.5 text-amber-500"></i>
                 </div>
                 <div>
-                  <strong>5 Encuentros presenciales en Bogotá:</strong> Distribuidos en jornadas 2-2-1 para optimizar desplazamientos y viáticos; las fechas concretas se coordinarán con Mundimotos.
+                  Programación de fechas y distribución operativa con Mundimotos, según el alcance indicado en el cuadro principal.
                 </div>
               </div>
 
@@ -2671,9 +2661,7 @@
             <h3 style="font-size: 17px; font-weight: 800;">Condiciones Operativas y Territoriales</h3>
           </div>
           <ul style="font-size: 13px; color: var(--text-secondary); line-height: 1.85; list-style: none; padding-left: 0;">
-            <li>• <strong>Alcance Total:</strong> 9 encuentros presenciales (4 en Antioquia y 5 en Bogotá) sobre una población de referencia de 140 colaboradores.</li>
-            <li>• <strong>Antioquia:</strong> 4 encuentros; las fechas se coordinarán con Mundimotos.</li>
-            <li>• <strong>Bogotá:</strong> 5 encuentros distribuidos en jornadas 2-2-1; las fechas se coordinarán con Mundimotos.</li>
+            <li>• <strong>Alcance operativo:</strong> Programa presencial para una población de referencia de 140 colaboradores; las fechas y la logística se coordinarán con Mundimotos.</li>
           </ul>
         </div>
 
@@ -3184,7 +3172,7 @@
   const boxW = (cw - 9) / 4;
   const boxH = 22;
   const metrics = [
-    { num: '9', lbl: 'Encuentros Totales', sub: '5 Bogotá y 4 Antioquia' },
+    { num: '9', lbl: 'Encuentros Totales', sub: 'Antioquia y Bogotá' },
     { num: 'Antioquia', lbl: '4 Encuentros', sub: '60 pers. ref.' },
     { num: 'Bogotá', lbl: '5 Encuentros', sub: '80 pers. ref. (2-2-1)' },
     { num: 'Fechas', lbl: 'Cronograma', sub: 'Por coordinar con Mundimotos' }
@@ -3232,9 +3220,9 @@
 
   const colHalf = (cw - 12) / 2;
   const fRows = [
-    { l: "CLIENTE:", v: "Mundimotos (Antioquia y Bogotá D.C.)", rL: "PROPONENTE:", rV: "GRUPO VE POR MÁS" },
+    { l: "CLIENTE:", v: "Mundimotos", rL: "PROPONENTE:", rV: "GRUPO VE POR MÁS" },
     { l: "FACILITADORES:", v: "Juan Manuel Restrepo & Eduardo Gómez", rL: "RESPALDO:", rV: "Academia Punto D' Partida / Agencia PDP" },
-    { l: "POBLACIÓN:", v: "140 colaboradores ref. (60 Antioquia · 80 Bogotá)", rL: "ALCANCE:", rV: "9 encuentros presenciales vivenciales" },
+    { l: "POBLACIÓN:", v: "140 colaboradores de referencia", rL: "ALCANCE:", rV: "Programa presencial vivencial" },
     { l: "INVERSIÓN:", v: "$33.900.000 COP antes de IVA", rL: "MODALIDAD:", rV: "100% presencial vivencial y aplicado" }
   ];
 
@@ -3277,23 +3265,26 @@
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(7.5);
   doc.setTextColor(...cGrayText);
-  const propP1 = "Una pausa para escuchar a los equipos, reconocer sus aportes y proyectar la experiencia de servicio. Reúne a Bogotá y Antioquia alrededor de la cultura de servicio, la comunicación, la colaboración y la experiencia del cliente; transforma retos cotidianos en aprendizajes y oportunidades de mejora para Mundimotos.";
-  const splitP1 = doc.splitTextToSize(propP1, cw - 52);
+  const propP1 = "Una pausa para escuchar a los equipos, reconocer sus aportes y proyectar la experiencia de servicio. Reúne a los equipos alrededor de la cultura de servicio, la comunicación, la colaboración y la experiencia del cliente; transforma retos cotidianos en aprendizajes y oportunidades de mejora para Mundimotos.";
+  const pillarPhotoW = 46;
+  const splitP1 = doc.splitTextToSize(propP1, cw - pillarPhotoW - 18);
   doc.text(splitP1, margin + 6, y + 13.5);
 
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(7.2);
-  doc.setTextColor(...cBlue);
-  doc.text("TRES PILARES INMEDIATOS", margin + 6, y + 25);
-
   const pillarPhotoElements = Array.from(document.querySelectorAll('#pillarPhotoGrid img'));
-  if (pillarPhotoElements.length !== 1 || pillarPhotoElements.some(image => !image.complete || !image.naturalWidth)) {
-    throw new Error('No se pudo cargar el collage original de Tres Pilares Inmediatos para el PDF.');
+  if (pillarPhotoElements.length !== 3 || pillarPhotoElements.some(image => !image.complete || !image.naturalWidth)) {
+    throw new Error('No se pudieron cargar las tres fotografías originales para el PDF.');
   }
-  const pillarPhoto = pillarPhotoElements[0];
-  const pillarImageW = 40;
-  const pillarImageH = pillarImageW * (pillarPhoto.naturalHeight / pillarPhoto.naturalWidth);
-  doc.addImage(pillarPhoto, 'JPEG', margin + cw - pillarImageW - 6, y + 4, pillarImageW, pillarImageH);
+  const pillarPhotoX = margin + cw - pillarPhotoW - 6;
+  const pillarPhotoY = y + 2;
+  const pillarPhotoGap = 1.5;
+  const pillarCellW = (pillarPhotoW - pillarPhotoGap) / 2;
+  const topPhotoH = pillarCellW * (pillarPhotoElements[0].naturalHeight / pillarPhotoElements[0].naturalWidth);
+  pillarPhotoElements.slice(0, 2).forEach((photo, idx) => {
+    doc.addImage(photo, 'JPEG', pillarPhotoX + idx * (pillarCellW + pillarPhotoGap), pillarPhotoY, pillarCellW, topPhotoH);
+  });
+  const lastPhoto = pillarPhotoElements[2];
+  const lastPhotoH = pillarPhotoW * (lastPhoto.naturalHeight / lastPhoto.naturalWidth);
+  doc.addImage(lastPhoto, 'JPEG', pillarPhotoX, pillarPhotoY + topPhotoH + pillarPhotoGap, pillarPhotoW, lastPhotoH);
 
   y += propH + 9;
 
@@ -3307,17 +3298,17 @@
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(8);
   doc.setTextColor(...cBlue);
-  doc.text("COBERTURA TERRITORIAL Y CONDICIONES OPERATIVAS", margin + 6, y + 7);
+  doc.text("CONDICIONES OPERATIVAS Y LOGÍSTICAS", margin + 6, y + 7);
 
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(11);
   doc.setTextColor(...cDark);
-  doc.text("Parámetros Operativos Claros para Antioquia y Bogotá", margin + 6, y + 14);
+  doc.text("Coordinación de jornadas y logística", margin + 6, y + 14);
 
   const ruleW = (cw - 16) / 3;
   const rules = [
-    { t: "Antioquia", d: "Programación de jornadas presenciales para la población de referencia de 60 colaboradores, coordinada con Mundimotos." },
-    { t: "Bogotá", d: "Distribución propuesta en jornadas 2-2-1; las fechas se coordinarán con Mundimotos." },
+    { t: "Programación", d: "Las fechas de las jornadas se coordinarán con Mundimotos." },
+    { t: "Logística", d: "Los desplazamientos se planificarán de acuerdo con la operación." },
     { t: "Seguimiento e Informes", d: "Registro de asistencia, aplicación de encuestas de evaluación y entrega de informe final ejecutivo con memorias y hallazgos." }
   ];
 
@@ -3489,7 +3480,7 @@
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(8);
   doc.setTextColor(...cBlue);
-  doc.text("ALCANCE INTEGRAL DEL PROGRAMA (9 ENCUENTROS)", margin + 6, y + 8);
+  doc.text("ALCANCE INTEGRAL DEL PROGRAMA", margin + 6, y + 8);
 
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(12);
@@ -3497,8 +3488,8 @@
   doc.text("Paquete Integral de Experiencia y Servicio", margin + 6, y + 15);
 
   const itemsIncluidos = [
-    "4 encuentros presenciales en Antioquia para la población de referencia de 60 colaboradores.",
-    "5 encuentros presenciales en Bogotá, distribuidos en jornadas 2-2-1.",
+    "Coordinación de jornadas presenciales en las sedes acordadas, conforme al cuadro principal de encuentros.",
+    "Programación de fechas y distribución operativa con Mundimotos, según el alcance indicado en el cuadro principal.",
     "Planeación, diseño pedagógico y facilitación directiva senior en vivo.",
     "Herramientas vivenciales y recursos didácticos para todas las actividades.",
     "Formatos organizados y control riguroso de asistencia por jornada y sede.",

@@ -7,6 +7,35 @@ async function verifyProposalPDF() {
   const outputPath = process.argv[2]
     ? path.resolve(process.argv[2])
     : path.join(__dirname, 'Propuesta_Comercial_Mundimotos.pdf');
+  const html = fs.readFileSync(path.join(__dirname, 'index.html'), 'utf8');
+  const getHtmlSection = id => {
+    const section = html.match(new RegExp(`<section id="${id}"[\\s\\S]*?<\\/section>`));
+    if (!section) {
+      throw new Error(`No se encontró la sección web "${id}".`);
+    }
+    return section[0];
+  };
+  const purposeSection = getHtmlSection('proposito');
+  ['pilar-01.jpg', 'pilar-02.jpg', 'pilar-04.jpg'].forEach(image => {
+    if (!purposeSection.includes(image)) {
+      throw new Error(`Falta la fotografía original "${image}" en Tres Pilares.`);
+    }
+  });
+  if (/TRES PILARES INMEDIATOS/i.test(purposeSection)) {
+    throw new Error('La sección web conserva el título eliminado sobre las fotografías.');
+  }
+  const primarySummary = getHtmlSection('inicio');
+  for (const phrase of ['Encuentros Totales', '4 Encuentros', '5 Encuentros', '2-2-1']) {
+    if (!primarySummary.includes(phrase)) {
+      throw new Error(`El cuadro principal web no contiene "${phrase}".`);
+    }
+  }
+  for (const sectionId of ['cobertura', 'paquetes', 'condiciones']) {
+    if (/9 encuentros|4 encuentros|5 encuentros|4 Encuentros|5 Encuentros|2-2-1/i.test(getHtmlSection(sectionId))) {
+      throw new Error(`La distribución de encuentros está repetida en la sección web "${sectionId}".`);
+    }
+  }
+  console.log('Verificación web: tres fotos originales, sin título, cantidades solo en el cuadro principal.');
 
   // 1. Generate compressed PDF for final delivery
   const docCompressed = buildProposalPDF({
@@ -43,8 +72,8 @@ async function verifyProposalPDF() {
 
   const pageOneXObjects = pdfDoc.getPage(0).node.Resources()
     .lookup(PDFName.of('XObject'))?.keys().length || 0;
-  if (pageOneXObjects < 1) {
-    throw new Error(`La página 1 debe incluir el collage original de los pilares; se encontraron ${pageOneXObjects}.`);
+  if (pageOneXObjects < 3) {
+    throw new Error(`La página 1 debe incluir las tres fotografías originales; se encontraron ${pageOneXObjects}.`);
   }
 
   const annotations = pdfDoc.getPage(3).node.Annots();
@@ -81,9 +110,11 @@ async function verifyProposalPDF() {
     { page: 1, key: 'MUNDIMOTOS', label: 'Portada y Cliente Mundimotos' },
     { page: 1, key: '140', label: 'Cifra 140 Colaboradores' },
     { page: 1, key: 'Bogot', label: 'Presencia Bogotá y Antioquia' },
+    { page: 1, key: '4 Encuentros', label: 'Cuatro encuentros en Antioquia' },
+    { page: 1, key: '5 Encuentros', label: 'Cinco encuentros en Bogotá' },
+    { page: 1, key: '2-2-1', label: 'Distribución 2-2-1 en Bogotá' },
     { page: 1, key: 'Por coordinar con Mundimotos', label: 'Fechas pendientes de coordinación' },
     { page: 1, key: 'El Sentido de Hacer una Pausa', label: 'Propósito sin encabezado repetido' },
-    { page: 1, key: 'TRES PILARES INMEDIATOS', label: 'Tres Pilares Inmediatos con collage original' },
     { page: 2, key: 'CONECTAR', label: 'Momento 01 Conectar' },
     { page: 2, key: 'CERRAR', label: 'Momento 06 Cerrar' },
     { page: 2, key: 'Reflexión, Aprendizajes y Reconocimiento', label: 'Nuevo título del momento 06' },
@@ -92,9 +123,7 @@ async function verifyProposalPDF() {
     { page: 2, key: 'fortalecer la cultura', label: 'Cultura organizacional en el momento 06' },
     { page: 2, key: 'TRANSVERSALES', label: 'Ejes Temáticos Transversales' },
     { page: 3, key: 'Paquete Integral de Experiencia y Servicio', label: 'Paquete Integral de Experiencia y Servicio' },
-    { page: 3, key: '4 encuentros presenciales en Antioquia', label: 'Cuatro encuentros en Antioquia' },
-    { page: 3, key: '5 encuentros presenciales en Bogotá', label: 'Cinco encuentros en Bogotá' },
-    { page: 3, key: 'jornadas 2-2-1', label: 'Distribución 2-2-1 en Bogotá' },
+    { page: 3, key: 'Coordinación de jornadas presenciales', label: 'Alcance remitido al cuadro principal' },
     { page: 3, key: 'Herramientas vivenciales', label: 'Herramientas de trabajo' },
     { page: 3, key: 'control riguroso de asistencia', label: 'Registro de asistencia' },
     { page: 3, key: 'encuestas de evaluación', label: 'Encuestas' },
@@ -148,6 +177,20 @@ async function verifyProposalPDF() {
       throw new Error(`Fallo de verificación: Clave "${key}" no encontrada para ${label}`);
     }
   });
+
+  if (rawContent.includes('TRES PILARES INMEDIATOS')) {
+    throw new Error('El PDF no debe mostrar el título eliminado sobre las fotografías.');
+  }
+  for (const [label, pattern] of [
+    ['4 encuentros en Antioquia', /4 Encuentros/g],
+    ['5 encuentros en Bogotá', /5 Encuentros/g],
+    ['distribución 2-2-1', /2-2-1/g]
+  ]) {
+    const occurrences = (rawContent.match(pattern) || []).length;
+    if (occurrences !== 1) {
+      throw new Error(`La información de ${label} debe aparecer solo en el cuadro principal; se encontraron ${occurrences} apariciones.`);
+    }
+  }
 
   if (/Propuesta Comercial: Experiencia Integral|Una solución única, completa y ejecutiva|PROPUESTA DE VALOR CORPORATIVA/i.test(rawContent)) {
     throw new Error('El PDF conserva encabezados o textos redundantes que debían retirarse.');

@@ -145,7 +145,7 @@ function buildProposalPDF(options = {}) {
   const boxW = (cw - 9) / 4;
   const boxH = 22;
   const metrics = [
-    { num: '9', lbl: 'Encuentros Totales', sub: '5 Bogotá y 4 Antioquia' },
+    { num: '9', lbl: 'Encuentros Totales', sub: 'Antioquia y Bogotá' },
     { num: 'Antioquia', lbl: '4 Encuentros', sub: '60 pers. ref.' },
     { num: 'Bogotá', lbl: '5 Encuentros', sub: '80 pers. ref. (2-2-1)' },
     { num: 'Fechas', lbl: 'Cronograma', sub: 'Por coordinar con Mundimotos' }
@@ -193,9 +193,9 @@ function buildProposalPDF(options = {}) {
 
   const colHalf = (cw - 12) / 2;
   const fRows = [
-    { l: "CLIENTE:", v: "Mundimotos (Antioquia y Bogotá D.C.)", rL: "PROPONENTE:", rV: "GRUPO VE POR MÁS" },
+    { l: "CLIENTE:", v: "Mundimotos", rL: "PROPONENTE:", rV: "GRUPO VE POR MÁS" },
     { l: "FACILITADORES:", v: "Juan Manuel Restrepo & Eduardo Gómez", rL: "RESPALDO:", rV: "Academia Punto D' Partida / Agencia PDP" },
-    { l: "POBLACIÓN:", v: "140 colaboradores ref. (60 Antioquia · 80 Bogotá)", rL: "ALCANCE:", rV: "9 encuentros presenciales vivenciales" },
+    { l: "POBLACIÓN:", v: "140 colaboradores de referencia", rL: "ALCANCE:", rV: "Programa presencial vivencial" },
     { l: "INVERSIÓN:", v: "$33.900.000 COP antes de IVA", rL: "MODALIDAD:", rV: "100% presencial vivencial y aplicado" }
   ];
 
@@ -238,19 +238,30 @@ function buildProposalPDF(options = {}) {
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(7.5);
   doc.setTextColor(...cGrayText);
-  const propP1 = "Una pausa para escuchar a los equipos, reconocer sus aportes y proyectar la experiencia de servicio. Reúne a Bogotá y Antioquia alrededor de la cultura de servicio, la comunicación, la colaboración y la experiencia del cliente; transforma retos cotidianos en aprendizajes y oportunidades de mejora para Mundimotos.";
-  const splitP1 = doc.splitTextToSize(propP1, cw - 52);
+  const propP1 = "Una pausa para escuchar a los equipos, reconocer sus aportes y proyectar la experiencia de servicio. Reúne a los equipos alrededor de la cultura de servicio, la comunicación, la colaboración y la experiencia del cliente; transforma retos cotidianos en aprendizajes y oportunidades de mejora para Mundimotos.";
+  const pillarPhotoW = 46;
+  const splitP1 = doc.splitTextToSize(propP1, cw - pillarPhotoW - 18);
   doc.text(splitP1, margin + 6, y + 13.5);
 
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(7.2);
-  doc.setTextColor(...cBlue);
-  doc.text("TRES PILARES INMEDIATOS", margin + 6, y + 25);
-
-  const pillarPhoto = `data:image/jpeg;base64,${fs.readFileSync(path.join(__dirname, 'assets', 'pilares', 'collage_fotos.jpg')).toString('base64')}`;
-  const pillarImageW = 40;
-  const pillarImageH = pillarImageW * (1280 / 1080);
-  doc.addImage(pillarPhoto, 'JPEG', margin + cw - pillarImageW - 6, y + 4, pillarImageW, pillarImageH);
+  const pillarPhotos = [
+    { name: 'pilar-01.jpg', width: 1280, height: 720 },
+    { name: 'pilar-02.jpg', width: 1599, height: 899 },
+    { name: 'pilar-04.jpg', width: 1280, height: 960 }
+  ].map(photo => ({
+    ...photo,
+    data: `data:image/jpeg;base64,${fs.readFileSync(path.join(__dirname, 'assets', 'pilares', photo.name)).toString('base64')}`
+  }));
+  const pillarPhotoX = margin + cw - pillarPhotoW - 6;
+  const pillarPhotoY = y + 2;
+  const pillarPhotoGap = 1.5;
+  const pillarCellW = (pillarPhotoW - pillarPhotoGap) / 2;
+  const topPhotoH = pillarCellW * (pillarPhotos[0].height / pillarPhotos[0].width);
+  pillarPhotos.slice(0, 2).forEach((photo, idx) => {
+    doc.addImage(photo.data, 'JPEG', pillarPhotoX + idx * (pillarCellW + pillarPhotoGap), pillarPhotoY, pillarCellW, topPhotoH);
+  });
+  const lastPhoto = pillarPhotos[2];
+  const lastPhotoH = pillarPhotoW * (lastPhoto.height / lastPhoto.width);
+  doc.addImage(lastPhoto.data, 'JPEG', pillarPhotoX, pillarPhotoY + topPhotoH + pillarPhotoGap, pillarPhotoW, lastPhotoH);
 
   y += propH + 9;
 
@@ -264,17 +275,17 @@ function buildProposalPDF(options = {}) {
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(8);
   doc.setTextColor(...cBlue);
-  doc.text("COBERTURA TERRITORIAL Y CONDICIONES OPERATIVAS", margin + 6, y + 7);
+  doc.text("CONDICIONES OPERATIVAS Y LOGÍSTICAS", margin + 6, y + 7);
 
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(11);
   doc.setTextColor(...cDark);
-  doc.text("Parámetros Operativos Claros para Antioquia y Bogotá", margin + 6, y + 14);
+  doc.text("Coordinación de jornadas y logística", margin + 6, y + 14);
 
   const ruleW = (cw - 16) / 3;
   const rules = [
-    { t: "Antioquia", d: "Programación de jornadas presenciales para la población de referencia de 60 colaboradores, coordinada con Mundimotos." },
-    { t: "Bogotá", d: "Distribución propuesta en jornadas 2-2-1; las fechas se coordinarán con Mundimotos." },
+    { t: "Programación", d: "Las fechas de las jornadas se coordinarán con Mundimotos." },
+    { t: "Logística", d: "Los desplazamientos se planificarán de acuerdo con la operación." },
     { t: "Seguimiento e Informes", d: "Registro de asistencia, aplicación de encuestas de evaluación y entrega de informe final ejecutivo con memorias y hallazgos." }
   ];
 
@@ -446,7 +457,7 @@ function buildProposalPDF(options = {}) {
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(8);
   doc.setTextColor(...cBlue);
-  doc.text("ALCANCE INTEGRAL DEL PROGRAMA (9 ENCUENTROS)", margin + 6, y + 8);
+  doc.text("ALCANCE INTEGRAL DEL PROGRAMA", margin + 6, y + 8);
 
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(12);
@@ -454,8 +465,8 @@ function buildProposalPDF(options = {}) {
   doc.text("Paquete Integral de Experiencia y Servicio", margin + 6, y + 15);
 
   const itemsIncluidos = [
-    "4 encuentros presenciales en Antioquia para la población de referencia de 60 colaboradores.",
-    "5 encuentros presenciales en Bogotá, distribuidos en jornadas 2-2-1.",
+    "Coordinación de jornadas presenciales en las sedes acordadas, conforme al cuadro principal de encuentros.",
+    "Programación de fechas y distribución operativa con Mundimotos, según el alcance indicado en el cuadro principal.",
     "Planeación, diseño pedagógico y facilitación directiva senior en vivo.",
     "Herramientas vivenciales y recursos didácticos para todas las actividades.",
     "Formatos organizados y control riguroso de asistencia por jornada y sede.",
