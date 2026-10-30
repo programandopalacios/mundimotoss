@@ -282,8 +282,8 @@ function buildProposalPDF(options = {}) {
 
   const ruleW = (cw - 16) / 3;
   const rules = [
-    { t: "Antioquia: 4 Encuentros", d: "Cuatro encuentros presenciales para la población de referencia de 60 colaboradores." },
-    { t: "Bogotá: Jornadas Optimizadas", d: "5 encuentros distribuidos en jornadas 2-2-1; las fechas se coordinarán con Mundimotos." },
+    { t: "Antioquia", d: "Programación de jornadas presenciales para la población de referencia de 60 colaboradores, coordinada con Mundimotos." },
+    { t: "Bogotá", d: "Distribución propuesta en jornadas 2-2-1; las fechas se coordinarán con Mundimotos." },
     { t: "Seguimiento e Informes", d: "Registro de asistencia, aplicación de encuestas de evaluación y entrega de informe final ejecutivo con memorias y hallazgos." }
   ];
 
