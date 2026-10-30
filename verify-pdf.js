@@ -41,6 +41,12 @@ async function verifyProposalPDF() {
     }
   }
 
+  const pageOneXObjects = pdfDoc.getPage(0).node.Resources()
+    .lookup(PDFName.of('XObject'))?.keys().length || 0;
+  if (pageOneXObjects < 3) {
+    throw new Error(`La página 1 debe incluir las tres fotografías originales de los pilares; se encontraron ${pageOneXObjects}.`);
+  }
+
   const annotations = pdfDoc.getPage(3).node.Annots();
   const pdfLinks = annotations
     ? annotations.asArray().map(ref => {
@@ -76,6 +82,8 @@ async function verifyProposalPDF() {
     { page: 1, key: '140', label: 'Cifra 140 Colaboradores' },
     { page: 1, key: 'Bogot', label: 'Presencia Bogotá y Antioquia' },
     { page: 1, key: 'Por coordinar con Mundimotos', label: 'Fechas pendientes de coordinación' },
+    { page: 1, key: 'El Sentido de Hacer una Pausa', label: 'Propósito sin encabezado repetido' },
+    { page: 1, key: 'TRES PILARES INMEDIATOS', label: 'Tres Pilares Inmediatos con fotografías originales' },
     { page: 2, key: 'CONECTAR', label: 'Momento 01 Conectar' },
     { page: 2, key: 'CERRAR', label: 'Momento 06 Cerrar' },
     { page: 2, key: 'Reflexión, Aprendizajes y Reconocimiento', label: 'Nuevo título del momento 06' },
@@ -140,6 +148,10 @@ async function verifyProposalPDF() {
       throw new Error(`Fallo de verificación: Clave "${key}" no encontrada para ${label}`);
     }
   });
+
+  if (/Propuesta Comercial: Experiencia Integral|Una solución única, completa y ejecutiva|PROPUESTA DE VALOR CORPORATIVA/i.test(rawContent)) {
+    throw new Error('El PDF conserva encabezados o textos redundantes que debían retirarse.');
+  }
 
   if (rawContent.includes('CONDICIONES DE PAGO Y GESTIÓN COMERCIAL')) {
     throw new Error('El PDF conserva el bloque duplicado de condiciones de pago.');

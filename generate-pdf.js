@@ -64,6 +64,38 @@ function buildProposalPDF(options = {}) {
     doc.text(`Página ${pageNum} de 4`, pw - margin, ph - margin, { align: 'right' });
   }
 
+  function drawConditionIcon(kind, x, y) {
+    doc.setFillColor(...cBlueBg);
+    doc.setDrawColor(...cBlueBorder);
+    doc.setLineWidth(0.35);
+    doc.roundedRect(x, y, 6, 6, 1, 1, 'FD');
+    doc.setDrawColor(...cDark);
+    doc.setLineWidth(0.4);
+
+    if (kind === 'services') {
+      doc.circle(x + 3, y + 3, 1.8, 'S');
+      doc.line(x + 1.7, y + 4.3, x + 4.3, y + 1.7);
+    } else if (kind === 'schedule') {
+      doc.roundedRect(x + 1.1, y + 1.4, 3.8, 3.7, 0.4, 0.4, 'S');
+      doc.line(x + 1.1, y + 2.5, x + 4.9, y + 2.5);
+      doc.line(x + 2, y + 0.9, x + 2, y + 2);
+      doc.line(x + 4, y + 0.9, x + 4, y + 2);
+    } else if (kind === 'logistics') {
+      doc.rect(x + 1.2, y + 1.3, 3.6, 4.2, 'S');
+      doc.line(x + 3, y + 1.3, x + 3, y + 5.5);
+      doc.line(x + 1.2, y + 3.4, x + 4.8, y + 3.4);
+    } else {
+      doc.line(x + 3, y + 0.9, x + 5, y + 1.7);
+      doc.line(x + 5, y + 1.7, x + 4.6, y + 4.1);
+      doc.line(x + 4.6, y + 4.1, x + 3, y + 5.3);
+      doc.line(x + 3, y + 5.3, x + 1.4, y + 4.1);
+      doc.line(x + 1.4, y + 4.1, x + 1, y + 1.7);
+      doc.line(x + 1, y + 1.7, x + 3, y + 0.9);
+      doc.line(x + 2, y + 3.1, x + 2.7, y + 3.8);
+      doc.line(x + 2.7, y + 3.8, x + 4, y + 2.4);
+    }
+  }
+
   // =========================================================================
   // PÁGINA 1: PORTADA EJECUTIVA, MÉTRICAS, FICHA TÉCNICA & SEDES
   // =========================================================================
@@ -192,7 +224,7 @@ function buildProposalPDF(options = {}) {
   y += ftH + 9;
 
   // Propósito Estratégico
-  const propH = 46;
+  const propH = 55;
   doc.setFillColor(255, 255, 255);
   doc.setDrawColor(...cBorder);
   doc.setLineWidth(0.4);
@@ -201,23 +233,33 @@ function buildProposalPDF(options = {}) {
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(8);
   doc.setTextColor(...cBlue);
-  doc.text("PROPÓSITO Y SENTIDO DEL ENCUENTRO", margin + 6, y + 7);
-
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(11);
-  doc.setTextColor(...cDark);
-  doc.text("Una pausa significativa para reconocer, conectar y fortalecer", margin + 6, y + 14);
+  doc.text("El Sentido de Hacer una Pausa", margin + 6, y + 7);
 
   doc.setFont('helvetica', 'normal');
-  doc.setFontSize(8.2);
+  doc.setFontSize(7.5);
   doc.setTextColor(...cGrayText);
-  const propP1 = "El cierre de año es una oportunidad privilegiada para hacer una pausa consciente, reconocer el trabajo realizado y abrir conversaciones profundas que permitan seguir creciendo como organización. Proponemos una experiencia corporativa, participativa y vivencial para reunir a los colaboradores de Antioquia y Bogotá alrededor de la cultura de servicio, la empatía en la atención, la comunicación asertiva y el orgullo de pertenencia.";
+  const propP1 = "Una pausa para escuchar a los equipos, reconocer sus aportes y proyectar la experiencia de servicio. Reúne a Bogotá y Antioquia alrededor de la cultura de servicio, la comunicación, la colaboración y la experiencia del cliente; transforma retos cotidianos en aprendizajes y oportunidades de mejora para Mundimotos.";
   const splitP1 = doc.splitTextToSize(propP1, cw - 12);
-  doc.text(splitP1, margin + 6, y + 20);
+  doc.text(splitP1, margin + 6, y + 13.5);
 
-  const propP2 = "Más que una capacitación convencional, este espacio busca escuchar a las personas desde el primer contacto con el cliente, poner en valor sus aportes cotidianos y transformar los retos diarios en aprendizajes concretos y aplicables para el fortalecimiento de la cultura organizacional de Mundimotos.";
-  const splitP2 = doc.splitTextToSize(propP2, cw - 12);
-  doc.text(splitP2, margin + 6, y + 33.5);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(7.2);
+  doc.setTextColor(...cBlue);
+  doc.text("TRES PILARES INMEDIATOS", margin + 6, y + 25);
+
+  const pillarPhotoNames = ['pilar-01.jpg', 'pilar-02.jpg', 'pilar-04.jpg'];
+  const pillarPhotos = pillarPhotoNames.map(name =>
+    `data:image/jpeg;base64,${fs.readFileSync(path.join(__dirname, 'assets', 'pilares', name)).toString('base64')}`
+  );
+  const pillarCellW = (cw - 18) / 3;
+  const pillarImageH = 25;
+  const pillarImageY = y + 27;
+  pillarPhotos.forEach((photo, idx) => {
+    const imageW = pillarImageH * (16 / 9);
+    const cellX = margin + 6 + idx * (pillarCellW + 3);
+    const imageX = cellX + (pillarCellW - imageW) / 2;
+    doc.addImage(photo, 'JPEG', imageX, pillarImageY, imageW, pillarImageH);
+  });
 
   y += propH + 9;
 
@@ -401,16 +443,6 @@ function buildProposalPDF(options = {}) {
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(16);
   doc.setTextColor(...cDark);
-  doc.text("Propuesta Comercial: Experiencia Integral Llave en Mano", margin, y);
-
-  y += 6.5;
-  doc.setFont('helvetica', 'normal');
-  doc.setFontSize(8.8);
-  doc.setTextColor(...cGrayText);
-  doc.text("Una solución única, completa y ejecutiva para los equipos de Mundimotos en Antioquia y Bogotá.", margin, y);
-
-  y += 10;
-
   // Master Bento Card: 2 Columnas (Izquierda: Alcance, Derecha: Inversión)
   const masterH = 135;
   doc.setFillColor(255, 255, 255);
@@ -721,10 +753,10 @@ y += contH + 4;
   doc.text("CONDICIONES COMERCIALES Y LOGÍSTICAS", margin + 6, y + 6);
 
   const conditionCards = [
-    { title: "Servicios no incluidos", text: "Sesiones virtuales adicionales y encuentros presenciales adicionales se cotizan por separado." },
-    { title: "Modificaciones del cronograma", text: "Cualquier cambio de fechas, jornadas o distribución de actividades que genere costos adicionales de logística o viáticos deberá cotizarse y acordarse previamente con Mundimotos." },
-    { title: "Logística a cargo del cliente", text: "El cliente dispone los espacios físicos, los refrigerios y la convocatoria de los participantes." },
-    { title: "Propiedad intelectual", text: "Las metodologías, los contenidos y las herramientas pertenecen a GRUPO VE POR MÁS, conforme a las condiciones acordadas." }
+    { title: "Servicios no incluidos", text: "Sesiones virtuales adicionales y encuentros presenciales adicionales se cotizan por separado.", icon: 'services' },
+    { title: "Modificaciones del cronograma", text: "Cualquier cambio de fechas, jornadas o distribución de actividades que genere costos adicionales de logística o viáticos deberá cotizarse y acordarse previamente con Mundimotos.", icon: 'schedule' },
+    { title: "Logística a cargo del cliente", text: "El cliente dispone los espacios físicos, los refrigerios y la convocatoria de los participantes.", icon: 'logistics' },
+    { title: "Propiedad intelectual", text: "Las metodologías, los contenidos y las herramientas pertenecen a GRUPO VE POR MÁS, conforme a las condiciones acordadas.", icon: 'ownership' }
   ];
   const conditionW = (cw - 18) / 2;
   conditionCards.forEach((condition, idx) => {
@@ -736,10 +768,11 @@ y += contH + 4;
     doc.setDrawColor(...cBorder);
     doc.setLineWidth(0.3);
     doc.roundedRect(x, cardY, conditionW, 17, 1.5, 1.5, 'FD');
+    drawConditionIcon(condition.icon, x + 3, cardY + 1);
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(6.3);
     doc.setTextColor(...cDark);
-    doc.text(condition.title, x + 3, cardY + 4.2);
+    doc.text(condition.title, x + 11, cardY + 4.2);
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(5.8);
     doc.setTextColor(...cGrayText);

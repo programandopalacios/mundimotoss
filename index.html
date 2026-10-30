@@ -1375,7 +1375,7 @@
         <span class="badge-pill badge-blue">PROPÓSITO DEL ENCUENTRO</span>
         <h2 class="section-title">El Sentido de Hacer una Pausa</h2>
         <p class="section-desc">
-          Más que una capacitación convencional, proponemos un espacio significativo para escuchar a las personas, reconocer sus aportes y proyectar el servicio.
+          Una pausa para escuchar a los equipos, reconocer sus aportes y proyectar la experiencia de servicio.
         </p>
       </div>
 
@@ -1388,16 +1388,11 @@
             </div>
             <div>
               <h3 style="font-size: 19px; font-weight: 800;">Cultura, Servicio y Experiencia del Cliente</h3>
-              <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-dim);">PROPUESTA DE VALOR CORPORATIVA</span>
             </div>
           </div>
 
-          <p style="color: var(--text-secondary); font-size: 15px; line-height: 1.75; margin-bottom: 18px;">
-            El cierre de año es una oportunidad para hacer una pausa, reconocer el trabajo realizado y abrir conversaciones que permitan seguir creciendo. Proponemos una experiencia corporativa, participativa y práctica para reunir a colaboradores de Bogotá y Antioquia alrededor de la cultura de servicio, la comunicación, la colaboración y la experiencia del cliente.
-          </p>
-
           <p style="color: var(--text-secondary); font-size: 15px; line-height: 1.75;">
-            Más que una capacitación convencional, buscamos crear un espacio significativo para escuchar a las personas, reconocer sus aportes, compartir aprendizajes y convertir las experiencias cotidianas en oportunidades de mejora tangible para Mundimotos.
+            Reúne a los equipos de Bogotá y Antioquia alrededor de la cultura de servicio, la comunicación, la colaboración y la experiencia del cliente; transforma retos cotidianos en aprendizajes y oportunidades de mejora para Mundimotos.
           </p>
         </div>
 
@@ -1408,8 +1403,10 @@
             <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--badge-blue-text, #0284c7); letter-spacing: 0.08em; text-transform: uppercase;">VIVENCIAL</span>
           </div>
 
-          <div style="border-radius: var(--radius-md, 12px); overflow: hidden; width: 100%; flex: 1; min-height: 280px; background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
-            <img src="assets/pilares/collage_fotos.jpg" alt="Experiencias vivenciales y talleres presenciales — Grupo Ve Por Más & Mundimotos" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;" />
+          <div id="pillarPhotoGrid" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 8px; width: 100%; flex: 1; min-height: 280px; padding: 6px; border-radius: var(--radius-md, 12px); overflow: hidden; background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+            <img src="assets/pilares/pilar-01.jpg" alt="Encuentro presencial con equipos de trabajo" style="width: 100%; height: 100%; min-height: 0; object-fit: cover; border-radius: 8px;" />
+            <img src="assets/pilares/pilar-02.jpg" alt="Jornada de formación y escucha a los participantes" style="width: 100%; height: 100%; min-height: 0; object-fit: cover; border-radius: 8px;" />
+            <img src="assets/pilares/pilar-04.jpg" alt="Experiencia vivencial de servicio con equipos" style="grid-column: 1 / -1; width: 100%; height: 100%; min-height: 0; object-fit: cover; border-radius: 8px;" />
           </div>
         </div>
       </div>
@@ -1659,14 +1656,6 @@
          5. PROPUESTA COMERCIAL INTEGRAL (ORDEN 05 DEL PDF)
          ============================================================= -->
     <section id="paquetes" class="section-wrapper">
-      <div class="section-header">
-        <span class="badge-pill">PROPUESTA COMERCIAL</span>
-        <h2 class="section-title">Propuesta Comercial: Experiencia Integral</h2>
-        <p class="section-desc">
-          Una solución única, robusta y completa diseñada a la medida para los equipos de Mundimotos en Antioquia y Bogotá, sin alternativas dispersas ni cobros ocultos.
-        </p>
-      </div>
-
       <div class="bento-grid">
         <!-- Columna Izquierda (7 cols): Alcance y Entregables Incluidos -->
         <div class="bento-card col-7" style="display: flex; flex-direction: column; justify-content: space-between;">
@@ -3081,6 +3070,38 @@
     doc.text(`Página ${pageNum} de 4`, pw - margin, ph - margin, { align: 'right' });
   }
 
+  function drawConditionIcon(kind, x, y) {
+    doc.setFillColor(...cBlueBg);
+    doc.setDrawColor(...cBlueBorder);
+    doc.setLineWidth(0.35);
+    doc.roundedRect(x, y, 6, 6, 1, 1, 'FD');
+    doc.setDrawColor(...cDark);
+    doc.setLineWidth(0.4);
+
+    if (kind === 'services') {
+      doc.circle(x + 3, y + 3, 1.8, 'S');
+      doc.line(x + 1.7, y + 4.3, x + 4.3, y + 1.7);
+    } else if (kind === 'schedule') {
+      doc.roundedRect(x + 1.1, y + 1.4, 3.8, 3.7, 0.4, 0.4, 'S');
+      doc.line(x + 1.1, y + 2.5, x + 4.9, y + 2.5);
+      doc.line(x + 2, y + 0.9, x + 2, y + 2);
+      doc.line(x + 4, y + 0.9, x + 4, y + 2);
+    } else if (kind === 'logistics') {
+      doc.rect(x + 1.2, y + 1.3, 3.6, 4.2, 'S');
+      doc.line(x + 3, y + 1.3, x + 3, y + 5.5);
+      doc.line(x + 1.2, y + 3.4, x + 4.8, y + 3.4);
+    } else {
+      doc.line(x + 3, y + 0.9, x + 5, y + 1.7);
+      doc.line(x + 5, y + 1.7, x + 4.6, y + 4.1);
+      doc.line(x + 4.6, y + 4.1, x + 3, y + 5.3);
+      doc.line(x + 3, y + 5.3, x + 1.4, y + 4.1);
+      doc.line(x + 1.4, y + 4.1, x + 1, y + 1.7);
+      doc.line(x + 1, y + 1.7, x + 3, y + 0.9);
+      doc.line(x + 2, y + 3.1, x + 2.7, y + 3.8);
+      doc.line(x + 2.7, y + 3.8, x + 4, y + 2.4);
+    }
+  }
+
   // =========================================================================
   // PÁGINA 1: PORTADA EJECUTIVA, MÉTRICAS, FICHA TÉCNICA & SEDES
   // =========================================================================
@@ -3209,7 +3230,7 @@
   y += ftH + 9;
 
   // Propósito Estratégico
-  const propH = 46;
+  const propH = 55;
   doc.setFillColor(255, 255, 255);
   doc.setDrawColor(...cBorder);
   doc.setLineWidth(0.4);
@@ -3218,23 +3239,33 @@
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(8);
   doc.setTextColor(...cBlue);
-  doc.text("PROPÓSITO Y SENTIDO DEL ENCUENTRO", margin + 6, y + 7);
-
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(11);
-  doc.setTextColor(...cDark);
-  doc.text("Una pausa significativa para reconocer, conectar y fortalecer", margin + 6, y + 14);
+  doc.text("El Sentido de Hacer una Pausa", margin + 6, y + 7);
 
   doc.setFont('helvetica', 'normal');
-  doc.setFontSize(8.2);
+  doc.setFontSize(7.5);
   doc.setTextColor(...cGrayText);
-  const propP1 = "El cierre de año es una oportunidad privilegiada para hacer una pausa consciente, reconocer el trabajo realizado y abrir conversaciones profundas que permitan seguir creciendo como organización. Proponemos una experiencia corporativa, participativa y vivencial para reunir a los colaboradores de Antioquia y Bogotá alrededor de la cultura de servicio, la empatía en la atención, la comunicación asertiva y el orgullo de pertenencia.";
+  const propP1 = "Una pausa para escuchar a los equipos, reconocer sus aportes y proyectar la experiencia de servicio. Reúne a Bogotá y Antioquia alrededor de la cultura de servicio, la comunicación, la colaboración y la experiencia del cliente; transforma retos cotidianos en aprendizajes y oportunidades de mejora para Mundimotos.";
   const splitP1 = doc.splitTextToSize(propP1, cw - 12);
-  doc.text(splitP1, margin + 6, y + 20);
+  doc.text(splitP1, margin + 6, y + 13.5);
 
-  const propP2 = "Más que una capacitación convencional, este espacio busca escuchar a las personas desde el primer contacto con el cliente, poner en valor sus aportes cotidianos y transformar los retos diarios en aprendizajes concretos y aplicables para el fortalecimiento de la cultura organizacional de Mundimotos.";
-  const splitP2 = doc.splitTextToSize(propP2, cw - 12);
-  doc.text(splitP2, margin + 6, y + 33.5);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(7.2);
+  doc.setTextColor(...cBlue);
+  doc.text("TRES PILARES INMEDIATOS", margin + 6, y + 25);
+
+  const pillarPhotoElements = Array.from(document.querySelectorAll('#pillarPhotoGrid img'));
+  if (pillarPhotoElements.length !== 3 || pillarPhotoElements.some(image => !image.complete || !image.naturalWidth)) {
+    throw new Error('No se pudieron cargar las fotografías originales de Tres Pilares Inmediatos para el PDF.');
+  }
+  const pillarCellW = (cw - 18) / 3;
+  const pillarImageH = 25;
+  const pillarImageY = y + 27;
+  pillarPhotoElements.forEach((photo, idx) => {
+    const imageW = pillarImageH * (16 / 9);
+    const cellX = margin + 6 + idx * (pillarCellW + 3);
+    const imageX = cellX + (pillarCellW - imageW) / 2;
+    doc.addImage(photo, 'JPEG', imageX, pillarImageY, imageW, pillarImageH);
+  });
 
   y += propH + 9;
 
@@ -3418,16 +3449,6 @@
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(16);
   doc.setTextColor(...cDark);
-  doc.text("Propuesta Comercial: Experiencia Integral Llave en Mano", margin, y);
-
-  y += 6.5;
-  doc.setFont('helvetica', 'normal');
-  doc.setFontSize(8.8);
-  doc.setTextColor(...cGrayText);
-  doc.text("Una solución única, completa y ejecutiva para los equipos de Mundimotos en Antioquia y Bogotá.", margin, y);
-
-  y += 10;
-
   // Master Bento Card: 2 Columnas (Izquierda: Alcance, Derecha: Inversión)
   const masterH = 135;
   doc.setFillColor(255, 255, 255);
@@ -3739,10 +3760,10 @@ y += contH + 4;
   doc.text("CONDICIONES COMERCIALES Y LOGÍSTICAS", margin + 6, y + 6);
 
   const conditionCards = [
-    { title: "Servicios no incluidos", text: "Sesiones virtuales adicionales y encuentros presenciales adicionales se cotizan por separado." },
-    { title: "Modificaciones del cronograma", text: "Cualquier cambio de fechas, jornadas o distribución de actividades que genere costos adicionales de logística o viáticos deberá cotizarse y acordarse previamente con Mundimotos." },
-    { title: "Logística a cargo del cliente", text: "El cliente dispone los espacios físicos, los refrigerios y la convocatoria de los participantes." },
-    { title: "Propiedad intelectual", text: "Las metodologías, los contenidos y las herramientas pertenecen a GRUPO VE POR MÁS, conforme a las condiciones acordadas." }
+    { title: "Servicios no incluidos", text: "Sesiones virtuales adicionales y encuentros presenciales adicionales se cotizan por separado.", icon: 'services' },
+    { title: "Modificaciones del cronograma", text: "Cualquier cambio de fechas, jornadas o distribución de actividades que genere costos adicionales de logística o viáticos deberá cotizarse y acordarse previamente con Mundimotos.", icon: 'schedule' },
+    { title: "Logística a cargo del cliente", text: "El cliente dispone los espacios físicos, los refrigerios y la convocatoria de los participantes.", icon: 'logistics' },
+    { title: "Propiedad intelectual", text: "Las metodologías, los contenidos y las herramientas pertenecen a GRUPO VE POR MÁS, conforme a las condiciones acordadas.", icon: 'ownership' }
   ];
   const conditionW = (cw - 18) / 2;
   conditionCards.forEach((condition, idx) => {
@@ -3754,10 +3775,11 @@ y += contH + 4;
     doc.setDrawColor(...cBorder);
     doc.setLineWidth(0.3);
     doc.roundedRect(x, cardY, conditionW, 17, 1.5, 1.5, 'FD');
+    drawConditionIcon(condition.icon, x + 3, cardY + 1);
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(6.3);
     doc.setTextColor(...cDark);
-    doc.text(condition.title, x + 3, cardY + 4.2);
+    doc.text(condition.title, x + 11, cardY + 4.2);
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(5.8);
     doc.setTextColor(...cGrayText);
