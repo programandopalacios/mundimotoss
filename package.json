@@ -1,0 +1,24 @@
+{
+  "name": "mundimotos",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Propuesta Comercial y Técnica interactiva para Mundimotos (Grupo Ve Por Más S.A.S.)",
+  "scripts": {
+    "dev": "npx serve .",
+    "start": "npx serve .",
+    "build": "echo 'Static landing ready for deployment'"
+  },
+  "keywords": [
+    "propuesta-comercial",
+    "mundimotos",
+    "ve-por-mas",
+    "servicio-al-cliente",
+    "repuestos-motos"
+  ],
+  "author": "Grupo Ve Por Más S.A.S.",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "jspdf": "^4.2.1",
+    "pdf-lib": "^1.17.1"
+  }
+}

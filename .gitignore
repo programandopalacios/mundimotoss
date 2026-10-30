@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Temporary and backup files
+*.backup
+*.log
+.DS_Store
+Thumbs.db
+.temp-chrome-profile*
+
+# Temporary test and analysis files
+formando-lideres.html
+pdf-preview.png
+render-pdf-preview.html
+verify-all-updates.js
+
+# Old obsolete assets
+Propuesta_Comercial_Punto_DPartida.pdf
+
+# Environment and sensitive data
+.env
+.env.*

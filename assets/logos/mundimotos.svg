@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 50" width="280" height="50">
+  <defs>
+    <linearGradient id="mmYellowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFC107" />
+      <stop offset="100%" stop-color="#F5A900" />
+    </linearGradient>
+    <linearGradient id="mmBlueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#195594" />
+      <stop offset="100%" stop-color="#123F70" />
+    </linearGradient>
+  </defs>
+
+  <!-- Dynamic Motorcycle Wing / Shield Emblem -->
+  <g transform="translate(6, 4)">
+    <!-- Base hexagon / shield -->
+    <path d="M12 2 L34 2 L42 21 L34 40 L12 40 L4 21 Z" fill="url(#mmYellowGrad)" />
+    <!-- Inner dynamic motorcycle wing -->
+    <path d="M14 8 L31 8 L24 21 L31 34 L14 34 L21 21 Z" fill="#123F70" />
+    <!-- White core accent -->
+    <circle cx="21" cy="21" r="3.5" fill="#FFFFFF" />
+  </g>
+
+  <!-- Typography: MUNDIMOTOS -->
+  <g transform="translate(56, 28)">
+    <text x="0" y="0" font-family="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" font-weight="900" font-size="22" fill="#FFFFFF" letter-spacing="1">MUNDI<tspan fill="#F5A900">MOTOS</tspan></text>
+  </g>
+  
+  <!-- Subtitle Tagline -->
+  <g transform="translate(57, 40)">
+    <text x="0" y="0" font-family="'JetBrains Mono', monospace" font-weight="600" font-size="7" fill="#60A5FA" letter-spacing="2.2">REPUESTOS &#8226; SERVICIOS &#8226; CALIDAD</text>
+  </g>
+</svg>

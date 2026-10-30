@@ -1,0 +1,3849 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Experiencia de Servicio y Conexión · Propuesta Corporativa | Mundimotos & Grupo Ve Por Más</title>
+  <meta name="description" content="Propuesta de experiencia corporativa para los equipos de Mundimotos en Bogotá y Antioquia. Presentan Grupo Ve Por Más S.A.S., Juan Manuel Restrepo y Eduardo Gómez." />
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2224%22 fill=%22%23123F70%22/><path d=%22M24 24 L76 24 L50 76 Z%22 fill=%22%23F5A900%22/></svg>">
+  
+  <!-- Typography: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- jsPDF Direct Vector Generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <style>
+    /* =============================================================
+       DESIGN SYSTEM — BENTO CORPORATE (MUNDIMOTOS & VE POR MÁS)
+       Máxima fidelidad a formando-lideres-m.vercel.app
+       ============================================================= */
+    :root {
+      --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --radius-full: 9999px;
+      
+      --transition-fast: 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-smooth: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
+      /* Mundimotos Identity Tokens */
+      --mm-blue-deep: #123F70;
+      --mm-blue-vivid: #0D5B99;
+      --mm-yellow: #F5A900;
+      --mm-yellow-hover: #ffb81a;
+      --mm-carbon: #17212B;
+      --mm-gray-light: #F1F4F7;
+    }
+
+    /* ---------------- DARK THEME (PREDETERMINADO) ---------------- */
+    [data-theme="dark"] {
+      --bg-page: #0a0e17;
+      --bg-page-mesh: radial-gradient(circle at 10% 12%, rgba(18, 63, 112, 0.38) 0%, transparent 45%),
+                      radial-gradient(circle at 90% 88%, rgba(245, 169, 0, 0.12) 0%, transparent 40%);
+      --bg-surface: #101622;
+      --bg-surface-elevated: #162032;
+      --bg-surface-glass: rgba(16, 22, 34, 0.88);
+      
+      --border-subtle: rgba(255, 255, 255, 0.10);
+      --border-hover: rgba(245, 169, 0, 0.55);
+      --border-strong: rgba(255, 255, 255, 0.22);
+      
+      --text-main: #ffffff;
+      --text-secondary: #e2e8f0;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      
+      --btn-primary-bg: #F5A900;
+      --btn-primary-text: #0a0e17;
+      --btn-secondary-bg: rgba(255, 255, 255, 0.08);
+      --btn-secondary-border: rgba(255, 255, 255, 0.16);
+      --btn-secondary-text: #ffffff;
+      
+      --badge-bg: rgba(245, 169, 0, 0.14);
+      --badge-border: rgba(245, 169, 0, 0.38);
+      --badge-text: #F5A900;
+
+      --badge-blue-bg: rgba(13, 91, 153, 0.25);
+      --badge-blue-border: rgba(13, 91, 153, 0.5);
+      --badge-blue-text: #60a5fa;
+
+      --card-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.85), 0 0 24px -8px rgba(18, 63, 112, 0.25);
+      --card-inner-glow: inset 0 1px 0 0 rgba(255, 255, 255, 0.09);
+      --nav-bg: rgba(10, 14, 23, 0.94);
+      --toggle-bg: #162032;
+      --hero-title-gradient: linear-gradient(135deg, #ffffff 40%, #e2e8f0 75%, #F5A900 100%);
+      --brand-tagline-color: #60a5fa;
+      --nav-pill-bg: rgba(255, 255, 255, 0.04);
+      --nav-pill-border: rgba(255, 255, 255, 0.08);
+    }
+
+    /* ---------------- LIGHT THEME ---------------- */
+    [data-theme="light"] {
+      --bg-page: #ffffff;
+      --bg-page-mesh: radial-gradient(circle at 10% 12%, rgba(18, 63, 112, 0.08) 0%, transparent 45%),
+                      radial-gradient(circle at 90% 88%, rgba(245, 169, 0, 0.06) 0%, transparent 40%);
+      --bg-surface: #ffffff;
+      --bg-surface-elevated: #f1f5f9;
+      --bg-surface-glass: rgba(255, 255, 255, 0.94);
+      
+      --border-subtle: rgba(15, 23, 42, 0.09);
+      --border-hover: rgba(18, 63, 112, 0.45);
+      --border-strong: rgba(15, 23, 42, 0.18);
+      
+      --text-main: #0a0e17;
+      --text-secondary: #1e293b;
+      --text-muted: #475569;
+      --text-dim: #64748b;
+      
+      --btn-primary-bg: #F5A900;
+      --btn-primary-text: #0a0e17;
+      --btn-secondary-bg: rgba(15, 23, 42, 0.05);
+      --btn-secondary-border: rgba(15, 23, 42, 0.14);
+      --btn-secondary-text: #0f172a;
+      
+      --badge-bg: rgba(245, 169, 0, 0.12);
+      --badge-border: rgba(245, 169, 0, 0.35);
+      --badge-text: #b45309;
+
+      --badge-blue-bg: rgba(18, 63, 112, 0.08);
+      --badge-blue-border: rgba(18, 63, 112, 0.25);
+      --badge-blue-text: #123F70;
+
+      --card-shadow: 0 12px 30px -10px rgba(15, 23, 42, 0.08), 0 2px 8px -2px rgba(15, 23, 42, 0.04);
+      --card-inner-glow: inset 0 1px 0 0 rgba(255, 255, 255, 1);
+      --nav-bg: rgba(255, 255, 255, 0.95);
+      --toggle-bg: #f1f5f9;
+      --hero-title-gradient: linear-gradient(135deg, #0a0e17 40%, #123F70 75%, #F5A900 100%);
+      --brand-tagline-color: #0D5B99;
+      --nav-pill-bg: rgba(15, 23, 42, 0.03);
+      --nav-pill-border: rgba(15, 23, 42, 0.08);
+    }
+
+    /* ---------------- BASE RESET ---------------- */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--bg-page);
+      background-image: var(--bg-page-mesh);
+      background-attachment: fixed;
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+      width: 100%;
+      transition: background-color var(--transition-smooth), color var(--transition-smooth);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ---------------- CONTAINERS & GRID ---------------- */
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px;
+      box-sizing: border-box;
+    }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 22px;
+      width: 100%;
+    }
+
+    .col-12 { grid-column: span 12; }
+    .col-11 { grid-column: span 11; }
+    .col-10 { grid-column: span 10; }
+    .col-9  { grid-column: span 9; }
+    .col-8  { grid-column: span 8; }
+    .col-7  { grid-column: span 7; }
+    .col-6  { grid-column: span 6; }
+    .col-5  { grid-column: span 5; }
+    .col-4  { grid-column: span 4; }
+    .col-3  { grid-column: span 3; }
+    .col-2  { grid-column: span 2; }
+    .col-1  { grid-column: span 1; }
+
+    .rules-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      width: 100%;
+    }
+
+    @media (max-width: 1080px) {
+      .col-12, .col-11, .col-10, .col-9, .col-8, .col-7, .col-6, .col-5, .col-4, .col-3, .col-2, .col-1 { grid-column: span 12; }
+      .bento-grid { gap: 18px; }
+    }
+
+    @media (max-width: 860px) {
+      .rules-grid { grid-template-columns: 1fr; gap: 18px; }
+    }
+
+    @media (max-width: 768px) {
+      .container { padding: 0 16px; }
+      .bento-grid { gap: 16px; }
+    }
+
+    /* ---------------- BENTO CARDS ---------------- */
+    .bento-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 36px 32px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--card-inner-glow), var(--card-shadow);
+      transition: border-color var(--transition-smooth), transform var(--transition-smooth), box-shadow var(--transition-smooth);
+    }
+
+    .bento-card:hover {
+      border-color: var(--border-hover);
+    }
+
+    .bento-card-compact {
+      padding: 24px 26px;
+      border-radius: var(--radius-lg);
+    }
+
+    /* ---------------- BADGES & PILLS ---------------- */
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      padding: 5px 13px;
+      border-radius: var(--radius-full);
+      background: var(--badge-bg);
+      border: 1px solid var(--badge-border);
+      color: var(--badge-text);
+      width: fit-content;
+      line-height: 1.2;
+    }
+
+    .badge-blue {
+      background: var(--badge-blue-bg);
+      border-color: var(--badge-blue-border);
+      color: var(--badge-blue-text);
+    }
+
+    /* =============================================================
+       HEADER & NAVIGATION BAR (RESPONSIVE, BALANCED, ZERO OVERFLOW)
+       ============================================================= */
+    .app-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--nav-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-subtle);
+      height: 72px;
+      display: flex;
+      align-items: center;
+      transition: background-color var(--transition-smooth), border-color var(--transition-smooth);
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .nav-container {
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-sizing: border-box;
+    }
+
+    /* Brand Group */
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      flex-shrink: 0;
+      color: var(--text-main);
+    }
+
+    .brand-logo-svg {
+      height: 32px;
+      width: auto;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .brand-divider {
+      height: 22px;
+      width: 1px;
+      background: var(--border-strong);
+      display: none;
+    }
+
+    .brand-partner {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1px;
+      line-height: 1;
+    }
+
+    .partner-title {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      line-height: 1.1;
+      white-space: nowrap;
+    }
+
+    .partner-badge {
+      font-family: var(--font-mono);
+      font-size: 8px;
+      font-weight: 700;
+      color: var(--mm-yellow);
+      letter-spacing: 1.2px;
+      line-height: 1;
+    }
+
+    /* Desktop Navigation (Pill Bar) */
+    .nav-desktop-menu {
+      display: flex;
+      align-items: center;
+      background: var(--nav-pill-bg);
+      border: 1px solid var(--nav-pill-border);
+      border-radius: var(--radius-full);
+      padding: 3px 5px;
+      flex-shrink: 1;
+    }
+
+    .nav-pill-list {
+      display: flex;
+      align-items: center;
+      gap: 1px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-pill-link {
+      display: inline-block;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      padding: 5px 8px;
+      border-radius: var(--radius-full);
+      transition: color var(--transition-fast), background-color var(--transition-fast);
+      white-space: nowrap;
+      text-decoration: none;
+    }
+
+    .nav-pill-link:hover {
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    [data-theme="light"] .nav-pill-link:hover {
+      background: rgba(15, 23, 42, 0.06);
+    }
+
+    /* Nav Actions */
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .theme-toggle-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-md);
+      background: var(--toggle-bg);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: border-color var(--transition-fast), transform var(--transition-fast);
+      flex-shrink: 0;
+    }
+
+    .theme-toggle-btn:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-1px);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      align-items: center;
+      gap: 6px;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-main);
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    .mobile-menu-btn:hover {
+      border-color: var(--border-hover);
+      color: var(--mm-yellow);
+    }
+
+    .mobile-menu-btn.open {
+      background: rgba(245, 169, 0, 0.12);
+      border-color: var(--mm-yellow);
+      color: var(--mm-yellow);
+    }
+
+    /* Header Responsive Queries */
+    @media (min-width: 1340px) {
+      .brand-divider { display: block; }
+      .brand-partner { display: flex; }
+      .nav-pill-link {
+        font-size: 12px;
+        padding: 5px 10px;
+      }
+      .nav-container {
+        padding: 0 28px;
+        gap: 16px;
+      }
+    }
+
+    @media (max-width: 1120px) {
+      .nav-desktop-menu { display: none !important; }
+      .mobile-menu-btn { display: inline-flex !important; }
+    }
+
+    @media (max-width: 640px) {
+      .nav-container { padding: 0 14px; }
+      .app-nav { height: 64px; }
+      .brand-logo-svg { height: 28px; }
+      #btn-export-pdf .pdf-btn-text { display: none; }
+      #btn-export-pdf { padding: 7px 10px; }
+      .btn-primary.btn-sm { padding: 6px 12px; font-size: 12px; }
+    }
+
+    @media (max-width: 520px) {
+      .nav-container { padding: 0 12px; }
+      .app-nav { height: 60px; }
+      .brand-logo-svg { height: 26px; }
+      .nav-actions { gap: 6px; }
+      #themeToggleBtn { display: none !important; }
+      #btn-export-pdf { display: none !important; }
+      .btn-primary.btn-sm { padding: 6px 10px; font-size: 11.5px; }
+      .mobile-menu-btn { padding: 5px 9px; font-size: 11.5px; }
+    }
+
+    /* ---------------- BUTTONS ---------------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--font-main);
+      font-weight: 700;
+      font-size: 13.5px;
+      padding: 10px 20px;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      border: none;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--btn-primary-bg);
+      color: var(--btn-primary-text);
+      box-shadow: 0 4px 14px rgba(245, 169, 0, 0.3);
+    }
+
+    .btn-primary:hover {
+      background: var(--mm-yellow-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(245, 169, 0, 0.45);
+    }
+
+    .btn-secondary {
+      background: var(--btn-secondary-bg);
+      border: 1px solid var(--btn-secondary-border);
+      color: var(--btn-secondary-text);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--border-strong);
+      transform: translateY(-1px);
+    }
+
+    [data-theme="light"] .btn-secondary:hover {
+      background: rgba(15, 23, 42, 0.08);
+    }
+
+    .btn-sm {
+      padding: 7px 15px;
+      font-size: 12.5px;
+      border-radius: var(--radius-sm);
+    }
+
+    /* ---------------- HERO BENTO ---------------- */
+    .hero-bento {
+      margin-top: 36px;
+      padding: 56px 48px;
+      background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-surface-elevated) 100%);
+      position: relative;
+    }
+
+    .hero-title {
+      font-size: clamp(30px, 4.8vw, 54px);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-top: 20px;
+      margin-bottom: 16px;
+      background: var(--hero-title-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(16px, 2.2vw, 20px);
+      font-weight: 600;
+      color: var(--text-secondary);
+      max-width: 860px;
+      margin-bottom: 12px;
+      line-height: 1.45;
+    }
+
+    .hero-descriptor {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 760px;
+      margin-bottom: 32px;
+    }
+
+    .hero-stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      width: 100%;
+      margin-top: 40px;
+      padding-top: 36px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .hero-stat-item {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 22px 24px;
+      transition: border-color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .hero-stat-item:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+
+    .hero-stat-num {
+      font-family: var(--font-mono);
+      font-size: 34px;
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .hero-stat-lbl {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--mm-yellow);
+      margin-bottom: 3px;
+    }
+
+    .hero-stat-sub {
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    @media (max-width: 900px) {
+      .hero-stats-row { grid-template-columns: repeat(2, 1fr); }
+      .hero-bento { padding: 36px 24px; margin-top: 24px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-stats-row { grid-template-columns: 1fr; }
+    }
+
+    /* ---------------- SECTION HEADERS ---------------- */
+    .section-wrapper {
+      margin-top: 76px;
+      scroll-margin-top: 96px;
+    }
+
+    .section-header {
+      margin-bottom: 32px;
+    }
+
+    .section-title {
+      font-size: clamp(24px, 3.4vw, 36px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      color: var(--text-main);
+    }
+
+    .section-desc {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 760px;
+      line-height: 1.65;
+    }
+
+    /* ---------------- PACKAGE CARDS ---------------- */
+    .package-card {
+      position: relative;
+      border-radius: var(--radius-xl);
+      padding: 36px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 28px;
+      transition: all var(--transition-smooth);
+    }
+
+    .package-card.highlight {
+      border-color: var(--mm-yellow);
+      box-shadow: 0 0 35px -5px rgba(245, 169, 0, 0.22);
+    }
+
+    .package-price-box {
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      margin-bottom: 20px;
+    }
+
+    /* ---------------- MARQUEE / BRAND BENTO CARDS ---------------- */
+    .marquee-wrapper {
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      padding: 14px 0 10px;
+      mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+    }
+
+    .marquee-track {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      width: max-content;
+      animation: marqueeInfinite 45s linear infinite;
+    }
+
+    .marquee-wrapper:hover .marquee-track {
+      animation-play-state: paused;
+    }
+
+    @keyframes marqueeInfinite {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .brand-bento-card {
+      flex: 0 0 auto;
+      width: 320px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      display: grid;
+      grid-template-columns: 64px minmax(0, 1fr);
+      gap: 14px;
+      align-items: center;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+      transition: border-color var(--transition-fast), transform var(--transition-fast);
+      user-select: none;
+    }
+
+    .brand-bento-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+
+    .brand-logo-frame {
+      width: 64px;
+      height: 64px;
+      border-radius: 10px;
+      background: #ffffff !important;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      flex-shrink: 0;
+    }
+
+    .brand-logo-frame img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+      filter: none !important;
+      opacity: 1 !important;
+    }
+
+    .brand-content {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      text-align: left;
+    }
+
+    .brand-content strong {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--text-main);
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.25;
+    }
+
+    .brand-content em {
+      font-style: normal;
+      font-size: 11.5px;
+      color: var(--text-muted);
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.25;
+    }
+
+    .brand-tags-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 4px;
+    }
+
+    .brand-tag-link {
+      font-size: 9.5px;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: #059669;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.28);
+      padding: 1.5px 6px;
+      border-radius: 4px;
+      line-height: 1.2;
+    }
+
+    [data-theme="dark"] .brand-tag-link {
+      color: #34d399;
+      background: rgba(16, 185, 129, 0.15);
+      border-color: rgba(16, 185, 129, 0.35);
+    }
+
+    @media (max-width: 520px) {
+      .brand-bento-card {
+        width: 280px;
+        grid-template-columns: 56px minmax(0, 1fr);
+        gap: 10px;
+        padding: 10px 12px;
+      }
+      .brand-logo-frame {
+        width: 56px;
+        height: 56px;
+      }
+      .brand-content strong {
+        font-size: 12.5px;
+      }
+      .brand-content em {
+        font-size: 10.5px;
+      }
+    }
+
+    /* ---------------- GALLERY BENTO MASONRY ---------------- */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+    }
+
+    .gallery-item {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      background: var(--bg-surface-elevated);
+      aspect-ratio: 16 / 10;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--card-shadow);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 25%;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10, 14, 23, 0.88) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+      display: flex;
+      align-items: flex-end;
+      padding: 18px 20px;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .gallery-caption {
+      color: #ffffff;
+      font-size: 13.5px;
+      font-weight: 600;
+    }
+
+    /* ---------------- LIGHTBOX MODAL ---------------- */
+    .lightbox-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(10, 14, 23, 0.95);
+      backdrop-filter: blur(16px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .lightbox-modal.active {
+      display: flex;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 1000px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .lightbox-img-wrapper {
+      width: 100%;
+      max-height: 75vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox-img-wrapper img {
+      max-width: 100%;
+      max-height: 75vh;
+      border-radius: var(--radius-md);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
+      object-fit: contain;
+    }
+
+    .lightbox-caption-bar {
+      margin-top: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .lightbox-close-btn {
+      position: absolute;
+      top: -48px;
+      right: 0;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background var(--transition-fast);
+    }
+
+    .lightbox-close-btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .lightbox-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background var(--transition-fast);
+    }
+
+    .lightbox-nav-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .lightbox-nav-btn.prev { left: -64px; }
+    .lightbox-nav-btn.next { right: -64px; }
+
+    @media (max-width: 768px) {
+      .lightbox-nav-btn.prev { left: 8px; }
+      .lightbox-nav-btn.next { right: 8px; }
+    }
+
+    /* ---------------- FOOTER ---------------- */
+    .app-footer {
+      border-top: 1px solid var(--border-subtle);
+      background: var(--bg-surface);
+      padding: 68px 0 36px;
+      margin-top: 96px;
+    }
+
+    /* ---------------- TOAST ---------------- */
+    .toast-box {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 1000;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-strong);
+      color: var(--text-main);
+      padding: 14px 22px;
+      border-radius: var(--radius-md);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13.5px;
+      font-weight: 600;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s;
+      pointer-events: none;
+    }
+
+    .toast-box.show {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Mobile Drawer Backdrop */
+    .mobile-drawer-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 990;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      pointer-events: none;
+    }
+
+    .mobile-drawer-backdrop.open {
+      display: block;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Mobile Drawer Panel */
+    .mobile-drawer {
+      display: none;
+      position: fixed;
+      top: 72px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--bg-surface);
+      z-index: 1000;
+      padding: 18px 20px 32px 20px;
+      flex-direction: column;
+      gap: 8px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      border-bottom: 2px solid var(--border-subtle);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.45);
+      transform: translateY(-8px);
+      opacity: 0;
+      transition: transform 0.22s ease, opacity 0.22s ease;
+    }
+
+    .mobile-drawer.open {
+      display: flex;
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    @media (max-width: 640px) {
+      .mobile-drawer {
+        top: 64px;
+        padding: 14px 16px 28px 16px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .mobile-drawer {
+        top: 60px;
+      }
+    }
+
+    .mobile-drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 10px;
+      margin-bottom: 4px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .mobile-drawer-title {
+      font-size: 11.5px;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 700;
+    }
+
+    .mobile-drawer-close-btn {
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      width: 30px;
+      height: 30px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .mobile-drawer-close-btn:hover {
+      color: var(--text-main);
+      border-color: var(--border-hover);
+    }
+
+    .mobile-drawer-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      padding: 9px 12px;
+      border-radius: var(--radius-md);
+      transition: background var(--transition-fast), color var(--transition-fast);
+      text-decoration: none;
+    }
+
+    .mobile-drawer-link:hover,
+    .mobile-drawer-link:active {
+      background: rgba(245, 169, 0, 0.08);
+      color: var(--mm-yellow);
+    }
+
+    /* Pulse Glow for Coordination action */
+    /* Proyección 2027: iconos neutros de líneas e ilustraciones de soluciones digitales */
+    .line-icon-tile { display: flex; flex-shrink: 0; width: 64px; height: 64px; align-items: center; justify-content: center; border: 2px solid #F5A900; border-radius: 16px; background: #123F70; color: #F5A900; box-shadow: 0 8px 18px -8px rgba(18, 63, 112, 0.55); }
+    .solution-media { border-radius: var(--radius-md); background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); overflow: hidden; }
+    .solution-illus { display: block; width: 100%; height: auto; aspect-ratio: 320 / 150; }
+    @media (max-width: 540px) { .line-icon-tile { width: 52px; height: 52px; } .line-icon-tile svg { width: 26px; height: 26px; } }
+    .contact-card { display: flex; align-items: center; gap: 14px; padding: 12px 16px; background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); transition: border-color 0.2s ease, transform 0.2s ease; }
+    .contact-card:hover { border-color: var(--border-hover); transform: translateY(-1px); }
+    @media (max-width: 540px) {
+      .contact-actions .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =============================================================
+       HEADER & NAVIGATION BAR (BALANCED, ZERO-OVERFLOW, RESPONSIVE)
+       ============================================================= -->
+  <header class="app-nav">
+    <div class="nav-container">
+      
+      <!-- Brand Group on the left -->
+      <a href="#inicio" class="nav-brand" title="Mundimotos · Experiencia de Servicio y Conexión">
+        <!-- SVG Vectorial Nativo Inline -->
+        <svg class="brand-logo-svg" viewBox="0 0 188 38" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Mundimotos">
+          <!-- Emblema Ala / Escudo Dinámico -->
+          <g transform="translate(1, 2)">
+            <path d="M10 2 L28 2 L35 17 L28 32 L10 32 L3 17 Z" fill="#F5A900" />
+            <path d="M12 7 L26 7 L20 17 L26 27 L12 27 L17 17 Z" fill="#123F70" />
+            <circle cx="17" cy="17" r="2.8" fill="#FFFFFF" />
+          </g>
+          <!-- Logotipo Tipográfico Oficial -->
+          <text x="43" y="21" font-family="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" font-weight="900" font-size="18" fill="currentColor" letter-spacing="0.8">MUNDI<tspan fill="#F5A900">MOTOS</tspan></text>
+          <!-- Tagline -->
+          <text x="44" y="32" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="6" fill="var(--brand-tagline-color)" letter-spacing="1.8">REPUESTOS &#8226; SERVICIOS &#8226; CALIDAD</text>
+        </svg>
+
+        <div class="brand-divider"></div>
+
+        <div class="brand-partner">
+          <span class="partner-title">GRUPO VE POR MÁS</span>
+          <span class="partner-badge">S.A.S.</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Center (Pill Bar - visible >= 1121px) -->
+      <nav class="nav-desktop-menu">
+        <ul class="nav-pill-list">
+          <li><a href="#proposito" class="nav-pill-link">Propósito</a></li>
+          <li><a href="#cobertura" class="nav-pill-link">Sedes</a></li>
+          <li><a href="#experiencia" class="nav-pill-link">Metodología</a></li>
+          <li><a href="#paquetes" class="nav-pill-link">Propuesta</a></li>
+          <li><a href="#facilitadores" class="nav-pill-link">Facilitadores</a></li>
+          <li><a href="#galeria" class="nav-pill-link">Galería</a></li>
+          <li><a href="#continuidad" class="nav-pill-link">2027</a></li>
+          <li><a href="#condiciones" class="nav-pill-link">Condiciones</a></li>
+        </ul>
+      </nav>
+
+      <!-- Nav Actions on the right -->
+      <div class="nav-actions">
+        <!-- Theme Switcher -->
+        <button id="themeToggleBtn" class="theme-toggle-btn" title="Alternar Modo Oscuro / Claro" aria-label="Cambiar tema">
+          <i id="themeIcon" data-lucide="moon" class="w-4 h-4"></i>
+        </button>
+
+        <!-- Exportar PDF -->
+        <button id="btn-export-pdf" onclick="downloadProposalPDF()" class="btn btn-secondary btn-sm" title="Descargar Propuesta Comercial en PDF">
+          <i data-lucide="file-down" class="w-4 h-4 text-amber-500"></i>
+          <span class="pdf-btn-text" id="pdf-btn-label">Exportar PDF</span>
+        </button>
+
+        <!-- Coordinar CTA -->
+        <a href="#contacto" onclick="scrollToCoordination(event)" class="btn btn-primary btn-sm" id="btnNavCoordinar">
+          <span>Coordinar</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </a>
+
+        <!-- Hamburger Menu (visible <= 1120px) -->
+        <button id="btnMobileMenu" class="mobile-menu-btn" aria-label="Abrir menú de navegación" aria-expanded="false" onclick="toggleMobileMenu()">
+          <i data-lucide="menu" id="mobileMenuIcon" class="w-4 h-4"></i>
+          <span id="mobileMenuText">Menú</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Backdrop Overlay -->
+  <div id="mobileDrawerBackdrop" class="mobile-drawer-backdrop" onclick="closeMobileMenu()"></div>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobileDrawer" class="mobile-drawer" role="dialog" aria-modal="true" aria-label="Menú de navegación principal">
+    <div class="mobile-drawer-header">
+      <div class="mobile-drawer-title">
+        <i data-lucide="compass" class="w-4 h-4 text-amber-500"></i>
+        <span>Navegación de la Propuesta</span>
+      </div>
+      <button onclick="closeMobileMenu()" class="mobile-drawer-close-btn" aria-label="Cerrar menú">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+    </div>
+
+    <div style="display: flex; gap: 8px; margin-bottom: 6px;">
+      <button onclick="toggleTheme()" class="btn btn-secondary btn-sm" style="flex: 1; justify-content: center; font-size: 12px;">
+        <i data-lucide="sun" class="w-4 h-4"></i>
+        <span>Tema</span>
+      </button>
+      <button onclick="downloadProposalPDF()" class="btn btn-secondary btn-sm" style="flex: 1; justify-content: center; font-size: 12px;">
+        <i data-lucide="file-down" class="w-4 h-4 text-amber-500"></i>
+        <span>Exportar PDF</span>
+      </button>
+    </div>
+
+    <nav style="display: flex; flex-direction: column; gap: 4px;">
+      <a href="#proposito" onclick="closeMobileMenu()" class="mobile-drawer-link">
+        <span>01 · Propósito & Enfoque</span>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-dim"></i>
+      </a>
+      <a href="#cobertura" onclick="closeMobileMenu()" class="mobile-drawer-link">
+        <span>02 · Cobertura (140 Colaboradores)</span>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-dim"></i>
+      </a>
+      <a href="#experiencia" onclick="closeMobileMenu()" class="mobile-drawer-link">
+        <span>03 · Metodología (6 Momentos)</span>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-dim"></i>
+      </a>
+      <a href="#paquetes" onclick="closeMobileMenu()" class="mobile-drawer-link">
+        <span>04 · Propuesta Comercial</span>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-dim"></i>
+      </a>
+      <a href="#facilitadores" onclick="closeMobileMenu()" class="mobile-drawer-link">
+        <span>05 · Facilitadores Principales</span>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-dim"></i>
+      </a>
+      <a href="#galeria" onclick="closeMobileMenu()" class="mobile-drawer-link">
+        <span>06 · Galería de Experiencias</span>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-dim"></i>
+      </a>
+      <a href="#continuidad" onclick="closeMobileMenu()" class="mobile-drawer-link">
+        <span>07 · Continuidad 2027</span>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-dim"></i>
+      </a>
+      <a href="#condiciones" onclick="closeMobileMenu()" class="mobile-drawer-link">
+        <span>08 · Condiciones Comerciales & Logística</span>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-dim"></i>
+      </a>
+    </nav>
+
+    <a href="#contacto" onclick="scrollToCoordination(event)" class="btn btn-primary" style="margin-top: 10px; width: 100%; padding: 11px;">
+      <span>Coordinar Reunión de Inicio</span>
+      <i data-lucide="arrow-right" class="w-4 h-4"></i>
+    </a>
+  </div>
+
+  <!-- =============================================================
+       MAIN CONTENT
+       ============================================================= -->
+  <main class="container">
+
+    <!-- =============================================================
+         1. HERO / INICIO BENTO (ORDEN 01 DEL PDF)
+         ============================================================= -->
+    <section id="inicio" style="scroll-margin-top: 110px;">
+      <div class="bento-card col-12 hero-bento">
+        <!-- Eyebrows -->
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
+          <span class="badge-pill">
+            <i data-lucide="sparkles" style="width: 12px; height: 12px;"></i>
+            PROPUESTA DE EXPERIENCIA CORPORATIVA
+          </span>
+          <span class="badge-pill badge-blue">
+            <i data-lucide="calendar" style="width: 12px; height: 12px;"></i>
+            CIERRE DE AÑO 2026
+          </span>
+        </div>
+
+        <!-- H1 Title -->
+        <h1 class="hero-title">EXPERIENCIA DE SERVICIO Y CONEXIÓN</h1>
+
+        <!-- Subtitle -->
+        <p class="hero-subtitle">
+          Reconocer lo que hemos construido. Conectar a quienes lo hacen posible. Fortalecer lo que viene.
+        </p>
+
+        <!-- Descriptor -->
+        <p class="hero-descriptor">
+          Una experiencia corporativa vivencial y participativa para los equipos de <strong>Mundimotos</strong> en <strong>Antioquia y Bogotá</strong>.
+        </p>
+
+        <!-- Action CTAs -->
+        <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: center;">
+          <a href="#paquetes" class="btn btn-primary">
+            <span>Explorar la propuesta</span>
+            <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
+          </a>
+          <a href="#experiencia" class="btn btn-secondary">
+            <span>Conocer la experiencia</span>
+            <i data-lucide="layers" class="w-4 h-4"></i>
+          </a>
+        </div>
+
+        <!-- Proponents credit -->
+        <div style="margin-top: 24px; display: flex; align-items: center; gap: 10px; font-size: 13.5px; color: var(--text-dim);">
+          <i data-lucide="shield-check" class="w-4 h-4 text-amber-500"></i>
+          <span>Presenta: <strong>GRUPO VE POR MÁS</strong> · Juan Manuel Restrepo y Eduardo Gómez</span>
+        </div>
+
+        <!-- 4 Stat Bento Blocks -->
+        <div class="hero-stats-row">
+          <div class="hero-stat-item">
+            <div class="hero-stat-num">9</div>
+            <div class="hero-stat-lbl">Encuentros Totales</div>
+            <div class="hero-stat-sub">5 en Bogotá y 4 en Antioquia</div>
+          </div>
+
+          <div class="hero-stat-item">
+            <div class="hero-stat-num">Antioquia</div>
+            <div class="hero-stat-lbl">4 Encuentros</div>
+            <div class="hero-stat-sub">60 personas de referencia</div>
+          </div>
+
+          <div class="hero-stat-item">
+            <div class="hero-stat-num">Bogotá</div>
+            <div class="hero-stat-lbl">5 Encuentros</div>
+            <div class="hero-stat-sub">80 personas de referencia · jornadas 2-2-1</div>
+          </div>
+
+          <div class="hero-stat-item">
+            <div class="hero-stat-num">Fechas</div>
+            <div class="hero-stat-lbl">Cronograma</div>
+            <div class="hero-stat-sub">Por coordinar con Mundimotos</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================
+         2. PROPÓSITO & SENTIDO DEL ENCUENTRO (ORDEN 02 DEL PDF)
+         ============================================================= -->
+    <section id="proposito" class="section-wrapper">
+      <div class="section-header">
+        <span class="badge-pill badge-blue">PROPÓSITO DEL ENCUENTRO</span>
+        <h2 class="section-title">El Sentido de Hacer una Pausa</h2>
+        <p class="section-desc">
+          Más que una capacitación convencional, proponemos un espacio significativo para escuchar a las personas, reconocer sus aportes y proyectar el servicio.
+        </p>
+      </div>
+
+      <div class="bento-grid">
+        <!-- Card 1: Texto Aprobado Documento Maestro (Col 8) -->
+        <div class="bento-card col-8">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+            <div style="width: 44px; height: 44px; border-radius: var(--radius-md); background: var(--badge-blue-bg); display: flex; align-items: center; justify-content: center; color: var(--badge-blue-text);">
+              <i data-lucide="heart-handshake" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h3 style="font-size: 19px; font-weight: 800;">Cultura, Servicio y Experiencia del Cliente</h3>
+              <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-dim);">PROPUESTA DE VALOR CORPORATIVA</span>
+            </div>
+          </div>
+
+          <p style="color: var(--text-secondary); font-size: 15px; line-height: 1.75; margin-bottom: 18px;">
+            El cierre de año es una oportunidad para hacer una pausa, reconocer el trabajo realizado y abrir conversaciones que permitan seguir creciendo. Proponemos una experiencia corporativa, participativa y práctica para reunir a colaboradores de Bogotá y Antioquia alrededor de la cultura de servicio, la comunicación, la colaboración y la experiencia del cliente.
+          </p>
+
+          <p style="color: var(--text-secondary); font-size: 15px; line-height: 1.75;">
+            Más que una capacitación convencional, buscamos crear un espacio significativo para escuchar a las personas, reconocer sus aportes, compartir aprendizajes y convertir las experiencias cotidianas en oportunidades de mejora tangible para Mundimotos.
+          </p>
+        </div>
+
+        <!-- Card 2: 3 Focos Inmediatos (Col 4) -->
+        <div class="bento-card col-4" style="display: flex; flex-direction: column;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+            <span class="badge-pill">TRES PILARES INMEDIATOS</span>
+            <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--badge-blue-text, #0284c7); letter-spacing: 0.08em; text-transform: uppercase;">VIVENCIAL</span>
+          </div>
+
+          <div style="border-radius: var(--radius-md, 12px); overflow: hidden; width: 100%; flex: 1; min-height: 280px; background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+            <img src="assets/pilares/collage_fotos.jpg" alt="Experiencias vivenciales y talleres presenciales — Grupo Ve Por Más & Mundimotos" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================
+         3. COBERTURA Y REGLAS DE CAPACIDAD (ORDEN 03 DEL PDF)
+         ============================================================= -->
+    <section id="cobertura" class="section-wrapper">
+      <div class="section-header">
+        <span class="badge-pill">POBLACIÓN Y COBERTURA TERRITORIAL</span>
+        <h2 class="section-title">Cobertura Territorial: Antioquia &amp; Bogotá</h2>
+        <p class="section-desc">
+          Planificación logística estructurada para 9 encuentros presenciales en total, con una población de referencia de 140 colaboradores (60 en Antioquia y 80 en Bogotá).
+        </p>
+      </div>
+
+      <div class="bento-grid">
+        <!-- Antioquia Card (PRIMERO) -->
+        <div class="bento-card col-6">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 18px;">
+            <div>
+              <span class="badge-pill badge-blue">SEDE ANTIOQUIA</span>
+              <h3 style="font-size: 24px; font-weight: 800; margin-top: 8px;">Antioquia – Medellín</h3>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-family: var(--font-mono); font-size: 36px; font-weight: 800; color: var(--mm-yellow);">4</div>
+              <div style="font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); text-transform: uppercase;">Encuentros</div>
+            </div>
+          </div>
+          <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 20px; line-height: 1.65;">
+            Población de referencia: <strong>60 colaboradores</strong>. Se realizarán cuatro encuentros presenciales en Antioquia; las fechas se coordinarán con Mundimotos.
+          </p>
+          <div style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 16px 18px; font-size: 13px; color: var(--text-secondary); line-height: 1.7;">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+              <i data-lucide="calendar-check" class="w-4 h-4 text-amber-500"></i>
+              <strong>Condición Operativa en Antioquia:</strong>
+            </div>
+            <span>Los cuatro encuentros se coordinarán con Mundimotos para facilitar la participación del personal sin dejar desatendidos los puntos de venta ni el mostrador de repuestos.</span>
+          </div>
+        </div>
+
+        <!-- Bogotá Card (SEGUNDO) -->
+        <div class="bento-card col-6">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 18px;">
+            <div>
+              <span class="badge-pill badge-blue">SEDE BOGOTÁ</span>
+              <h3 style="font-size: 24px; font-weight: 800; margin-top: 8px;">Bogotá D.C.</h3>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-family: var(--font-mono); font-size: 36px; font-weight: 800; color: var(--mm-yellow);">5</div>
+              <div style="font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); text-transform: uppercase;">Encuentros</div>
+            </div>
+          </div>
+          <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 20px; line-height: 1.65;">
+            Población de referencia: <strong>80 colaboradores</strong>. Se propone distribuir los cinco encuentros en jornadas 2-2-1 para optimizar desplazamientos, viáticos y costos operativos de la organización.
+          </p>
+          <div style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 16px 18px; font-size: 13px; color: var(--text-secondary); line-height: 1.7;">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+              <i data-lucide="clock" class="w-4 h-4 text-amber-500"></i>
+              <strong>Distribución Operativa Propuesta (5 Encuentros):</strong>
+            </div>
+            <span>Dos jornadas con dos encuentros cada una y una jornada con un encuentro. Las fechas concretas se coordinarán con Mundimotos.</span>
+          </div>
+        </div>
+
+        <!-- 3 Reglas Operativas Claras y Coherentes -->
+        <div class="bento-card col-4 bento-card-compact">
+          <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 8px;">
+            <i data-lucide="calendar" class="w-4 h-4 text-amber-500"></i>
+            <h4 style="font-size: 14.5px; font-weight: 700;">Cuatro encuentros en Antioquia</h4>
+          </div>
+          <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">
+            Una jornada por día para garantizar que los equipos comerciales y de servicio participen con tranquilidad sin comprometer la operación diaria.
+          </p>
+        </div>
+
+        <div class="bento-card col-4 bento-card-compact">
+          <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 8px;">
+            <i data-lucide="compass" class="w-4 h-4 text-amber-500"></i>
+            <h4 style="font-size: 14.5px; font-weight: 700;">Jornadas Optimizadas en Bogotá</h4>
+          </div>
+          <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">
+            Cinco encuentros distribuidos en jornadas 2-2-1.
+          </p>
+        </div>
+
+        <div class="bento-card col-4 bento-card-compact">
+          <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 8px;">
+            <i data-lucide="file-check-2" class="w-4 h-4 text-amber-500"></i>
+            <h4 style="font-size: 14.5px; font-weight: 700;">Seguimiento &amp; Evidencias</h4>
+          </div>
+          <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">
+            Formatos de asistencia por encuentro, recolección de encuestas de evaluación y entrega de informe ejecutivo final consolidado.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================
+         4. EXPERIENCIA Y METODOLOGÍA (6 MOMENTOS & TEMAS TRANSVERSALES)
+         ============================================================= -->
+    <section id="experiencia" class="section-wrapper">
+      <div class="section-header">
+        <span class="badge-pill badge-blue">METODOLOGÍA VIVENCIAL</span>
+        <h2 class="section-title">La Experiencia en Seis Momentos</h2>
+        <p class="section-desc">
+          Una experiencia 100% práctica, participativa y vivencial, orientada a las personas y a las situaciones reales del día a día, sin cátedras rígidas ni contenidos puramente teóricos desconectados de la operación.
+        </p>
+      </div>
+
+      <!-- 6 Momentos Grid (3x2) -->
+      <div class="bento-grid">
+        <div class="bento-card col-4">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+            <span class="badge-pill" style="font-size: 10px;">MOMENTO 01</span>
+            <i data-lucide="compass" class="w-4 h-4 text-amber-500"></i>
+          </div>
+          <h3 style="font-size: 18px; font-weight: 800; color: var(--mm-yellow); margin-bottom: 6px;">01 Conectar</h3>
+          <h4 style="font-size: 14.5px; font-weight: 700; margin-bottom: 8px;">Bienvenida, Propósito & Activación</h4>
+          <p style="font-size: 13px; color: var(--text-muted); line-height: 1.65;">
+            Apertura vivencial para romper la inercia del día, generar un clima de confianza, compartir el sentido del espacio y activar la energía grupal.
+          </p>
+        </div>
+
+        <div class="bento-card col-4">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+            <span class="badge-pill" style="font-size: 10px;">MOMENTO 02</span>
+            <i data-lucide="award" class="w-4 h-4 text-amber-500"></i>
+          </div>
+          <h3 style="font-size: 18px; font-weight: 800; color: var(--mm-yellow); margin-bottom: 6px;">02 Reconocer</h3>
+          <h4 style="font-size: 14.5px; font-weight: 700; margin-bottom: 8px;">Aprendizajes, Aportes & Experiencias</h4>
+          <p style="font-size: 13px; color: var(--text-muted); line-height: 1.65;">
+            Poner en valor los logros del año, reconocer el trabajo de cada persona y destacar las experiencias cotidianas que hacen crecer a Mundimotos.
+          </p>
+        </div>
+
+        <div class="bento-card col-4">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+            <span class="badge-pill" style="font-size: 10px;">MOMENTO 03</span>
+            <i data-lucide="message-circle" class="w-4 h-4 text-amber-500"></i>
+          </div>
+          <h3 style="font-size: 18px; font-weight: 800; color: var(--mm-yellow); margin-bottom: 6px;">03 Escuchar</h3>
+          <h4 style="font-size: 14.5px; font-weight: 700; margin-bottom: 8px;">Percepciones & Oportunidades</h4>
+          <p style="font-size: 13px; color: var(--text-muted); line-height: 1.65;">
+            Espacio abierto y respetuoso para escuchar a los equipos, identificar cuellos de botella en la atención y detectar oportunidades desde el primer contacto con el cliente.
+          </p>
+        </div>
+
+        <div class="bento-card col-4">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+            <span class="badge-pill" style="font-size: 10px;">MOMENTO 04</span>
+            <i data-lucide="dices" class="w-4 h-4 text-amber-500"></i>
+          </div>
+          <h3 style="font-size: 18px; font-weight: 800; color: var(--mm-yellow); margin-bottom: 6px;">04 Experimentar</h3>
+          <h4 style="font-size: 14.5px; font-weight: 700; margin-bottom: 8px;">Ejercicios, Casos & Simulaciones</h4>
+          <p style="font-size: 13px; color: var(--text-muted); line-height: 1.65;">
+            Dinámicas y simulaciones grupales aplicadas a situaciones reales de clientes para practicar la lectura de necesidades, el manejo de objeciones y la empatía colectiva.
+          </p>
+        </div>
+
+        <div class="bento-card col-4">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+            <span class="badge-pill" style="font-size: 10px;">MOMENTO 05</span>
+            <i data-lucide="wrench" class="w-4 h-4 text-amber-500"></i>
+          </div>
+          <h3 style="font-size: 18px; font-weight: 800; color: var(--mm-yellow); margin-bottom: 6px;">05 Fortalecer</h3>
+          <h4 style="font-size: 14.5px; font-weight: 700; margin-bottom: 8px;">Herramientas & Comportamientos</h4>
+          <p style="font-size: 13px; color: var(--text-muted); line-height: 1.65;">
+            Estructuración de pautas claras y comportamientos observables de servicio que los asesores pueden aplicar desde el día siguiente en tienda.
+          </p>
+        </div>
+
+        <div class="bento-card col-4">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+            <span class="badge-pill" style="font-size: 10px;">MOMENTO 06</span>
+            <i data-lucide="flag" class="w-4 h-4 text-amber-500"></i>
+          </div>
+          <h3 style="font-size: 18px; font-weight: 800; color: var(--mm-yellow); margin-bottom: 6px;">06 Cerrar</h3>
+          <h4 style="font-size: 14.5px; font-weight: 700; margin-bottom: 8px;">Reflexión, Aprendizajes y Reconocimiento</h4>
+          <p style="font-size: 13px; color: var(--text-muted); line-height: 1.65;">
+            Reflexión grupal sobre la experiencia, reconocimiento de los aprendizajes y valoración de los aportes de quienes participaron para fortalecer la cultura organizacional de Mundimotos.
+          </p>
+        </div>
+      </div>
+
+      <!-- 6 Temas Transversales -->
+      <div style="margin-top: 48px;">
+        <div class="section-header">
+          <span class="badge-pill badge-blue">SEIS TEMAS TRANSVERSALES DEL PRIMER ENCUENTRO</span>
+          <h3 style="font-size: 22px; font-weight: 800; margin-top: 8px;">Seis Competencias Clave para la Cultura Organizacional de Mundimotos</h3>
+        </div>
+
+        <div class="bento-grid">
+          <div class="bento-card bento-card-compact col-4">
+            <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 8px;">
+              <i data-lucide="sparkle" class="w-4 h-4 text-amber-500"></i>
+              <h4 style="font-size: 14.5px; font-weight: 700;">Cultura de servicio y experiencia</h4>
+            </div>
+            <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">Transformar la atención habitual en una experiencia cercana y diferenciadora.</p>
+          </div>
+
+          <div class="bento-card bento-card-compact col-4">
+            <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 8px;">
+              <i data-lucide="sparkle" class="w-4 h-4 text-amber-500"></i>
+              <h4 style="font-size: 14.5px; font-weight: 700;">Comunicación, escucha y empatía</h4>
+            </div>
+            <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">Saber escuchar las necesidades reales del motociclista antes de ofrecer repuestos.</p>
+          </div>
+
+          <div class="bento-card bento-card-compact col-4">
+            <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 8px;">
+              <i data-lucide="sparkle" class="w-4 h-4 text-amber-500"></i>
+              <h4 style="font-size: 14.5px; font-weight: 700;">Confianza y sentido de pertenencia</h4>
+            </div>
+            <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">Cohesión de equipo y alineación con la misión corporativa de Mundimotos.</p>
+          </div>
+
+          <div class="bento-card bento-card-compact col-4">
+            <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 8px;">
+              <i data-lucide="sparkle" class="w-4 h-4 text-amber-500"></i>
+              <h4 style="font-size: 14.5px; font-weight: 700;">Situaciones retadoras & objeciones</h4>
+            </div>
+            <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">Técnicas constructivas para abordar quejas, demoras y conversaciones complejas.</p>
+          </div>
+
+          <div class="bento-card bento-card-compact col-4">
+            <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 8px;">
+              <i data-lucide="sparkle" class="w-4 h-4 text-amber-500"></i>
+              <h4 style="font-size: 14.5px; font-weight: 700;">Trabajo colaborativo interáreas</h4>
+            </div>
+            <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">Articulación fluida entre bodega, ventas, servicio y áreas de apoyo.</p>
+          </div>
+
+          <div class="bento-card bento-card-compact col-4">
+            <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 8px;">
+              <i data-lucide="sparkle" class="w-4 h-4 text-amber-500"></i>
+              <h4 style="font-size: 14.5px; font-weight: 700;">Experiencias memorables & mejora</h4>
+            </div>
+            <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">Generar valor agregado constante y fidelización duradera en cada contacto.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================
+         5. PROPUESTA COMERCIAL INTEGRAL (ORDEN 05 DEL PDF)
+         ============================================================= -->
+    <section id="paquetes" class="section-wrapper">
+      <div class="section-header">
+        <span class="badge-pill">PROPUESTA COMERCIAL</span>
+        <h2 class="section-title">Propuesta Comercial: Experiencia Integral</h2>
+        <p class="section-desc">
+          Una solución única, robusta y completa diseñada a la medida para los equipos de Mundimotos en Antioquia y Bogotá, sin alternativas dispersas ni cobros ocultos.
+        </p>
+      </div>
+
+      <div class="bento-grid">
+        <!-- Columna Izquierda (7 cols): Alcance y Entregables Incluidos -->
+        <div class="bento-card col-7" style="display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+              <span class="badge-pill badge-blue" style="font-size: 10px;">PROGRAMA INTEGRAL LLAVE EN MANO</span>
+              <span style="font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: var(--mm-yellow);">9 ENCUENTROS PRESENCIALES</span>
+            </div>
+            
+            <h3 style="font-size: 26px; font-weight: 900; margin-bottom: 8px;">Paquete Integral de Experiencia y Servicio</h3>
+            <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 24px; line-height: 1.65;">
+              Nueve jornadas vivenciales de alto impacto con facilitación directiva senior, diseñadas para transformar la atención habitual en una cultura de servicio cercana, empática y diferenciadora.
+            </p>
+
+            <div style="display: flex; flex-direction: column; gap: 16px; font-size: 13.5px; color: var(--text-secondary);">
+              <div style="display: flex; align-items: flex-start; gap: 11px;">
+                <div style="width: 22px; height: 22px; border-radius: 50%; background: rgba(245, 169, 0, 0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;">
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-amber-500"></i>
+                </div>
+                <div>
+                  <strong>4 Encuentros presenciales en Antioquia:</strong> Cuatro encuentros para la población de referencia de 60 colaboradores; sus fechas se coordinarán con Mundimotos.
+                </div>
+              </div>
+
+              <div style="display: flex; align-items: flex-start; gap: 11px;">
+                <div style="width: 22px; height: 22px; border-radius: 50%; background: rgba(245, 169, 0, 0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;">
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-amber-500"></i>
+                </div>
+                <div>
+                  <strong>5 Encuentros presenciales en Bogotá:</strong> Distribuidos en jornadas 2-2-1 para optimizar desplazamientos y viáticos; las fechas concretas se coordinarán con Mundimotos.
+                </div>
+              </div>
+
+              <div style="display: flex; align-items: flex-start; gap: 11px;">
+                <div style="width: 22px; height: 22px; border-radius: 50%; background: rgba(245, 169, 0, 0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;">
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-amber-500"></i>
+                </div>
+                <div>
+                  <strong>Planeación, diseño y ejecución metodológica integral:</strong> Dirección a cargo de consultores y facilitadores de amplia trayectoria empresarial de Grupo Ve Por Más.
+                </div>
+              </div>
+
+              <div style="display: flex; align-items: flex-start; gap: 11px;">
+                <div style="width: 22px; height: 22px; border-radius: 50%; background: rgba(245, 169, 0, 0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;">
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-amber-500"></i>
+                </div>
+                <div>
+                  <strong>Herramientas y recursos didácticos:</strong> Todos los materiales vivenciales requeridos para las dinámicas grupales y actividades aplicadas.
+                </div>
+              </div>
+
+              <div style="display: flex; align-items: flex-start; gap: 11px;">
+                <div style="width: 22px; height: 22px; border-radius: 50%; background: rgba(245, 169, 0, 0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;">
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-amber-500"></i>
+                </div>
+                <div>
+                  <strong>Formatos y control de asistencia:</strong> Registro organizado de participación por jornada y sede para control de gestión de Mundimotos.
+                </div>
+              </div>
+
+              <div style="display: flex; align-items: flex-start; gap: 11px;">
+                <div style="width: 22px; height: 22px; border-radius: 50%; background: rgba(245, 169, 0, 0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;">
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-amber-500"></i>
+                </div>
+                <div>
+                  <strong>Recolección de encuestas de evaluación:</strong> Medición del impacto, recepción de la experiencia y clima de servicio alcanzado.
+                </div>
+              </div>
+
+              <div style="display: flex; align-items: flex-start; gap: 11px;">
+                <div style="width: 22px; height: 22px; border-radius: 50%; background: rgba(245, 169, 0, 0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;">
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-amber-500"></i>
+                </div>
+                <div>
+                  <strong>Documento e Informe Final Ejecutivo:</strong> Entrega formal con memorias, evidencias fotográficas, hallazgos, resultados cualitativos y cuantitativos, y recomendaciones estratégicas.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 26px; padding-top: 18px; border-top: 1px solid var(--border-subtle); font-size: 12px; color: var(--text-dim); line-height: 1.6;">
+            <em>* Nota de alcance: Los cambios de fechas, jornadas o distribución que impliquen ajustes logísticos o viáticos podrán generar costos adicionales, que se cotizarán y acordarán previamente.</em>
+          </div>
+        </div>
+
+        <!-- Columna Derecha (5 cols): Inversión Económica, Esquema de Pago y Coordinación -->
+        <div class="bento-card col-5" style="background: var(--bg-surface-elevated); border: 2px solid var(--border-hover); display: flex; flex-direction: column; justify-content: space-between; padding: 36px 30px;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+              <span class="badge-pill" style="font-size: 11px; font-weight: 800;">INVERSIÓN TOTAL DEL PROGRAMA</span>
+              <span style="font-size: 11.5px; font-family: var(--font-mono); color: var(--text-dim);">COP</span>
+            </div>
+
+            <div style="margin-bottom: 8px;">
+              <div style="font-size: clamp(34px, 4vw, 44px); font-weight: 900; color: var(--text-main); font-family: var(--font-main); letter-spacing: -0.03em; line-height: 1.1;">
+                $33.900.000
+              </div>
+              <div style="font-size: 13.5px; font-weight: 700; color: var(--mm-yellow); margin-top: 6px;">
+                COP antes de IVA
+              </div>
+            </div>
+
+            <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.65; margin: 20px 0 24px;">
+              Una inversión que retribuye conocimiento directivo, experiencia metodológica probada, acompañamiento senior y resultados tangibles para la cultura de servicio de Mundimotos.
+            </p>
+
+            <!-- Recuadro del Esquema de Pagos (50 / 50) -->
+            <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 18px; margin-bottom: 26px;">
+              <div style="font-size: 12px; font-family: var(--font-mono); font-weight: 800; text-transform: uppercase; color: var(--text-main); margin-bottom: 12px; display: flex; align-items: center; gap: 7px;">
+                <i data-lucide="receipt" class="w-4 h-4 text-amber-500"></i>
+                <span>Esquema de Pago en Dos Partes:</span>
+              </div>
+              
+              <div style="display: flex; flex-direction: column; gap: 10px; font-size: 12.5px; color: var(--text-secondary);">
+                <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px dashed var(--border-subtle);">
+                  <span><strong>Primer pago (50%):</strong> $16.950.000 COP, a mitad del proceso</span>
+                </div>
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                  <span><strong>Segundo pago (50%):</strong> $16.950.000 COP, al finalizar y entregar el informe</span>
+                </div>
+              </div>
+
+              <div style="margin-top: 10px; font-size: 11px; color: var(--text-dim); line-height: 1.5;">
+                <em>* Hasta cinco (5) días hábiles para gestionar cada pago, una vez recibida la documentación correspondiente.</em>
+              </div>
+              <div style="margin-top: 8px; display: flex; align-items: center; gap: 7px; font-size: 11.5px; font-weight: 700; color: var(--text-secondary);">
+                <i data-lucide="calendar-clock" class="w-3.5 h-3.5 text-amber-500"></i>
+                <span>Vigencia de la propuesta: quince (15) días calendario.</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <a href="#contacto" onclick="scrollToCoordination(event)" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 14px; font-size: 14.5px;">
+              <span>Coordinar Inicio de la Experiencia</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+            <div style="text-align: center; margin-top: 14px; font-size: 11.5px; color: var(--text-dim);">
+              Presenta: <strong>GRUPO VE POR MÁS</strong> · Propuesta Comercial 2026
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================
+         6. FACILITADORES PRINCIPALES (ORDEN 06 DEL PDF)
+         ============================================================= -->
+    <section id="facilitadores" class="section-wrapper">
+      <div class="section-header">
+        <span class="badge-pill badge-blue">EQUIPO ACADÉMICO</span>
+        <h2 class="section-title">Facilitadores Principales</h2>
+        <p class="section-desc">
+          Grupo Ve Por Más S.A.S. integra experiencia profesional en formación vivencial, comunicación estratégica, liderazgo y desarrollo organizacional.
+        </p>
+      </div>
+
+      <div class="bento-grid">
+        <!-- Eduardo Gómez Card -->
+        <div class="bento-card col-6" style="padding: 34px;">
+          <div style="display: flex; gap: 20px; align-items: center; margin-bottom: 22px;">
+            <div style="width: 82px; height: 82px; border-radius: var(--radius-lg); overflow: hidden; border: 2px solid var(--border-hover); flex-shrink: 0; background: #ffffff;">
+              <img src="assets/facilitators/eduardo.jpeg" alt="Eduardo Gómez" style="width: 100%; height: 100%; object-fit: cover; object-position: center 15%; display: block;" />
+            </div>
+            <div>
+              <span class="badge-pill" style="font-size: 10px; margin-bottom: 4px;">FACILITADOR EXPERIENCIAL</span>
+              <h3 style="font-size: 21px; font-weight: 800;">Eduardo Gómez</h3>
+              <p style="font-size: 13px; color: var(--mm-yellow); font-weight: 600;">Liderazgo & Desarrollo Humano</p>
+            </div>
+          </div>
+
+          <p style="font-size: 14px; color: var(--text-muted); line-height: 1.65; margin-bottom: 18px;">
+            Facilitador y profesional con amplia trayectoria en procesos vivenciales de formación, coaching grupal, liderazgo consciente y desarrollo de personas y organizaciones.
+          </p>
+
+          <div style="display: flex; flex-direction: column; gap: 10px; font-size: 13px; color: var(--text-secondary);">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <i data-lucide="check" class="w-4 h-4 text-amber-500 shrink-0"></i>
+              <span>Facilitación de dinámicas, roleplays y escucha activa.</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <i data-lucide="check" class="w-4 h-4 text-amber-500 shrink-0"></i>
+              <span>Manejo de conversaciones difíciles y cohesión de equipo.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Juan Manuel Restrepo Card -->
+        <div class="bento-card col-6" style="padding: 34px;">
+          <div style="display: flex; gap: 20px; align-items: center; margin-bottom: 22px;">
+            <div style="width: 82px; height: 82px; border-radius: var(--radius-lg); overflow: hidden; border: 2px solid var(--border-hover); flex-shrink: 0;">
+              <img src="assets/facilitators/juan-manuel.png" alt="Juan Manuel Restrepo" style="width: 100%; height: 100%; object-fit: cover;" />
+            </div>
+            <div>
+              <span class="badge-pill" style="font-size: 10px; margin-bottom: 4px;">CONSULTOR & FORMADOR</span>
+              <h3 style="font-size: 21px; font-weight: 800;">Juan Manuel Restrepo</h3>
+              <p style="font-size: 13px; color: var(--mm-yellow); font-weight: 600;">Estrategia, Comunicación & IA</p>
+            </div>
+          </div>
+
+          <p style="font-size: 14px; color: var(--text-muted); line-height: 1.65; margin-bottom: 18px;">
+            Consultor, formador y estratega en marketing, comunicación estratégica, transformación digital e inteligencia artificial aplicada a la cultura corporativa y ventas.
+          </p>
+
+          <div style="display: flex; flex-direction: column; gap: 10px; font-size: 13px; color: var(--text-secondary);">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <i data-lucide="check" class="w-4 h-4 text-amber-500 shrink-0"></i>
+              <span>Dirección estratégica y metodológica de la experiencia.</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <i data-lucide="check" class="w-4 h-4 text-amber-500 shrink-0"></i>
+              <span>Articulación de cultura de servicio con metas de negocio.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================
+         7. TRAYECTORIA Y RESPALDO INSTITUCIONAL (ORDEN 07 DEL PDF)
+         ============================================================= -->
+        <!-- =============================================================
+         7. TRAYECTORIA Y RESPALDO INSTITUCIONAL (MARQUEE BENTO CARDS)
+         ============================================================= -->
+    <section id="trayectoria" class="section-wrapper">
+      <div class="bento-card col-12" style="padding: 32px 28px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-lucide="shield-check" class="w-4 h-4 text-amber-500"></i>
+            <span style="font-family: var(--font-mono); font-size: 11.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim);">
+              EXPERIENCIA INSTITUCIONAL &amp; CLIENTES CORPORATIVOS
+            </span>
+          </div>
+          <span style="font-size: 12px; color: var(--text-dim); display: flex; align-items: center; gap: 5px;">
+            <i data-lucide="mouse-pointer" class="w-3.5 h-3.5"></i>
+            Pasa el cursor para pausar
+          </span>
+        </div>
+
+        <!-- Marquee Infinito Bento Cards -->
+        <div class="marquee-wrapper">
+          <div class="marquee-track">
+            <!-- Alcaldía de Itagüí -->
+              <article class="brand-bento-card">
+                <div class="brand-logo-frame">
+                  <img src="assets/logos/alcaldia-itagui.png" alt="Alcaldía de Itagüí" />
+                </div>
+                <div class="brand-content">
+                  <strong>Alcaldía de Itagüí</strong>
+                  <em>Sector Público & Gobierno</em>
+                  <div class="brand-tags-row">
+                    <span class="brand-tag-link">GOBIERNO</span>
+                    <span class="brand-tag-link">SECTOR PÚBLICO</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Finanzas Consulting -->
+              <article class="brand-bento-card">
+                <div class="brand-logo-frame">
+                  <img src="assets/logos/finanzas-consulting.svg" alt="Finanzas Consulting" />
+                </div>
+                <div class="brand-content">
+                  <strong>Finanzas Consulting</strong>
+                  <em>Consultoría Financiera</em>
+                  <div class="brand-tags-row">
+                    <span class="brand-tag-link">FINANZAS</span>
+                    <span class="brand-tag-link">CONSULTORÍA</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Coca-Cola -->
+              <article class="brand-bento-card">
+                <div class="brand-logo-frame">
+                  <img src="assets/logos/coca-cola.svg" alt="Coca-Cola" />
+                </div>
+                <div class="brand-content">
+                  <strong>Coca-Cola</strong>
+                  <em>Consumo Masivo & Bebidas Global</em>
+                  <div class="brand-tags-row">
+                    <span class="brand-tag-link">MULTINACIONAL</span>
+                    <span class="brand-tag-link">LIDERAZGO</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Proyecto Matuna -->
+              <article class="brand-bento-card">
+                <div class="brand-logo-frame">
+                  <img src="assets/logos/matuna.png" alt="Proyecto Matuna" style="max-height: 82%; max-width: 82%;" />
+                </div>
+                <div class="brand-content">
+                  <strong>Proyecto Matuna</strong>
+                  <em>Primero el Ser Humano</em>
+                  <div class="brand-tags-row">
+                    <span class="brand-tag-link">IMPACTO SOCIAL</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Bancolombia -->
+              <article class="brand-bento-card">
+                <div class="brand-logo-frame">
+                  <img src="assets/logos/Logo_Bancolombia.svg" alt="Bancolombia" />
+                </div>
+                <div class="brand-content">
+                  <strong>Bancolombia</strong>
+                  <em>Sector Financiero & Banca</em>
+                  <div class="brand-tags-row">
+                    <span class="brand-tag-link">BANCA</span>
+                    <span class="brand-tag-link">FINANCIERO</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- I.U. ESUMER -->
+              <article class="brand-bento-card">
+                <div class="brand-logo-frame">
+                  <img src="assets/logos/logo-esumer.png" alt="I.U. ESUMER" />
+                </div>
+                <div class="brand-content">
+                  <strong>I.U. ESUMER</strong>
+                  <em>Educación Superior & Negocios</em>
+                  <div class="brand-tags-row">
+                    <span class="brand-tag-link">ACADÉMICO</span>
+                    <span class="brand-tag-link">NEGOCIOS</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- UNIMINUTO -->
+              <article class="brand-bento-card">
+                <div class="brand-logo-frame">
+                  <img src="assets/logos/logo-uniminuto.svg" alt="UNIMINUTO" />
+                </div>
+                <div class="brand-content">
+                  <strong>UNIMINUTO</strong>
+                  <em>Corporación Universitaria</em>
+                  <div class="brand-tags-row">
+                    <span class="brand-tag-link">EDUCACIÓN</span>
+                    <span class="brand-tag-link">IMPACTO PAÍS</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Fenalco Antioquia -->
+              <article class="brand-bento-card">
+                <div class="brand-logo-frame">
+                  <img src="assets/logos/fenalco-antioquia.png" alt="Fenalco Antioquia" />
+                </div>
+                <div class="brand-content">
+                  <strong>Fenalco Antioquia</strong>
+                  <em>Federación Nacional de Comerciantes</em>
+                  <div class="brand-tags-row">
+                    <span class="brand-tag-link">COMERCIO</span>
+                    <span class="brand-tag-link">GREMIAL</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- CEIPA Business School -->
+              <article class="brand-bento-card">
+                <div class="brand-logo-frame">
+                  <img src="assets/logos/Logo_CEIPA.jpg" alt="CEIPA Business School" />
+                </div>
+                <div class="brand-content">
+                  <strong>CEIPA Business School</strong>
+                  <em>Educación Empresarial & Alta Gerencia</em>
+                  <div class="brand-tags-row">
+                    <span class="brand-tag-link">LIDERAZGO</span>
+                    <span class="brand-tag-link">NEGOCIOS</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Grupo Éxito -->
+              <article class="brand-bento-card">
+                <div class="brand-logo-frame">
+                  <img src="assets/logos/Almacenes_exito_logo.svg.webp" alt="Grupo Éxito" />
+                </div>
+                <div class="brand-content">
+                  <strong>Grupo Éxito</strong>
+                  <em>Retail & Comercio Minorista</em>
+                  <div class="brand-tags-row">
+                    <span class="brand-tag-link">RETAIL</span>
+                    <span class="brand-tag-link">COMERCIO</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Cámara de Comercio -->
+              <article class="brand-bento-card">
+                <div class="brand-logo-frame">
+                  <img src="assets/logos/camara-comercio.png" alt="Cámara de Comercio" />
+                </div>
+                <div class="brand-content">
+                  <strong>Cámara de Comercio</strong>
+                  <em>Medellín para Antioquia</em>
+                  <div class="brand-tags-row">
+                    <span class="brand-tag-link">GREMIO</span>
+                    <span class="brand-tag-link">EMPRESARIAL</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Leonisa -->
+              <article class="brand-bento-card">
+                <div class="brand-logo-frame">
+                  <img src="assets/logos/leonisa-hd.png" alt="Leonisa" />
+                </div>
+                <div class="brand-content">
+                  <strong>Leonisa</strong>
+                  <em>Moda & Retail Global</em>
+                  <div class="brand-tags-row">
+                    <span class="brand-tag-link">INTERNACIONAL</span>
+                    <span class="brand-tag-link">RETAIL</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Repetición para Loop Continuo Infinito -->
+
+              <!-- Alcaldía de Itagüí -->
+              <article class="brand-bento-card">
+                <div class="brand-logo-frame">
+                  <img src="assets/logos/alcaldia-itagui.png" alt="Alcaldía de Itagüí" />
+                </div>
+                <div class="brand-content">
+                  <strong>Alcaldía de Itagüí</strong>
+                  <em>Sector Público & Gobierno</em>
+                  <div class="brand-tags-row">
+                    <span class="brand-tag-link">GOBIERNO</span>
+                    <span class="brand-tag-link">SECTOR PÚBLICO</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Finanzas Consulting -->
+              <article class="brand-bento-card">
+                <div class="brand-logo-frame">
+                  <img src="assets/logos/finanzas-consulting.svg" alt="Finanzas Consulting" />
+                </div>
+                <div class="brand-content">
+                  <strong>Finanzas Consulting</strong>
+                  <em>Consultoría Financiera</em>
+                  <div class="brand-tags-row">
+                    <span class="brand-tag-link">FINANZAS</span>
+                    <span class="brand-tag-link">CONSULTORÍA</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Coca-Cola -->
+              <article class="brand-bento-card">
+                <div class="brand-logo-frame">
+                  <img src="assets/logos/coca-cola.svg" alt="Coca-Cola" />
+                </div>
+                <div class="brand-content">
+                  <strong>Coca-Cola</strong>
+                  <em>Consumo Masivo & Bebidas Global</em>
+                  <div class="brand-tags-row">
+                    <span class="brand-tag-link">MULTINACIONAL</span>
+                    <span class="brand-tag-link">LIDERAZGO</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Proyecto Matuna -->
+              <article class="brand-bento-card">
+                <div class="brand-logo-frame">
+                  <img src="assets/logos/matuna.png" alt="Proyecto Matuna" style="max-height: 82%; max-width: 82%;" />
+                </div>
+                <div class="brand-content">
+                  <strong>Proyecto Matuna</strong>
+                  <em>Primero el Ser Humano</em>
+                  <div class="brand-tags-row">
+                    <span class="brand-tag-link">IMPACTO SOCIAL</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Bancolombia -->
+              <article class="brand-bento-card">
+                <div class="brand-logo-frame">
+                  <img src="assets/logos/Logo_Bancolombia.svg" alt="Bancolombia" />
+                </div>
+                <div class="brand-content">
+                  <strong>Bancolombia</strong>
+                  <em>Sector Financiero & Banca</em>
+                  <div class="brand-tags-row">
+                    <span class="brand-tag-link">BANCA</span>
+                    <span class="brand-tag-link">FINANCIERO</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- I.U. ESUMER -->
+              <article class="brand-bento-card">
+                <div class="brand-logo-frame">
+                  <img src="assets/logos/logo-esumer.png" alt="I.U. ESUMER" />
+                </div>
+                <div class="brand-content">
+                  <strong>I.U. ESUMER</strong>
+                  <em>Educación Superior & Negocios</em>
+                  <div class="brand-tags-row">
+                    <span class="brand-tag-link">ACADÉMICO</span>
+                    <span class="brand-tag-link">NEGOCIOS</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- UNIMINUTO -->
+              <article class="brand-bento-card">
+                <div class="brand-logo-frame">
+                  <img src="assets/logos/logo-uniminuto.svg" alt="UNIMINUTO" />
+                </div>
+                <div class="brand-content">
+                  <strong>UNIMINUTO</strong>
+                  <em>Corporación Universitaria</em>
+                  <div class="brand-tags-row">
+                    <span class="brand-tag-link">EDUCACIÓN</span>
+                    <span class="brand-tag-link">IMPACTO PAÍS</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Fenalco Antioquia -->
+              <article class="brand-bento-card">
+                <div class="brand-logo-frame">
+                  <img src="assets/logos/fenalco-antioquia.png" alt="Fenalco Antioquia" />
+                </div>
+                <div class="brand-content">
+                  <strong>Fenalco Antioquia</strong>
+                  <em>Federación Nacional de Comerciantes</em>
+                  <div class="brand-tags-row">
+                    <span class="brand-tag-link">COMERCIO</span>
+                    <span class="brand-tag-link">GREMIAL</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- CEIPA Business School -->
+              <article class="brand-bento-card">
+                <div class="brand-logo-frame">
+                  <img src="assets/logos/Logo_CEIPA.jpg" alt="CEIPA Business School" />
+                </div>
+                <div class="brand-content">
+                  <strong>CEIPA Business School</strong>
+                  <em>Educación Empresarial & Alta Gerencia</em>
+                  <div class="brand-tags-row">
+                    <span class="brand-tag-link">LIDERAZGO</span>
+                    <span class="brand-tag-link">NEGOCIOS</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Grupo Éxito -->
+              <article class="brand-bento-card">
+                <div class="brand-logo-frame">
+                  <img src="assets/logos/Almacenes_exito_logo.svg.webp" alt="Grupo Éxito" />
+                </div>
+                <div class="brand-content">
+                  <strong>Grupo Éxito</strong>
+                  <em>Retail & Comercio Minorista</em>
+                  <div class="brand-tags-row">
+                    <span class="brand-tag-link">RETAIL</span>
+                    <span class="brand-tag-link">COMERCIO</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Cámara de Comercio -->
+              <article class="brand-bento-card">
+                <div class="brand-logo-frame">
+                  <img src="assets/logos/camara-comercio.png" alt="Cámara de Comercio" />
+                </div>
+                <div class="brand-content">
+                  <strong>Cámara de Comercio</strong>
+                  <em>Medellín para Antioquia</em>
+                  <div class="brand-tags-row">
+                    <span class="brand-tag-link">GREMIO</span>
+                    <span class="brand-tag-link">EMPRESARIAL</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Leonisa -->
+              <article class="brand-bento-card">
+                <div class="brand-logo-frame">
+                  <img src="assets/logos/leonisa-hd.png" alt="Leonisa" />
+                </div>
+                <div class="brand-content">
+                  <strong>Leonisa</strong>
+                  <em>Moda & Retail Global</em>
+                  <div class="brand-tags-row">
+                    <span class="brand-tag-link">INTERNACIONAL</span>
+                    <span class="brand-tag-link">RETAIL</span>
+                  </div>
+                </div>
+              </article>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 18px; flex-wrap: wrap; gap: 10px; font-size: 11.5px; color: var(--text-dim);">
+          <span>* Marcas y referencias citadas con fines de acreditación de trayectoria formativa y facilitación previa.</span>
+          <span style="font-family: var(--font-mono); font-weight: 700; color: var(--mm-yellow);">GRUPO VE POR MÁS · RESPALDO CORPORATIVO</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================
+         8. GALERÍA DE EXPERIENCIAS REALES (BENTO MASONRY CON LIGHTBOX)
+         ============================================================= -->
+    <section id="galeria" class="section-wrapper">
+      <div class="section-header">
+        <span class="badge-pill">REGISTRO DE EXPERIENCIAS REALES</span>
+        <h2 class="section-title">Evidencia de Facilitación y Talleres en Vivo</h2>
+        <p class="section-desc">
+          Metodología vivencial, dinámicas participativas y facilitación aplicada con equipos reales por Eduardo Gómez y Juan Manuel Restrepo. Haz clic en cualquier imagen para verla en alta definición.
+        </p>
+      </div>
+
+      <div class="gallery-grid">
+        <!-- Foto 1 (Col 6) - Eduardo Gómez: Taller en U con equipos -->
+        <div class="gallery-item col-6" onclick="openLightbox(0)">
+          <img src="assets/gallery/eduardo gomez/galeria-03-taller-u.jpg" alt="Jornadas de alineación y escucha activa con equipos operativos — Eduardo Gómez" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="gallery-caption">Jornadas de alineación y escucha con equipos operativos · Eduardo Gómez</span>
+          </div>
+        </div>
+
+        <!-- Foto 2 (Col 6) - Juan Manuel: Fenalco Antioquia masivo -->
+        <div class="gallery-item col-6" onclick="openLightbox(1)">
+          <img src="assets/gallery/juan manuel/galeria-01-fenalco.jpg" alt="Encuentro vivencial corporativo en Fenalco Antioquia — Juan Manuel Restrepo" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="gallery-caption">Encuentros vivenciales masivos en Fenalco Antioquia · Juan Manuel Restrepo</span>
+          </div>
+        </div>
+
+        <!-- Foto 3 (Col 4) - Eduardo Gómez: Aula participativa -->
+        <div class="gallery-item col-4" onclick="openLightbox(2)">
+          <img src="assets/gallery/eduardo gomez/galeria-05-aula-participativa.jpg" alt="Metodología práctica con aplicación directa al puesto de trabajo — Eduardo Gómez" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="gallery-caption">Metodología práctica y aplicación al trabajo · Eduardo Gómez</span>
+          </div>
+        </div>
+
+        <!-- Foto 4 (Col 4) - Juan Manuel: Cámara de Comercio de Medellín -->
+        <div class="gallery-item col-4" onclick="openLightbox(3)">
+          <img src="assets/gallery/juan manuel/experience-camara-comercio.jpg" alt="Facilitación estratégica y conferencias en Cámara de Comercio — Juan Manuel Restrepo" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="gallery-caption">Facilitación en Cámara de Comercio de Medellín · Juan Manuel Restrepo</span>
+          </div>
+        </div>
+
+        <!-- Foto 5 (Col 4) - Eduardo Gómez: Reto del Masmelo vivencial -->
+        <div class="gallery-item col-4" onclick="openLightbox(4)">
+          <img src="assets/gallery/eduardo gomez/galeria-04-reto-masmelo.jpg" alt="Dinámicas grupales de trabajo en equipo y retos colaborativos — Eduardo Gómez" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="gallery-caption">Dinámicas grupales y retos colaborativos · Eduardo Gómez</span>
+          </div>
+        </div>
+
+        <!-- Foto 6 (Col 4) - Juan Manuel: Mesa de Liderazgo -->
+        <div class="gallery-item col-4" onclick="openLightbox(5)">
+          <img src="assets/gallery/juan manuel/galeria-08-mesa-liderazgo.jpg" alt="Mesas de trabajo y análisis de casos reales de servicio — Juan Manuel Restrepo" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="gallery-caption">Mesas de trabajo y análisis de casos reales · Juan Manuel Restrepo</span>
+          </div>
+        </div>
+
+        <!-- Foto 7 (Col 4) - Eduardo Gómez: Grada conexión en subgrupos -->
+        <div class="gallery-item col-4" onclick="openLightbox(6)">
+          <img src="assets/gallery/eduardo gomez/galeria-07-grada-conexion.jpg" alt="Espacios dinámicos de diálogo y cocreación en subgrupos — Eduardo Gómez" loading="lazy" style="object-position: 65% 48%; transform: scale(1.35); transform-origin: 65% 48%;" />
+          <div class="gallery-overlay">
+            <span class="gallery-caption">Espacios de diálogo y cocreación en subgrupos · Eduardo Gómez</span>
+          </div>
+        </div>
+
+        <!-- Foto 8 (Col 4) - Juan Manuel: Sesión de inteligencia emocional y comunicación -->
+        <div class="gallery-item col-4" onclick="openLightbox(7)">
+          <img src="assets/gallery/juan manuel/experience-06.jpg" alt="Sesiones vivenciales de inteligencia emocional y servicio — Juan Manuel Restrepo" loading="lazy" style="object-position: 57% 50%;" />
+          <div class="gallery-overlay">
+            <span class="gallery-caption">Inteligencia emocional y comunicación asertiva · Juan Manuel Restrepo</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================
+         9. CONTINUIDAD 2027: CREER, CREAR, CRECER (ORDEN 08 DEL PDF)
+         ============================================================= -->
+    <section id="continuidad" class="section-wrapper">
+      <div class="bento-card col-12" style="background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-surface-elevated) 100%); padding: 48px 36px;">
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 14px;">
+          <span class="badge-pill badge-blue">ETAPA FUTURA · 2027</span>
+          <span class="badge-pill" style="font-size: 10px;">PROYECCIÓN DE CONTINUIDAD ESTRATÉGICA</span>
+        </div>
+
+        <h2 style="font-size: clamp(24px, 3.4vw, 36px); font-weight: 900; margin-bottom: 10px;">
+          Ruta de Evolución Organizacional para 2027
+        </h2>
+        <p style="font-size: 14.5px; color: var(--text-muted); max-width: 860px; margin-bottom: 32px; line-height: 1.65;">
+          Grupo Ve Por Más cuenta con metodologías propias, probadas y de alto impacto, diseñadas para acompañar a Mundimotos en una visión de crecimiento sostenible que trasciende el cierre de año y consolida resultados en 2027.
+        </p>
+
+        <!-- Modelo Propio: CREER · CREAR · CRECER -->
+        <div style="margin-bottom: 34px;">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px;">
+            <i data-lucide="sparkles" class="w-4 h-4 text-amber-500"></i>
+            <h3 style="font-size: 17px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em;">
+              Modelo Propio: CREER · CREAR · CRECER
+            </h3>
+          </div>
+
+          <div class="bento-grid">
+            <!-- CREER -->
+            <div class="bento-card col-4" style="background: var(--bg-surface);">
+              <div style="width: 42px; height: 42px; border-radius: var(--radius-md); background: var(--badge-bg); display: flex; align-items: center; justify-content: center; color: var(--mm-yellow); margin-bottom: 14px;">
+                <i data-lucide="shield" class="w-5 h-5"></i>
+              </div>
+              <h4 style="font-size: 18px; font-weight: 800; margin-bottom: 8px; color: var(--text-main);">01. CREER</h4>
+              <p style="font-size: 12.5px; font-weight: 700; color: var(--mm-yellow); margin-bottom: 8px; text-transform: uppercase; font-family: var(--font-mono);">Cultura, Sentido &amp; Personas</p>
+              <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">
+                Alineación de valores corporativos, propósito compartido, sentido de pertenencia y liderazgo consciente en todos los niveles de Mundimotos.
+              </p>
+            </div>
+
+            <!-- CREAR -->
+            <div class="bento-card col-4" style="background: var(--bg-surface);">
+              <div style="width: 42px; height: 42px; border-radius: var(--radius-md); background: var(--badge-bg); display: flex; align-items: center; justify-content: center; color: var(--mm-yellow); margin-bottom: 14px;">
+                <i data-lucide="wrench" class="w-5 h-5"></i>
+              </div>
+              <h4 style="font-size: 18px; font-weight: 800; margin-bottom: 8px; color: var(--text-main);">02. CREAR</h4>
+              <p style="font-size: 12.5px; font-weight: 700; color: var(--mm-yellow); margin-bottom: 8px; text-transform: uppercase; font-family: var(--font-mono);">Procesos, Modelos &amp; Herramientas</p>
+              <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">
+                Diseño del modelo de servicio propio de Mundimotos, protocolos de mostrador, mapas de conversación y guías prácticas de atención al motociclista.
+              </p>
+            </div>
+
+            <!-- CRECER -->
+            <div class="bento-card col-4" style="background: var(--bg-surface);">
+              <div style="width: 42px; height: 42px; border-radius: var(--radius-md); background: var(--badge-bg); display: flex; align-items: center; justify-content: center; color: var(--mm-yellow); margin-bottom: 14px;">
+                <i data-lucide="trending-up" class="w-5 h-5"></i>
+              </div>
+              <h4 style="font-size: 18px; font-weight: 800; margin-bottom: 8px; color: var(--text-main);">03. CRECER</h4>
+              <p style="font-size: 12.5px; font-weight: 700; color: var(--mm-yellow); margin-bottom: 8px; text-transform: uppercase; font-family: var(--font-mono);">Seguimiento &amp; Evolución Continua</p>
+              <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">
+                Acompañamiento a líderes de sede, tableros de control de servicio, seguimiento de indicadores y mejora continua en tienda y taller.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Otras Líneas de Desarrollo Estratégico 2027 -->
+        <div style="border-top: 1px solid var(--border-subtle); padding-top: 28px;">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px;">
+            <i data-lucide="layers" class="w-4 h-4 text-blue-500"></i>
+            <h3 style="font-size: 17px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em;">
+              Otras Posibilidades de Desarrollo y Acompañamiento 2027
+            </h3>
+          </div>
+          <div class="bento-grid">
+            <!-- Línea: Formador de Formadores -->
+            <div class="bento-card col-6 line-card" style="background: var(--bg-surface);">
+              <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 14px;">
+                <div class="line-icon-tile" aria-hidden="true">
+                  <i data-lucide="graduation-cap" class="w-8 h-8"></i>
+                </div>
+                <div>
+                  <span class="badge-pill badge-blue" style="font-size: 9.5px;">LÍNEA 1</span>
+                  <h4 style="font-size: 17px; font-weight: 800; margin-top: 4px; display: flex; align-items: center; gap: 8px;">
+                    <span>Formador de Formadores</span>
+                  </h4>
+                </div>
+              </div>
+              <p style="font-size: 13px; color: var(--text-muted); line-height: 1.65;">
+                Capacitación de líderes internos de Mundimotos con habilidades pedagógicas, dinámicas vivenciales y herramientas de facilitación, para que la organización entrene con autonomía a nuevos colaboradores y multiplique internamente su cultura de servicio.
+              </p>
+            </div>
+            <!-- Línea: Líderes Formando Líderes -->
+            <div class="bento-card col-6 line-card" style="background: var(--bg-surface);">
+              <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 14px;">
+                <div class="line-icon-tile" aria-hidden="true">
+                  <i data-lucide="users-round" class="w-8 h-8"></i>
+                </div>
+                <div>
+                  <span class="badge-pill badge-blue" style="font-size: 9.5px;">LÍNEA 2</span>
+                  <h4 style="font-size: 17px; font-weight: 800; margin-top: 4px; display: flex; align-items: center; gap: 8px;">
+                    <span>Líderes Formando Líderes</span>
+                  </h4>
+                </div>
+              </div>
+              <p style="font-size: 13px; color: var(--text-muted); line-height: 1.65;">
+                Programa de desarrollo, liderazgo y multiplicación de capacidades bajo estándares de <em>Leadership Development</em> y <em>Train the Trainer</em>: fortalece el liderazgo humano, integra inteligencia artificial aplicada y convierte a los líderes en multiplicadores del conocimiento organizacional.
+              </p>
+            </div>
+          </div>
+
+          <!-- Tres Soluciones Digitales -->
+          <div style="display: flex; align-items: center; gap: 8px; margin: 34px 0 16px;">
+            <i data-lucide="cpu" class="w-4 h-4 text-blue-500"></i>
+            <h3 style="font-size: 17px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em;">
+              Tres Soluciones Digitales
+            </h3>
+          </div>
+
+          <div class="bento-grid">
+            <!-- Solución 1: Sistema inteligente de atención y calidad -->
+            <div class="bento-card col-4 solution-card" style="background: var(--bg-surface); display: flex; flex-direction: column;">
+              <div class="solution-media">
+                <svg viewBox="0 0 320 150" class="solution-illus" role="img" aria-label="Panel de medición de calidad de atención: bueno, regular y malo">
+                  <rect x="18" y="14" width="190" height="122" rx="12" fill="var(--bg-surface)" stroke="var(--border-strong)" />
+                  <text x="34" y="38" font-size="10" font-weight="800" fill="var(--text-main)" font-family="'Plus Jakarta Sans', sans-serif">¿Cómo fue la atención?</text>
+                  <g font-family="'Plus Jakarta Sans', sans-serif" font-size="9" font-weight="700" text-anchor="middle">
+                    <rect x="32" y="50" width="50" height="50" rx="10" fill="rgba(16,185,129,0.14)" stroke="#10b981" />
+                    <circle cx="57" cy="70" r="11" fill="none" stroke="#10b981" stroke-width="2.4" /><path d="M51 72 Q57 79 63 72" stroke="#10b981" stroke-width="2.4" fill="none" stroke-linecap="round" />
+                    <text x="57" y="94" fill="#10b981">Bueno</text>
+                    <rect x="88" y="50" width="50" height="50" rx="10" fill="rgba(245,169,0,0.14)" stroke="#F5A900" />
+                    <circle cx="113" cy="70" r="11" fill="none" stroke="#F5A900" stroke-width="2.4" /><path d="M107 74 L119 74" stroke="#F5A900" stroke-width="2.4" stroke-linecap="round" />
+                    <text x="113" y="94" fill="#d97706">Regular</text>
+                    <rect x="144" y="50" width="50" height="50" rx="10" fill="rgba(239,68,68,0.12)" stroke="#ef4444" />
+                    <circle cx="169" cy="70" r="11" fill="none" stroke="#ef4444" stroke-width="2.4" /><path d="M163 76 Q169 69 175 76" stroke="#ef4444" stroke-width="2.4" fill="none" stroke-linecap="round" />
+                    <text x="169" y="94" fill="#ef4444">Malo</text>
+                  </g>
+                  <rect x="32" y="110" width="162" height="6" rx="3" fill="var(--bg-surface-elevated)" /><rect x="32" y="110" width="118" height="6" rx="3" fill="#10b981" />
+                  <rect x="196" y="58" width="108" height="64" rx="12" fill="#123F70" />
+                  <circle cx="214" cy="76" r="9" fill="#F5A900" /><text x="214" y="79.5" font-size="8.5" font-weight="900" text-anchor="middle" fill="#123F70" font-family="'Plus Jakarta Sans', sans-serif">IA</text>
+                  <rect x="228" y="70" width="64" height="5" rx="2.5" fill="rgba(255,255,255,0.75)" /><rect x="228" y="80" width="46" height="5" rx="2.5" fill="rgba(255,255,255,0.45)" />
+                  <rect x="208" y="94" width="84" height="5" rx="2.5" fill="rgba(255,255,255,0.45)" /><rect x="208" y="104" width="60" height="5" rx="2.5" fill="rgba(255,255,255,0.3)" />
+                </svg>
+              </div>
+              <div style="display: flex; align-items: center; gap: 10px; margin: 16px 0 10px;">
+                <div style="width: 36px; height: 36px; border-radius: var(--radius-sm); background: rgba(13, 91, 153, 0.15); display: flex; align-items: center; justify-content: center; color: #38bdf8; flex-shrink: 0;">
+                  <i data-lucide="smile" class="w-4 h-4"></i>
+                </div>
+                <div>
+                  <span class="badge-pill badge-blue" style="font-size: 9.5px;">SOLUCIÓN 01</span>
+                  <h4 style="font-size: 15.5px; font-weight: 800; margin-top: 3px; line-height: 1.3;">Sistema inteligente de atención y calidad</h4>
+                </div>
+              </div>
+              <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 7px; font-size: 12.8px; color: var(--text-muted); line-height: 1.5;">
+                <li style="display: flex; gap: 8px; align-items: flex-start;"><i data-lucide="check" class="w-3.5 h-3.5 text-amber-500" style="flex-shrink: 0; margin-top: 3px;"></i><span>Medición de calidad: bueno, regular y malo.</span></li>
+                <li style="display: flex; gap: 8px; align-items: flex-start;"><i data-lucide="check" class="w-3.5 h-3.5 text-amber-500" style="flex-shrink: 0; margin-top: 3px;"></i><span>Identificación de buenas prácticas.</span></li>
+                <li style="display: flex; gap: 8px; align-items: flex-start;"><i data-lucide="check" class="w-3.5 h-3.5 text-amber-500" style="flex-shrink: 0; margin-top: 3px;"></i><span>Preguntas y acompañamiento mediante IA.</span></li>
+                <li style="display: flex; gap: 8px; align-items: flex-start;"><i data-lucide="check" class="w-3.5 h-3.5 text-amber-500" style="flex-shrink: 0; margin-top: 3px;"></i><span>Guías paso a paso según el área.</span></li>
+                <li style="display: flex; gap: 8px; align-items: flex-start;"><i data-lucide="check" class="w-3.5 h-3.5 text-amber-500" style="flex-shrink: 0; margin-top: 3px;"></i><span>Recopilación de información para mejora continua.</span></li>
+              </ul>
+            </div>
+            <!-- Solución 2: Software personalizado de inventarios -->
+            <div class="bento-card col-4 solution-card" style="background: var(--bg-surface); display: flex; flex-direction: column;">
+              <div class="solution-media">
+                <svg viewBox="0 0 320 150" class="solution-illus" role="img" aria-label="Software de inventario con productos, marcas y existencias">
+                  <rect x="14" y="12" width="292" height="126" rx="12" fill="var(--bg-surface)" stroke="var(--border-strong)" />
+                  <g font-family="'Plus Jakarta Sans', sans-serif" font-size="8.5" font-weight="700">
+                    <rect x="26" y="24" width="52" height="16" rx="8" fill="#123F70" /><text x="52" y="35" text-anchor="middle" fill="#fff">Marcas</text>
+                    <rect x="84" y="24" width="62" height="16" rx="8" fill="var(--bg-surface-elevated)" stroke="var(--border-subtle)" /><text x="115" y="35" text-anchor="middle" fill="var(--text-muted)">Categorías</text>
+                    <rect x="152" y="24" width="44" height="16" rx="8" fill="var(--bg-surface-elevated)" stroke="var(--border-subtle)" /><text x="174" y="35" text-anchor="middle" fill="var(--text-muted)">Roles</text>
+                    <rect x="236" y="24" width="58" height="16" rx="8" fill="rgba(13,91,153,0.12)" /><circle cx="246" cy="32" r="3" fill="#0D5B99" /><text x="270" y="35" text-anchor="middle" fill="var(--text-muted)">A evaluar</text>
+                  </g>
+                  <g font-family="'Plus Jakarta Sans', sans-serif" font-size="8.5">
+                    <rect x="26" y="50" width="268" height="24" rx="6" fill="var(--bg-surface-elevated)" />
+                    <rect x="32" y="54" width="16" height="16" rx="4" fill="#0D5B99" /><path d="M35 66 L40 59 L45 66 Z" fill="#F5A900" />
+                    <text x="56" y="65" fill="var(--text-main)" font-weight="700">Kit de arrastre 428H</text><text x="200" y="65" fill="var(--text-muted)">Transmisión</text>
+                    <rect x="252" y="56" width="34" height="12" rx="6" fill="rgba(16,185,129,0.16)" /><text x="269" y="65" text-anchor="middle" fill="#10b981" font-weight="800">48</text>
+                    <rect x="26" y="78" width="268" height="24" rx="6" fill="var(--bg-surface-elevated)" />
+                    <rect x="32" y="82" width="16" height="16" rx="4" fill="#123F70" /><circle cx="40" cy="90" r="4.5" fill="none" stroke="#F5A900" stroke-width="2" />
+                    <text x="56" y="93" fill="var(--text-main)" font-weight="700">Pastillas de freno</text><text x="200" y="93" fill="var(--text-muted)">Frenos</text>
+                    <rect x="252" y="84" width="34" height="12" rx="6" fill="rgba(245,169,0,0.18)" /><text x="269" y="93" text-anchor="middle" fill="#d97706" font-weight="800">12</text>
+                    <rect x="26" y="106" width="268" height="24" rx="6" fill="var(--bg-surface-elevated)" />
+                    <rect x="32" y="110" width="16" height="16" rx="4" fill="#0D5B99" /><rect x="36" y="114" width="8" height="8" rx="2" fill="#F5A900" />
+                    <text x="56" y="121" fill="var(--text-main)" font-weight="700">Filtro de aceite</text><text x="200" y="121" fill="var(--text-muted)">Motor</text>
+                    <rect x="252" y="112" width="34" height="12" rx="6" fill="rgba(239,68,68,0.14)" /><text x="269" y="121" text-anchor="middle" fill="#ef4444" font-weight="800">3</text>
+                  </g>
+                </svg>
+              </div>
+              <div style="display: flex; align-items: center; gap: 10px; margin: 16px 0 10px;">
+                <div style="width: 36px; height: 36px; border-radius: var(--radius-sm); background: rgba(13, 91, 153, 0.15); display: flex; align-items: center; justify-content: center; color: #38bdf8; flex-shrink: 0;">
+                  <i data-lucide="package" class="w-4 h-4"></i>
+                </div>
+                <div>
+                  <span class="badge-pill badge-blue" style="font-size: 9.5px;">SOLUCIÓN 02</span>
+                  <h4 style="font-size: 15.5px; font-weight: 800; margin-top: 3px; line-height: 1.3;">Software personalizado de inventarios</h4>
+                </div>
+              </div>
+              <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 7px; font-size: 12.8px; color: var(--text-muted); line-height: 1.5;">
+                <li style="display: flex; gap: 8px; align-items: flex-start;"><i data-lucide="check" class="w-3.5 h-3.5 text-amber-500" style="flex-shrink: 0; margin-top: 3px;"></i><span>Administración de inventarios.</span></li>
+                <li style="display: flex; gap: 8px; align-items: flex-start;"><i data-lucide="check" class="w-3.5 h-3.5 text-amber-500" style="flex-shrink: 0; margin-top: 3px;"></i><span>Fotografías de productos.</span></li>
+                <li style="display: flex; gap: 8px; align-items: flex-start;"><i data-lucide="check" class="w-3.5 h-3.5 text-amber-500" style="flex-shrink: 0; margin-top: 3px;"></i><span>Clasificación por marcas y categorías.</span></li>
+                <li style="display: flex; gap: 8px; align-items: flex-start;"><i data-lucide="check" class="w-3.5 h-3.5 text-amber-500" style="flex-shrink: 0; margin-top: 3px;"></i><span>Roles y permisos.</span></li>
+                <li style="display: flex; gap: 8px; align-items: flex-start;"><i data-lucide="check" class="w-3.5 h-3.5 text-amber-500" style="flex-shrink: 0; margin-top: 3px;"></i><span>Posible integración con sistemas POS.</span></li>
+                <li style="display: flex; gap: 8px; align-items: flex-start;"><i data-lucide="check" class="w-3.5 h-3.5 text-amber-500" style="flex-shrink: 0; margin-top: 3px;"></i><span>Actualización en tiempo real si es técnicamente viable.</span></li>
+                <li style="display: flex; gap: 8px; align-items: flex-start;"><i data-lucide="check" class="w-3.5 h-3.5 text-amber-500" style="flex-shrink: 0; margin-top: 3px;"></i><span>Posibilidades de inteligencia artificial.</span></li>
+                <li style="display: flex; gap: 8px; align-items: flex-start;"><i data-lucide="check" class="w-3.5 h-3.5 text-amber-500" style="flex-shrink: 0; margin-top: 3px;"></i><span>Interfaz sencilla para el equipo comercial.</span></li>
+              </ul>
+            </div>
+            <!-- Solución 3: Plataforma educativa propia -->
+            <div class="bento-card col-4 solution-card" style="background: var(--bg-surface); display: flex; flex-direction: column;">
+              <div class="solution-media">
+                <svg viewBox="0 0 320 150" class="solution-illus" role="img" aria-label="Plataforma educativa con módulos de formación y progreso en móvil">
+                  <rect x="14" y="12" width="200" height="126" rx="12" fill="var(--bg-surface)" stroke="var(--border-strong)" />
+                  <g font-family="'Plus Jakarta Sans', sans-serif" font-size="8.5" font-weight="700">
+                    <text x="28" y="34" font-size="10" font-weight="800" fill="var(--text-main)">Mis módulos</text>
+                    <rect x="28" y="44" width="172" height="24" rx="6" fill="var(--bg-surface-elevated)" /><circle cx="40" cy="56" r="6" fill="#10b981" /><path d="M37 56 L39.5 58.5 L43.5 53.5" stroke="#fff" stroke-width="1.6" fill="none" />
+                    <text x="52" y="59" fill="var(--text-main)">Servicio en mostrador</text><text x="190" y="59" text-anchor="end" fill="#10b981">100%</text>
+                    <rect x="28" y="72" width="172" height="24" rx="6" fill="var(--bg-surface-elevated)" /><circle cx="40" cy="84" r="6" fill="#F5A900" />
+                    <text x="52" y="82" fill="var(--text-main)">Conversaciones difíciles</text>
+                    <rect x="52" y="87" width="110" height="4" rx="2" fill="var(--border-subtle)" /><rect x="52" y="87" width="66" height="4" rx="2" fill="#F5A900" />
+                    <rect x="28" y="100" width="172" height="24" rx="6" fill="var(--bg-surface-elevated)" /><circle cx="40" cy="112" r="6" fill="none" stroke="var(--text-dim)" stroke-width="1.6" />
+                    <text x="52" y="115" fill="var(--text-muted)">Trabajo en equipo</text>
+                  </g>
+                  <rect x="226" y="20" width="76" height="118" rx="14" fill="#123F70" />
+                  <rect x="232" y="30" width="64" height="94" rx="8" fill="#0D5B99" />
+                  <polygon points="257,58 257,82 277,70" fill="#F5A900" />
+                  <rect x="240" y="96" width="48" height="4" rx="2" fill="rgba(255,255,255,0.35)" /><rect x="240" y="96" width="30" height="4" rx="2" fill="#F5A900" />
+                  <rect x="240" y="106" width="36" height="4" rx="2" fill="rgba(255,255,255,0.5)" />
+                  <rect x="254" y="128" width="20" height="3" rx="1.5" fill="rgba(255,255,255,0.5)" />
+                </svg>
+              </div>
+              <div style="display: flex; align-items: center; gap: 10px; margin: 16px 0 10px;">
+                <div style="width: 36px; height: 36px; border-radius: var(--radius-sm); background: rgba(13, 91, 153, 0.15); display: flex; align-items: center; justify-content: center; color: #38bdf8; flex-shrink: 0;">
+                  <i data-lucide="graduation-cap" class="w-4 h-4"></i>
+                </div>
+                <div>
+                  <span class="badge-pill badge-blue" style="font-size: 9.5px;">SOLUCIÓN 03</span>
+                  <h4 style="font-size: 15.5px; font-weight: 800; margin-top: 3px; line-height: 1.3;">Plataforma educativa propia</h4>
+                </div>
+              </div>
+              <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 7px; font-size: 12.8px; color: var(--text-muted); line-height: 1.5;">
+                <li style="display: flex; gap: 8px; align-items: flex-start;"><i data-lucide="check" class="w-3.5 h-3.5 text-amber-500" style="flex-shrink: 0; margin-top: 3px;"></i><span>Integración propuesta con el sitio web o los canales de Mundimotos.</span></li>
+                <li style="display: flex; gap: 8px; align-items: flex-start;"><i data-lucide="check" class="w-3.5 h-3.5 text-amber-500" style="flex-shrink: 0; margin-top: 3px;"></i><span>Módulos de formación personalizados.</span></li>
+                <li style="display: flex; gap: 8px; align-items: flex-start;"><i data-lucide="check" class="w-3.5 h-3.5 text-amber-500" style="flex-shrink: 0; margin-top: 3px;"></i><span>Formación continua.</span></li>
+                <li style="display: flex; gap: 8px; align-items: flex-start;"><i data-lucide="check" class="w-3.5 h-3.5 text-amber-500" style="flex-shrink: 0; margin-top: 3px;"></i><span>Seguimiento del aprendizaje.</span></li>
+                <li style="display: flex; gap: 8px; align-items: flex-start;"><i data-lucide="check" class="w-3.5 h-3.5 text-amber-500" style="flex-shrink: 0; margin-top: 3px;"></i><span>Acceso desde dispositivos móviles.</span></li>
+                <li style="display: flex; gap: 8px; align-items: flex-start;"><i data-lucide="check" class="w-3.5 h-3.5 text-amber-500" style="flex-shrink: 0; margin-top: 3px;"></i><span>Posibilidad de desarrollar una aplicación.</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div style="margin-top: 20px; font-size: 11.5px; color: var(--text-dim); text-align: center;">
+            <em>* Estas iniciativas son alternativas de desarrollo propuestas para 2027, no productos implementados. Las integraciones y funcionalidades dependerán de la evaluación técnica y no forman parte del paquete comercial actual.</em>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================
+         10. CONDICIONES COMERCIALES Y NOTAS TRIBUTARIAS (ORDEN 09 DEL PDF)
+         ============================================================= -->
+    <section id="condiciones" class="section-wrapper">
+      <div class="section-header">
+        <span class="badge-pill">MARCO CONTRACTUAL Y LOGÍSTICO</span>
+        <h2 class="section-title">Condiciones Comerciales y Logísticas</h2>
+        <p class="section-desc">
+          Transparencia y claridad en los compromisos mutuos, requerimientos operativos y alcance del servicio de Grupo Ve Por Más.
+        </p>
+      </div>
+
+      <div class="bento-grid">
+        <!-- Columna 1: Esquema de Pago & Modalidad -->
+        <div class="bento-card col-6">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+            <i data-lucide="receipt" class="w-5 h-5 text-amber-500"></i>
+            <h3 style="font-size: 17px; font-weight: 800;">Modalidad Comercial y Esquema de Pagos</h3>
+          </div>
+          <ul style="font-size: 13px; color: var(--text-secondary); line-height: 1.85; list-style: none; padding-left: 0;">
+            <li>• <strong>Inversión:</strong> $33.900.000 COP antes de IVA.</li>
+            <li>• <strong>Primer Pago (50%):</strong> Se gestiona cuando se alcance la mitad del proceso formativo ($16.950.000 COP).</li>
+            <li>• <strong>Segundo Pago (50% restante):</strong> Se gestiona al finalizar las actividades presenciales y contra entrega del informe final con evidencias y resultados ($16.950.000 COP).</li>
+            <li>• <strong>Plazo de Gestión:</strong> Hasta cinco (5) días hábiles para gestionar cada pago, una vez recibida la documentación correspondiente.</li>
+            <li>• <strong>Vigencia:</strong> Propuesta comercial formal válida por quince (15) días calendario a partir de su entrega formal.</li>
+          </ul>
+        </div>
+
+        <!-- Columna 2: Logística y Alcance Operativo -->
+        <div class="bento-card col-6">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+            <i data-lucide="truck" class="w-5 h-5 text-amber-500"></i>
+            <h3 style="font-size: 17px; font-weight: 800;">Condiciones Operativas y Territoriales</h3>
+          </div>
+          <ul style="font-size: 13px; color: var(--text-secondary); line-height: 1.85; list-style: none; padding-left: 0;">
+            <li>• <strong>Alcance Total:</strong> 9 encuentros presenciales (4 en Antioquia y 5 en Bogotá) sobre una población de referencia de 140 colaboradores.</li>
+            <li>• <strong>Antioquia:</strong> 4 encuentros; las fechas se coordinarán con Mundimotos.</li>
+            <li>• <strong>Bogotá:</strong> 5 encuentros distribuidos en jornadas 2-2-1; las fechas se coordinarán con Mundimotos.</li>
+          </ul>
+        </div>
+
+        <!-- Cuatro condiciones comerciales y logísticas -->
+        <div class="bento-card col-3 condition-card">
+          <div style="width: 42px; height: 42px; border-radius: var(--radius-md); background: var(--badge-bg); display: flex; align-items: center; justify-content: center; color: var(--mm-yellow); margin-bottom: 14px;">
+            <i data-lucide="circle-slash" class="w-5 h-5"></i>
+          </div>
+          <h3 style="font-size: 15.5px; font-weight: 800; margin-bottom: 8px;">Servicios no incluidos</h3>
+          <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">Sesiones virtuales adicionales y encuentros presenciales adicionales se cotizan por separado.</p>
+        </div>
+        <div class="bento-card col-3 condition-card">
+          <div style="width: 42px; height: 42px; border-radius: var(--radius-md); background: var(--badge-bg); display: flex; align-items: center; justify-content: center; color: var(--mm-yellow); margin-bottom: 14px;">
+            <i data-lucide="calendar-range" class="w-5 h-5"></i>
+          </div>
+          <h3 style="font-size: 15.5px; font-weight: 800; margin-bottom: 8px;">Modificaciones del cronograma</h3>
+          <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">Cualquier cambio de fechas, jornadas o distribución de actividades que genere costos adicionales de logística o viáticos deberá cotizarse y acordarse previamente con Mundimotos.</p>
+        </div>
+        <div class="bento-card col-3 condition-card">
+          <div style="width: 42px; height: 42px; border-radius: var(--radius-md); background: var(--badge-bg); display: flex; align-items: center; justify-content: center; color: var(--mm-yellow); margin-bottom: 14px;">
+            <i data-lucide="building-2" class="w-5 h-5"></i>
+          </div>
+          <h3 style="font-size: 15.5px; font-weight: 800; margin-bottom: 8px;">Logística a cargo del cliente</h3>
+          <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">Espacios físicos, refrigerios y convocatoria de los equipos.</p>
+        </div>
+        <div class="bento-card col-3 condition-card">
+          <div style="width: 42px; height: 42px; border-radius: var(--radius-md); background: var(--badge-bg); display: flex; align-items: center; justify-content: center; color: var(--mm-yellow); margin-bottom: 14px;">
+            <i data-lucide="shield-check" class="w-5 h-5"></i>
+          </div>
+          <h3 style="font-size: 15.5px; font-weight: 800; margin-bottom: 8px;">Propiedad intelectual</h3>
+          <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">Metodologías, contenidos y herramientas pertenecientes a <strong>Grupo Ve Por Más</strong>, conforme a las condiciones acordadas.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================
+         11. CONTACTO Y CIERRE DE PROPUESTA (ORDEN 10 DEL PDF)
+         ============================================================= -->
+    <section id="contacto" class="section-wrapper">
+      <div class="bento-card col-12" style="background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-surface-elevated) 100%); padding: 50px 38px;">
+        <div class="bento-grid">
+          <!-- Información de contacto y acciones directas -->
+          <div class="col-12">
+            <span class="badge-pill badge-blue" style="margin-bottom: 14px;">SIGUIENTE PASO</span>
+            <h2 style="font-size: clamp(24px, 3.4vw, 36px); font-weight: 900; margin-bottom: 14px;">
+              Coordinemos el Inicio de la Experiencia
+            </h2>
+            <p style="font-size: 14.5px; color: var(--text-muted); line-height: 1.7; margin-bottom: 28px; max-width: 860px;">
+              Estamos listos para agendar la sesión técnica con la dirección de <strong>Mundimotos</strong>, definir los detalles del encuentro, ajustar las fechas de ejecución en Bogotá y Antioquia y dar inicio al levantamiento metodológico.
+            </p>
+
+            <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; max-width: 620px;">
+              <a href="mailto:ceo@pdpcomunica.com" class="contact-card">
+                <div style="width: 38px; height: 38px; border-radius: var(--radius-sm); background: var(--badge-bg); display: flex; align-items: center; justify-content: center; color: var(--mm-yellow); flex-shrink: 0;">
+                  <i data-lucide="mail" class="w-4 h-4"></i>
+                </div>
+                <div>
+                  <div style="font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); text-transform: uppercase;">Correo</div>
+                  <div style="font-size: 14px; font-weight: 700; color: var(--text-main);">ceo@pdpcomunica.com</div>
+                </div>
+              </a>
+              <a href="https://wa.me/573052339865" target="_blank" rel="noopener" class="contact-card">
+                <div style="width: 38px; height: 38px; border-radius: var(--radius-sm); background: var(--badge-bg); display: flex; align-items: center; justify-content: center; color: var(--mm-yellow); flex-shrink: 0;">
+                  <i data-lucide="phone" class="w-4 h-4"></i>
+                </div>
+                <div>
+                  <div style="font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); text-transform: uppercase;">WhatsApp</div>
+                  <div style="font-size: 14px; font-weight: 700; color: var(--text-main);">+57 305 233 9865</div>
+                </div>
+              </a>
+              <a href="https://pdpcomunica.com/" target="_blank" rel="noopener" class="contact-card">
+                <div style="width: 38px; height: 38px; border-radius: var(--radius-sm); background: var(--badge-bg); display: flex; align-items: center; justify-content: center; color: var(--mm-yellow); flex-shrink: 0;">
+                  <i data-lucide="globe" class="w-4 h-4"></i>
+                </div>
+                <div>
+                  <div style="font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); text-transform: uppercase;">Sitio web</div>
+                  <div style="font-size: 14px; font-weight: 700; color: var(--text-main);">pdpcomunica.com</div>
+                </div>
+              </a>
+            </div>
+
+            <div class="contact-actions" style="display: flex; flex-wrap: wrap; gap: 12px;">
+              <a id="btnCoordinarSesion" href="mailto:ceo@pdpcomunica.com?subject=Coordinaci%C3%B3n%20de%20sesi%C3%B3n%20t%C3%A9cnica%20%C2%B7%20Propuesta%20Mundimotos&amp;body=Hola%20Grupo%20Ve%20Por%20M%C3%A1s%2C%20queremos%20coordinar%20la%20sesi%C3%B3n%20t%C3%A9cnica%20de%20la%20propuesta%20%22Experiencia%20de%20Servicio%20y%20Conexi%C3%B3n%22%20para%20Mundimotos." class="btn btn-primary">
+                <i data-lucide="calendar-check" class="w-4 h-4"></i>
+                <span>Coordinar sesión técnica</span>
+              </a>
+              <a id="btnWhatsAppDirect" href="https://wa.me/573052339865?text=Hola%20Grupo%20Ve%20Por%20M%C3%A1s%2C%20queremos%20coordinar%20la%20reuni%C3%B3n%20sobre%20la%20propuesta%20de%20Mundimotos" target="_blank" rel="noopener" class="btn btn-secondary">
+                <i data-lucide="message-square" class="w-4 h-4"></i>
+                <span>Conversar por WhatsApp</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =============================================================
+       FOOTER CORPORATIVO
+       ============================================================= -->
+  <footer class="app-footer">
+    <div class="container">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px; padding-bottom: 28px; border-bottom: 1px solid var(--border-subtle);">
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <svg class="brand-logo-svg" viewBox="0 0 188 38" fill="none" style="height: 30px; width: auto;" xmlns="http://www.w3.org/2000/svg" aria-label="Mundimotos">
+            <g transform="translate(1, 2)">
+              <path d="M10 2 L28 2 L35 17 L28 32 L10 32 L3 17 Z" fill="#F5A900" />
+              <path d="M12 7 L26 7 L20 17 L26 27 L12 27 L17 17 Z" fill="#123F70" />
+              <circle cx="17" cy="17" r="2.8" fill="#FFFFFF" />
+            </g>
+            <text x="43" y="21" font-family="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" font-weight="900" font-size="18" fill="currentColor" letter-spacing="0.8">MUNDI<tspan fill="#F5A900">MOTOS</tspan></text>
+          </svg>
+          <div style="height: 20px; width: 1px; background: var(--border-subtle);"></div>
+          <span style="font-size: 13px; font-weight: 700; color: var(--text-secondary);">GRUPO VE POR MÁS S.A.S.</span>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 16px; font-size: 12px; color: var(--text-dim); flex-wrap: wrap;">
+          <span>Marcas de respaldo:</span>
+          <span style="color: var(--text-muted); font-weight: 600;">Eduardo Gómez</span>
+          <span>&bull;</span>
+          <span style="color: var(--text-muted); font-weight: 600;">Pro Juan Manuel</span>
+          <span>&bull;</span>
+          <span style="color: var(--text-muted); font-weight: 600;">Agencia PDP</span>
+          <span>&bull;</span>
+          <span style="color: var(--text-muted); font-weight: 600;">Academia Punto D’ Partida</span>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 14px; padding-top: 24px; font-size: 12px; color: var(--text-dim);">
+        <div>
+          &copy; 2026 Grupo Ve Por Más S.A.S. &middot; Propuesta técnica y comercial confidencial preparada para Mundimotos.
+        </div>
+        <div style="display: flex; gap: 16px;">
+          <a href="#inicio" style="color: var(--text-muted); font-weight: 600;">Volver arriba &uarr;</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =============================================================
+       LIGHTBOX MODAL
+       ============================================================= -->
+  <div id="lightboxModal" class="lightbox-modal" onclick="closeLightbox(event)">
+    <div class="lightbox-content">
+      <button class="lightbox-close-btn" onclick="closeLightboxDirect()" aria-label="Cerrar visor">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <button class="lightbox-nav-btn prev" onclick="prevLightbox(event)" aria-label="Imagen anterior">
+        <i data-lucide="chevron-left" class="w-6 h-6"></i>
+      </button>
+
+      <div class="lightbox-img-wrapper">
+        <img id="lightboxImg" src="" alt="Ampliación de fotografía de taller" />
+      </div>
+
+      <button class="lightbox-nav-btn next" onclick="nextLightbox(event)" aria-label="Imagen siguiente">
+        <i data-lucide="chevron-right" class="w-6 h-6"></i>
+      </button>
+
+      <div class="lightbox-caption-bar">
+        <span id="lightboxCaption">Título descriptivo</span>
+        <span id="lightboxCounter" style="font-family: var(--font-mono); font-size: 12px; color: var(--mm-yellow);">1 / 7</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toastBox" class="toast-box">
+    <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+    <span id="toastMsg">Mensaje informativo</span>
+  </div>
+
+  <!-- =============================================================
+       JAVASCRIPT LOGIC
+       ============================================================= -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // -------------------------------------------------------------
+    // 1. THEME SWITCHER (Dark / Light Mode)
+    // -------------------------------------------------------------
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    const themeIcon = document.getElementById('themeIcon');
+
+    function initTheme() {
+      const savedTheme = localStorage.getItem('mm_theme') || 'light';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      updateThemeIcon(savedTheme);
+    }
+
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme') || 'dark';
+      const nextTheme = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', nextTheme);
+      localStorage.setItem('mm_theme', nextTheme);
+      updateThemeIcon(nextTheme);
+    }
+
+    function updateThemeIcon(theme) {
+      if (theme === 'dark') {
+        themeIcon.setAttribute('data-lucide', 'sun');
+      } else {
+        themeIcon.setAttribute('data-lucide', 'moon');
+      }
+      lucide.createIcons();
+    }
+
+    if (themeToggleBtn) {
+      themeToggleBtn.addEventListener('click', toggleTheme);
+    }
+    initTheme();
+
+    // -------------------------------------------------------------
+    // 2. MOBILE DRAWER NAVIGATION & COORDINATION
+    // -------------------------------------------------------------
+    function toggleMobileMenu(e) {
+      if (e) { e.preventDefault(); e.stopPropagation(); }
+      const drawer = document.getElementById('mobileDrawer');
+      const backdrop = document.getElementById('mobileDrawerBackdrop');
+      const btn = document.getElementById('btnMobileMenu');
+      const icon = document.getElementById('mobileMenuIcon');
+      const text = document.getElementById('mobileMenuText');
+
+      if (!drawer) return;
+      const isOpen = drawer.classList.contains('open');
+
+      if (isOpen) {
+        closeMobileMenu();
+      } else {
+        drawer.classList.add('open');
+        if (backdrop) backdrop.classList.add('open');
+        if (btn) {
+          btn.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+        if (icon) icon.setAttribute('data-lucide', 'x');
+        if (text) text.innerText = 'Cerrar';
+        document.body.style.overflow = 'hidden';
+        if (window.lucide) lucide.createIcons();
+      }
+    }
+
+    function closeMobileMenu() {
+      const drawer = document.getElementById('mobileDrawer');
+      const backdrop = document.getElementById('mobileDrawerBackdrop');
+      const btn = document.getElementById('btnMobileMenu');
+      const icon = document.getElementById('mobileMenuIcon');
+      const text = document.getElementById('mobileMenuText');
+
+      if (drawer) drawer.classList.remove('open');
+      if (backdrop) backdrop.classList.remove('open');
+      if (btn) {
+        btn.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+      if (icon) icon.setAttribute('data-lucide', 'menu');
+      if (text) text.innerText = 'Menú';
+      document.body.style.overflow = '';
+      if (window.lucide) lucide.createIcons();
+    }
+    window.toggleMobileMenu = toggleMobileMenu;
+    window.closeMobileMenu = closeMobileMenu;
+
+    // Toggle handled directly via onclick="toggleMobileMenu(event)" to avoid double-toggle
+
+    // Smooth scroll to the contact section.
+    function scrollToCoordination(e) {
+      if (e && typeof e.preventDefault === 'function') e.preventDefault();
+      closeMobileMenu();
+
+      const target = document.getElementById('contacto');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+    window.scrollToCoordination = scrollToCoordination;
+
+    // -------------------------------------------------------------
+    // 5. GALLERY DATA & LIGHTBOX MODAL
+    // -------------------------------------------------------------
+    const galleryItems = [
+      { src: 'assets/gallery/eduardo gomez/galeria-03-taller-u.jpg', caption: 'Jornadas de alineación y escucha activa con equipos operativos — Facilitación vivencial con Eduardo Gómez' },
+      { src: 'assets/gallery/juan manuel/galeria-01-fenalco.jpg', caption: 'Encuentros vivenciales masivos en Fenalco Antioquia — Facilitación corporativa con Juan Manuel Restrepo' },
+      { src: 'assets/gallery/eduardo gomez/galeria-05-aula-participativa.jpg', caption: 'Metodología práctica con aplicación directa al puesto de trabajo — Taller con Eduardo Gómez' },
+      { src: 'assets/gallery/juan manuel/experience-camara-comercio.jpg', caption: 'Facilitación y conferencias en Cámara de Comercio de Medellín — Estrategia con Juan Manuel Restrepo' },
+      { src: 'assets/gallery/eduardo gomez/galeria-04-reto-masmelo.jpg', caption: 'Dinámicas grupales de equipo y retos colaborativos en vivo — Experiencia con Eduardo Gómez' },
+      { src: 'assets/gallery/juan manuel/galeria-08-mesa-liderazgo.jpg', caption: 'Mesas de trabajo y análisis de casos reales de atención — Liderazgo con Juan Manuel Restrepo' },
+      { src: 'assets/gallery/eduardo gomez/galeria-07-grada-conexion.jpg', caption: 'Espacios dinámicos de diálogo y cocreación en subgrupos — Trabajo reflexivo con Eduardo Gómez' },
+      { src: 'assets/gallery/juan manuel/experience-06.jpg', caption: 'Sesiones vivenciales de inteligencia emocional y servicio — Facilitación con Juan Manuel Restrepo' }
+    ];
+
+    let currentLightboxIdx = 0;
+    const lightboxModal = document.getElementById('lightboxModal');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const lightboxCounter = document.getElementById('lightboxCounter');
+
+    function openLightbox(index) {
+      currentLightboxIdx = index;
+      updateLightboxContent();
+      if (lightboxModal) lightboxModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function updateLightboxContent() {
+      const item = galleryItems[currentLightboxIdx];
+      if (item && lightboxImg && lightboxCaption && lightboxCounter) {
+        lightboxImg.src = item.src;
+        lightboxCaption.innerText = item.caption;
+        lightboxCounter.innerText = `${currentLightboxIdx + 1} / ${galleryItems.length}`;
+      }
+    }
+
+    function closeLightbox(e) {
+      if (e.target === lightboxModal) {
+        closeLightboxDirect();
+      }
+    }
+
+    function closeLightboxDirect() {
+      if (lightboxModal) lightboxModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function prevLightbox(e) {
+      if (e) e.stopPropagation();
+      currentLightboxIdx = (currentLightboxIdx - 1 + galleryItems.length) % galleryItems.length;
+      updateLightboxContent();
+    }
+
+    function nextLightbox(e) {
+      if (e) e.stopPropagation();
+      currentLightboxIdx = (currentLightboxIdx + 1) % galleryItems.length;
+      updateLightboxContent();
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (!lightboxModal || !lightboxModal.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightboxDirect();
+      if (e.key === 'ArrowLeft') prevLightbox();
+      if (e.key === 'ArrowRight') nextLightbox();
+    });
+
+    // -------------------------------------------------------------
+    // 6. TOAST SYSTEM
+    // -------------------------------------------------------------
+    let toastTimeout;
+    function showToast(message) {
+      const toast = document.getElementById('toastBox');
+      const msg = document.getElementById('toastMsg');
+      if (toast && msg) {
+        msg.innerText = message;
+        toast.classList.add('show');
+        clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(() => {
+          toast.classList.remove('show');
+        }, 3200);
+      }
+    }
+
+    // -------------------------------------------------------------
+    // 7. MOTOR VECTORIAL PDF jsPDF PARA MUNDIMOTOS
+    // -------------------------------------------------------------
+    function generateProposalDoc(jsPDFClass, options = {}) {
+  const clientName = options.clientName || 'MUNDIMOTOS';
+
+  const doc = new jsPDFClass({
+    orientation: 'portrait',
+    unit: 'mm',
+    format: 'a4',
+    compress: options.compress !== undefined ? options.compress : true
+  });
+
+  const pw = 210;
+  const ph = 297;
+  const margin = 14;
+  const cw = pw - (margin * 2); // 182mm
+
+  // Colors palette - Mundimotos & Grupo Ve Por Más
+  const cDark = [18, 63, 112];          // #123F70 Azul profundo corporativo
+  const cDarkNavy = [16, 22, 34];       // #101622
+  const cBlue = [13, 91, 153];          // #0D5B99 Azul vivo
+  const cYellow = [245, 169, 0];        // #F5A900 Amarillo acento
+  const cYellowBg = [254, 249, 235];    // #FEF9EB
+  const cYellowBorder = [245, 169, 0];  // #F5A900
+  const cBlueBg = [240, 246, 252];      // #F0F6FC
+  const cBlueBorder = [186, 215, 243];  // #BAD7F3
+  const cGrayText = [51, 65, 85];       // #334155
+  const cMuted = [100, 116, 139];       // #64748B
+  const cBorder = [218, 225, 233];      // #DAE1E9
+  const cCardBg = [248, 250, 252];      // #F8FAFC
+
+  function drawHeader(pageNum, pageSub) {
+    doc.setFillColor(...cDark);
+    doc.rect(margin, margin - 4, cw, 1.2, 'F');
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(8.5);
+    doc.setTextColor(...cDark);
+    doc.text(`GRUPO VE POR MÁS   |   ${clientName.toUpperCase()}`, margin, margin + 2);
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(7.5);
+    doc.setTextColor(...cBlue);
+    doc.text(pageSub.toUpperCase(), pw - margin, margin + 2, { align: 'right' });
+
+    doc.setDrawColor(...cBorder);
+    doc.setLineWidth(0.3);
+    doc.line(margin, margin + 5, pw - margin, margin + 5);
+  }
+
+  function drawFooter(pageNum) {
+    doc.setDrawColor(...cBorder);
+    doc.setLineWidth(0.3);
+    doc.line(margin, ph - margin - 4, pw - margin, ph - margin - 4);
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(7.5);
+    doc.setTextColor(...cMuted);
+    doc.text(`Propuesta Comercial Confidencial · GRUPO VE POR MÁS para ${clientName} · 2026`, margin, ph - margin);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(...cDark);
+    doc.text(`Página ${pageNum} de 4`, pw - margin, ph - margin, { align: 'right' });
+  }
+
+  // =========================================================================
+  // PÁGINA 1: PORTADA EJECUTIVA, MÉTRICAS, FICHA TÉCNICA & SEDES
+  // =========================================================================
+  drawHeader(1, 'Propuesta de Experiencia Corporativa');
+
+  let y = margin + 12;
+
+  // Eyebrow badges
+  doc.setFillColor(...cBlueBg);
+  doc.setDrawColor(...cBlueBorder);
+  doc.setLineWidth(0.4);
+  doc.roundedRect(margin, y, 78, 6.5, 3, 3, 'FD');
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(7.2);
+  doc.setTextColor(...cDark);
+  doc.text("PROPUESTA DE EXPERIENCIA CORPORATIVA", margin + 5, y + 4.5);
+
+  doc.setFillColor(...cYellowBg);
+  doc.setDrawColor(...cYellowBorder);
+  doc.roundedRect(margin + 82, y, 46, 6.5, 3, 3, 'FD');
+  doc.setTextColor(180, 110, 0);
+  doc.text("CIERRE DE AÑO 2026", margin + 87, y + 4.5);
+
+  y += 15;
+
+  // Main Title H1
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(20);
+  doc.setTextColor(...cDark);
+  doc.text("EXPERIENCIA DE SERVICIO Y CONEXIÓN", margin, y);
+
+  y += 7.5;
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(10.5);
+  doc.setTextColor(...cBlue);
+  doc.text("Reconocer lo que hemos construido. Conectar a quienes lo hacen posible. Fortalecer lo que viene.", margin, y);
+
+  y += 6.5;
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(8.8);
+  doc.setTextColor(...cGrayText);
+  doc.text("Una experiencia corporativa vivencial y participativa para los equipos de Mundimotos en Antioquia y Bogotá.", margin, y);
+
+  y += 9;
+
+  // 4 Feature highlight metrics (Antioquia first, 9 sessions total)
+  const boxW = (cw - 9) / 4;
+  const boxH = 22;
+  const metrics = [
+    { num: '9', lbl: 'Encuentros Totales', sub: '5 Bogotá y 4 Antioquia' },
+    { num: 'Antioquia', lbl: '4 Encuentros', sub: '60 pers. ref.' },
+    { num: 'Bogotá', lbl: '5 Encuentros', sub: '80 pers. ref. (2-2-1)' },
+    { num: 'Fechas', lbl: 'Cronograma', sub: 'Por coordinar con Mundimotos' }
+  ];
+
+  metrics.forEach((m, idx) => {
+    const bx = margin + (boxW + 3) * idx;
+    doc.setFillColor(...cCardBg);
+    doc.setDrawColor(...cBorder);
+    doc.setLineWidth(0.4);
+    doc.roundedRect(bx, y, boxW, boxH, 2.5, 2.5, 'FD');
+
+    doc.setFillColor(...cYellow);
+    doc.roundedRect(bx, y, boxW, 1.2, 0.6, 0.6, 'F');
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(13);
+    doc.setTextColor(...cDark);
+    doc.text(m.num, bx + 4, y + 8);
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(7.5);
+    doc.setTextColor(...cBlue);
+    doc.text(m.lbl, bx + 4, y + 13.5);
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(6.8);
+    doc.setTextColor(...cMuted);
+    doc.text(m.sub, bx + 4, y + 18);
+  });
+
+  y += boxH + 9;
+
+  // Ficha Técnica Dossier
+  const ftH = 30;
+  doc.setFillColor(...cBlueBg);
+  doc.setDrawColor(...cBlueBorder);
+  doc.setLineWidth(0.5);
+  doc.roundedRect(margin, y, cw, ftH, 3, 3, 'FD');
+
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(8);
+  doc.setTextColor(...cDark);
+  doc.text("FICHA TÉCNICA Y RESUMEN EJECUTIVO", margin + 6, y + 6.5);
+
+  const colHalf = (cw - 12) / 2;
+  const fRows = [
+    { l: "CLIENTE:", v: "Mundimotos (Antioquia y Bogotá D.C.)", rL: "PROPONENTE:", rV: "GRUPO VE POR MÁS" },
+    { l: "FACILITADORES:", v: "Juan Manuel Restrepo & Eduardo Gómez", rL: "RESPALDO:", rV: "Academia Punto D' Partida / Agencia PDP" },
+    { l: "POBLACIÓN:", v: "140 colaboradores ref. (60 Antioquia · 80 Bogotá)", rL: "ALCANCE:", rV: "9 encuentros presenciales vivenciales" },
+    { l: "INVERSIÓN:", v: "$33.900.000 COP antes de IVA", rL: "MODALIDAD:", rV: "100% presencial vivencial y aplicado" }
+  ];
+
+  let fy = y + 12;
+  fRows.forEach(r => {
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(7);
+    doc.setTextColor(...cMuted);
+    doc.text(r.l, margin + 6, fy);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(...cDark);
+    const valueX = r.l === 'FACILITADORES:'
+      ? margin + 6 + doc.getTextWidth(r.l) + 2.5
+      : margin + 26;
+    doc.text(r.v, valueX, fy);
+
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(...cMuted);
+    doc.text(r.rL, margin + 6 + colHalf, fy);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(...cDark);
+    doc.text(r.rV, margin + 26 + colHalf, fy);
+    fy += 4.5;
+  });
+
+  y += ftH + 9;
+
+  // Propósito Estratégico
+  const propH = 46;
+  doc.setFillColor(255, 255, 255);
+  doc.setDrawColor(...cBorder);
+  doc.setLineWidth(0.4);
+  doc.roundedRect(margin, y, cw, propH, 3, 3, 'FD');
+
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(8);
+  doc.setTextColor(...cBlue);
+  doc.text("PROPÓSITO Y SENTIDO DEL ENCUENTRO", margin + 6, y + 7);
+
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(11);
+  doc.setTextColor(...cDark);
+  doc.text("Una pausa significativa para reconocer, conectar y fortalecer", margin + 6, y + 14);
+
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(8.2);
+  doc.setTextColor(...cGrayText);
+  const propP1 = "El cierre de año es una oportunidad privilegiada para hacer una pausa consciente, reconocer el trabajo realizado y abrir conversaciones profundas que permitan seguir creciendo como organización. Proponemos una experiencia corporativa, participativa y vivencial para reunir a los colaboradores de Antioquia y Bogotá alrededor de la cultura de servicio, la empatía en la atención, la comunicación asertiva y el orgullo de pertenencia.";
+  const splitP1 = doc.splitTextToSize(propP1, cw - 12);
+  doc.text(splitP1, margin + 6, y + 20);
+
+  const propP2 = "Más que una capacitación convencional, este espacio busca escuchar a las personas desde el primer contacto con el cliente, poner en valor sus aportes cotidianos y transformar los retos diarios en aprendizajes concretos y aplicables para el fortalecimiento de la cultura organizacional de Mundimotos.";
+  const splitP2 = doc.splitTextToSize(propP2, cw - 12);
+  doc.text(splitP2, margin + 6, y + 33.5);
+
+  y += propH + 9;
+
+  // Cobertura y Reglas Operativas
+  const cobH = 44;
+  doc.setFillColor(...cCardBg);
+  doc.setDrawColor(...cBorder);
+  doc.setLineWidth(0.4);
+  doc.roundedRect(margin, y, cw, cobH, 3, 3, 'FD');
+
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(8);
+  doc.setTextColor(...cBlue);
+  doc.text("COBERTURA TERRITORIAL Y CONDICIONES OPERATIVAS", margin + 6, y + 7);
+
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(11);
+  doc.setTextColor(...cDark);
+  doc.text("Parámetros Operativos Claros para Antioquia y Bogotá", margin + 6, y + 14);
+
+  const ruleW = (cw - 16) / 3;
+  const rules = [
+    { t: "Antioquia: 4 Encuentros", d: "Cuatro encuentros presenciales para la población de referencia de 60 colaboradores." },
+    { t: "Bogotá: Jornadas Optimizadas", d: "5 encuentros distribuidos en jornadas 2-2-1; las fechas se coordinarán con Mundimotos." },
+    { t: "Seguimiento e Informes", d: "Registro de asistencia, aplicación de encuestas de evaluación y entrega de informe final ejecutivo con memorias y hallazgos." }
+  ];
+
+  rules.forEach((r, idx) => {
+    const rx = margin + 5 + (ruleW + 3) * idx;
+    doc.setFillColor(255, 255, 255);
+    doc.setDrawColor(...cBorder);
+    doc.setLineWidth(0.3);
+    doc.roundedRect(rx, y + 18, ruleW, 21, 2, 2, 'FD');
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(7.6);
+    doc.setTextColor(...cDark);
+    doc.text(r.t, rx + 3.5, y + 23.5);
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(6.8);
+    doc.setTextColor(...cGrayText);
+    const splitR = doc.splitTextToSize(r.d, ruleW - 7);
+    doc.text(splitR, rx + 3.5, y + 28);
+  });
+
+  drawFooter(1);
+
+  // =========================================================================
+  // PÁGINA 2: METODOLOGÍA VIVENCIAL (6 MOMENTOS) & 6 EJES TEMÁTICOS
+  // =========================================================================
+  doc.addPage();
+  drawHeader(2, 'Metodología Vivencial y Ejes Formativos');
+
+  y = margin + 12;
+
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(16);
+  doc.setTextColor(...cDark);
+  doc.text("La Experiencia en Seis Momentos", margin, y);
+
+  y += 6.5;
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(8.8);
+  doc.setTextColor(...cGrayText);
+  doc.text("Una experiencia 100% práctica, participativa y vivencial, sin cátedras rígidas ni contenidos desconectados de la operación diaria.", margin, y);
+
+  y += 10;
+
+  // 6 Momentos Grid (2 filas x 3 columnas - colectivos)
+  const momW = (cw - 8) / 3;
+  const momH = 44;
+  const momentos = [
+    { num: '01', verb: 'CONECTAR', title: 'Bienvenida & Activación', desc: 'Apertura vivencial para romper la inercia, alinear el propósito del encuentro y activar la energía colectiva del equipo.' },
+    { num: '02', verb: 'RECONOCER', title: 'Aprendizajes del Año', desc: 'Poner en valor los aportes de las personas, los logros alcanzados y los aprendizajes colectivos en el trabajo cotidiano.' },
+    { num: '03', verb: 'ESCUCHAR', title: 'Percepciones de Servicio', desc: 'Espacio guiado para levantar oportunidades de mejora directamente desde el primer contacto con el cliente.' },
+    { num: '04', verb: 'EXPERIMENTAR', title: 'Casos & Dinámicas Grupales', desc: 'Dinámicas y simulaciones colectivas aplicadas a situaciones reales de clientes para practicar empatía y manejo de objeciones.' },
+    { num: '05', verb: 'FORTALECER', title: 'Herramientas Aplicables', desc: 'Estructuración de pautas claras, mapas de conversación y comportamientos observables de servicio para el mostrador.' },
+    { num: '06', verb: 'CERRAR', title: 'Reflexión, Aprendizajes y Reconocimiento', desc: 'Reflexión grupal sobre la experiencia, reconocimiento de los aprendizajes y valoración de los aportes de quienes participaron para fortalecer la cultura organizacional de Mundimotos.' }
+  ];
+
+  momentos.forEach((m, idx) => {
+    const col = idx % 3;
+    const row = Math.floor(idx / 3);
+    const mx = margin + (momW + 4) * col;
+    const my = y + (momH + 5) * row;
+
+    doc.setFillColor(...cCardBg);
+    doc.setDrawColor(...cBorder);
+    doc.setLineWidth(0.4);
+    doc.roundedRect(mx, my, momW, momH, 2.5, 2.5, 'FD');
+
+    // Badge numérico
+    doc.setFillColor(...cBlueBg);
+    doc.setDrawColor(...cBlueBorder);
+    doc.roundedRect(mx + 4, my + 4, 15, 5, 1.5, 1.5, 'FD');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(7.5);
+    doc.setTextColor(...cDark);
+    doc.text(m.num, mx + 6.5, my + 7.8);
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(8);
+    doc.setTextColor(...cBlue);
+    doc.text(m.verb, mx + 23, my + 8);
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(8.2);
+    doc.setTextColor(...cDark);
+    doc.text(m.title, mx + 4, my + 15.5);
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(7);
+    doc.setTextColor(...cGrayText);
+    const splitDesc = doc.splitTextToSize(m.desc, momW - 8);
+    doc.text(splitDesc, mx + 4, my + 21.5);
+  });
+
+  y += (momH * 2) + 15;
+
+  // 6 Temas Transversales
+  const temH = 110;
+  doc.setFillColor(255, 255, 255);
+  doc.setDrawColor(...cBorder);
+  doc.setLineWidth(0.5);
+  doc.roundedRect(margin, y, cw, temH, 3, 3, 'FD');
+
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(8);
+  doc.setTextColor(...cBlue);
+  doc.text("SEIS TEMAS TRANSVERSALES DEL PRIMER ENCUENTRO", margin + 6, y + 7.5);
+
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(12);
+  doc.setTextColor(...cDark);
+  doc.text("Seis Competencias Clave para la Cultura Organizacional de Mundimotos", margin + 6, y + 15.5);
+
+  const tColW = (cw - 18) / 2;
+  const temas = [
+    { t: '1. Cultura de servicio y experiencia del cliente', d: 'Comprender el impacto humano y comercial del servicio para transformar la atención habitual en una experiencia memorable y diferenciadora.' },
+    { t: '2. Comunicación, escucha activa y empatía', d: 'Herramientas para leer las necesidades del motociclista, saber escuchar antes de ofrecer repuestos y conectar con cercanía y respeto.' },
+    { t: '3. Confianza y sentido de pertenencia', d: 'Cohesión de equipo, alineación con la misión corporativa de Mundimotos y orgullo por la labor que cada colaborador desempeña.' },
+    { t: '4. Situaciones retadoras y manejo de objeciones', d: 'Técnicas constructivas para abordar quejas, demoras en mostrador y conversaciones complejas manteniendo la calma y el profesionalismo.' },
+    { t: '5. Trabajo colaborativo y articulación interáreas', d: 'Coordinación fluida entre bodega, ventas, servicio técnico y áreas administrativas para una entrega sin fricciones.' },
+    { t: '6. Experiencias memorables y mejora continua', d: 'Generación constante de valor agregado en cada punto de contacto y mentalidad de evolución para fidelizar al cliente.' }
+  ];
+
+  temas.forEach((t, idx) => {
+    const cIdx = idx % 2;
+    const rIdx = Math.floor(idx / 2);
+    const tx = margin + 6 + (tColW + 6) * cIdx;
+    const ty = y + 23 + (27 * rIdx);
+
+    doc.setFillColor(...cCardBg);
+    doc.setDrawColor(...cBorder);
+    doc.setLineWidth(0.3);
+    doc.roundedRect(tx, ty, tColW, 23.5, 2, 2, 'FD');
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(7.8);
+    doc.setTextColor(...cDark);
+    doc.text(t.t, tx + 3.5, ty + 6);
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(6.8);
+    doc.setTextColor(...cGrayText);
+    const splitT = doc.splitTextToSize(t.d, tColW - 7);
+    doc.text(splitT, tx + 3.5, ty + 11.5);
+  });
+
+  drawFooter(2);
+
+  // =========================================================================
+  // PÁGINA 3: PROPUESTA COMERCIAL DEFINITIVA (UN SOLO PAQUETE $33.900.000)
+  // =========================================================================
+  doc.addPage();
+  drawHeader(3, 'Propuesta Comercial Integral');
+
+  y = margin + 12;
+
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(16);
+  doc.setTextColor(...cDark);
+  doc.text("Propuesta Comercial: Experiencia Integral Llave en Mano", margin, y);
+
+  y += 6.5;
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(8.8);
+  doc.setTextColor(...cGrayText);
+  doc.text("Una solución única, completa y ejecutiva para los equipos de Mundimotos en Antioquia y Bogotá.", margin, y);
+
+  y += 10;
+
+  // Master Bento Card: 2 Columnas (Izquierda: Alcance, Derecha: Inversión)
+  const masterH = 135;
+  doc.setFillColor(255, 255, 255);
+  doc.setDrawColor(...cBorder);
+  doc.setLineWidth(0.5);
+  doc.roundedRect(margin, y, cw, masterH, 3, 3, 'FD');
+
+  // Columna Izquierda: Entregables (cw * 0.6)
+  const leftW = cw * 0.58;
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(8);
+  doc.setTextColor(...cBlue);
+  doc.text("ALCANCE INTEGRAL DEL PROGRAMA (9 ENCUENTROS)", margin + 6, y + 8);
+
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(12);
+  doc.setTextColor(...cDark);
+  doc.text("Paquete Integral de Experiencia y Servicio", margin + 6, y + 15);
+
+  const itemsIncluidos = [
+    "4 encuentros presenciales en Antioquia para la población de referencia de 60 colaboradores.",
+    "5 encuentros presenciales en Bogotá, distribuidos en jornadas 2-2-1.",
+    "Planeación, diseño pedagógico y facilitación directiva senior en vivo.",
+    "Herramientas vivenciales y recursos didácticos para todas las actividades.",
+    "Formatos organizados y control riguroso de asistencia por jornada y sede.",
+    "Recolección y procesamiento de encuestas de evaluación de impacto y servicio.",
+    "Documento e Informe Final Ejecutivo con evidencias fotográficas, hallazgos, resultados cualitativos y cuantitativos, y recomendaciones."
+  ];
+
+  let iy = y + 23;
+  itemsIncluidos.forEach(it => {
+    doc.setFillColor(...cYellow);
+    doc.circle(margin + 8, iy - 1, 1.2, 'F');
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(7.5);
+    doc.setTextColor(...cGrayText);
+    const splitIt = doc.splitTextToSize(it, leftW - 14);
+    doc.text(splitIt, margin + 12, iy);
+    iy += (splitIt.length > 1 ? 9.5 : 7.5);
+  });
+
+  doc.setFont('helvetica', 'italic');
+  doc.setFontSize(6.8);
+  doc.setTextColor(...cMuted);
+  const noteScope = "* Nota de alcance: Los cambios de fechas, jornadas o distribución que impliquen ajustes logísticos o viáticos podrán generar costos adicionales, que se cotizarán y acordarán previamente.";
+  doc.text(doc.splitTextToSize(noteScope, leftW - 10), margin + 6, y + masterH - 10);
+
+  // Columna Derecha: Tarjeta de Inversión (cw * 0.42)
+  const rightX = margin + leftW + 4;
+  const rightW = cw - leftW - 8;
+  const invBoxH = masterH - 12;
+
+  doc.setFillColor(...cCardBg);
+  doc.setDrawColor(...cYellow);
+  doc.setLineWidth(0.8);
+  doc.roundedRect(rightX, y + 6, rightW, invBoxH, 2.5, 2.5, 'FD');
+
+  doc.setFillColor(...cYellow);
+  doc.roundedRect(rightX, y + 6, rightW, 6.5, 2.5, 2.5, 'F');
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(7.5);
+  doc.setTextColor(...cDarkNavy);
+  doc.text("INVERSIÓN TOTAL", rightX + (rightW / 2), y + 10.5, { align: 'center' });
+
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(18);
+  doc.setTextColor(...cDark);
+  doc.text("$33.900.000", rightX + (rightW / 2), y + 24, { align: 'center' });
+
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(7.5);
+  doc.setTextColor(180, 110, 0);
+  doc.text("COP · ANTES DE IVA", rightX + (rightW / 2), y + 29, { align: 'center' });
+
+  // Recuadro interior de Esquema de Pagos 50/50
+  const payInnerH = 48;
+  doc.setFillColor(255, 255, 255);
+  doc.setDrawColor(...cBorder);
+  doc.setLineWidth(0.3);
+  doc.roundedRect(rightX + 4, y + 38, rightW - 8, payInnerH, 2, 2, 'FD');
+
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(7);
+  doc.setTextColor(...cBlue);
+  doc.text("ESQUEMA DE PAGOS EN 2 PARTES:", rightX + 6, y + 44);
+
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(7.2);
+  doc.setTextColor(...cDark);
+  doc.text("• Primer Pago (50%):", rightX + 6, y + 51);
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(6.8);
+  doc.setTextColor(...cGrayText);
+  doc.text("A mitad del proceso: $16.950.000 COP.", rightX + 6, y + 55.5);
+
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(7.2);
+  doc.setTextColor(...cDark);
+  doc.text("• Segundo Pago (50%):", rightX + 6, y + 62);
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(6.8);
+  doc.setTextColor(...cGrayText);
+  doc.text("Al finalizar y entregar el informe final: $16.950.000 COP.", rightX + 6, y + 66.5);
+
+  doc.setFont('helvetica', 'italic');
+  doc.setFontSize(6.2);
+  doc.setTextColor(...cMuted);
+  doc.text("Hasta 5 días hábiles tras recibir la documentación.", rightX + 6, y + 74);
+  doc.setFont('helvetica', 'bold');
+  doc.setTextColor(...cDark);
+  doc.text("Vigencia de la propuesta: 15 días calendario.", rightX + 6, y + 79);
+
+  // Botón simulado institucional
+  doc.setFillColor(...cYellowBg);
+  doc.setDrawColor(...cYellowBorder);
+  doc.setLineWidth(0.4);
+  doc.roundedRect(rightX + 4, y + invBoxH - 12, rightW - 8, 8, 1.5, 1.5, 'FD');
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(6.8);
+  doc.setTextColor(...cDark);
+  doc.text("PROPUESTA INTEGRAL MUNDIMOTOS", rightX + (rightW / 2), y + invBoxH - 6.8, { align: 'center' });
+
+  y += masterH + 11;
+
+  drawFooter(3);
+
+  // =========================================================================
+  // PÁGINA 4: FACILITADORES, CONTINUIDAD 2027 & CONTACTO DIRECTO
+  // =========================================================================
+  doc.addPage();
+  drawHeader(4, 'Equipo de Facilitación y Proyección');
+
+  y = margin + 12;
+
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(16);
+  doc.setTextColor(...cDark);
+  doc.text("Equipo de Facilitación Principal", margin, y);
+
+  y += 6.5;
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(8.8);
+  doc.setTextColor(...cGrayText);
+  doc.text("GRUPO VE POR MÁS integra experiencia directiva, consultoría estratégica y pedagogía vivencial.", margin, y);
+
+  y += 10;
+
+  // 2 Perfiles de Facilitadores
+  const facW = (cw - 6) / 2;
+  const facH = 46;
+  const facilitadores = [
+    {
+      name: 'EDUARDO GÓMEZ',
+      role: 'Facilitador y Formador Experiencial',
+      cred: 'Profesional con amplia trayectoria en facilitación vivencial, liderazgo consciente, coaching de equipos y diseño de experiencias formativas de alto impacto humano.',
+      org: 'Liderazgo en procesos de cultura organizacional, servicio memorable y fortalecimiento de equipos operativos en toda Colombia.'
+    },
+    {
+      name: 'JUAN MANUEL RESTREPO',
+      role: 'Consultor, Formador y Estratega',
+      cred: 'Especialista en mercadeo, comunicación estratégica, transformación digital e inteligencia artificial aplicada al desarrollo de organizaciones y equipos comerciales.',
+      org: 'Experiencia y conferencias en Cámara de Comercio de Medellín, Fenalco Antioquia y empresas del sector automotriz y retail.'
+    }
+  ];
+
+  facilitadores.forEach((f, idx) => {
+    const fx = margin + (facW + 6) * idx;
+    doc.setFillColor(...cCardBg);
+    doc.setDrawColor(...cBorder);
+    doc.setLineWidth(0.4);
+    doc.roundedRect(fx, y, facW, facH, 3, 3, 'FD');
+
+    doc.setFillColor(...cBlue);
+    doc.roundedRect(fx, y, facW, 2, 1, 1, 'F');
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(11);
+    doc.setTextColor(...cDark);
+    doc.text(f.name, fx + 5, y + 8.5);
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(8);
+    doc.setTextColor(...cYellow);
+    doc.text(f.role, fx + 5, y + 14);
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(7.2);
+    doc.setTextColor(...cGrayText);
+    const splitCred = doc.splitTextToSize(f.cred, facW - 10);
+    doc.text(splitCred, fx + 5, y + 20);
+
+    doc.setFont('helvetica', 'italic');
+    doc.setFontSize(6.8);
+    doc.setTextColor(...cMuted);
+    const splitOrg = doc.splitTextToSize(f.org, facW - 10);
+    doc.text(splitOrg, fx + 5, y + 33);
+  });
+
+  y += facH + 5;
+
+  // Continuidad 2027: CREER · CREAR · CRECER + Formador de Formadores + Soluciones Digitales
+  const contH = 90;
+  doc.setFillColor(255, 255, 255);
+  doc.setDrawColor(...cBorder);
+  doc.setLineWidth(0.5);
+  doc.roundedRect(margin, y, cw, contH, 3, 3, 'FD');
+
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(8);
+  doc.setTextColor(...cBlue);
+  doc.text("CONTINUIDAD Y PROYECCIÓN ESTRATÉGICA 2027 (ETAPA FUTURA)", margin + 6, y + 7);
+
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(11);
+  doc.setTextColor(...cDark);
+  doc.text("Ruta de Evolución: Modelo CREER · CREAR · CRECER & Nuevas Líneas", margin + 6, y + 14);
+
+  const cPillW = (cw - 18) / 3;
+  const pilares = [
+    { p: 'CREER · Cultura & Personas', d: 'Propósito compartido, liderazgo consciente, valores corporativos y sentido de pertenencia por la marca Mundimotos.' },
+    { p: 'CREAR · Procesos & Herramientas', d: 'Modelo de servicio propio, protocolos de mostrador, mapas de conversación y guías prácticas para el equipo comercial.' },
+    { p: 'CRECER · Seguimiento & Evolución', d: 'Acompañamiento a líderes de sede, análisis de casos retadores, tableros de servicio y mejora continua de la atención.' }
+  ];
+
+  pilares.forEach((pl, idx) => {
+    const px = margin + 5 + (cPillW + 4) * idx;
+    doc.setFillColor(...cCardBg);
+    doc.setDrawColor(...cBorder);
+    doc.setLineWidth(0.3);
+    doc.roundedRect(px, y + 18, cPillW, 19, 2, 2, 'FD');
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(7.2);
+    doc.setTextColor(...cDark);
+    doc.text(pl.p, px + 3, y + 23);
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(6.4);
+    doc.setTextColor(...cGrayText);
+    const splitPl = doc.splitTextToSize(pl.d, cPillW - 6);
+    doc.text(splitPl, px + 3, y + 28);
+  });
+
+  // Dos líneas independientes: Formador de Formadores y Líderes Formando Líderes
+  const futColW = (cw - 16) / 2;
+  const futLines = [
+    { t: 'Formador de Formadores', d: 'Capacitación de líderes internos de Mundimotos con habilidades pedagógicas, dinámicas vivenciales y herramientas de facilitación, para que la organización entrene con autonomía a nuevos colaboradores y multiplique internamente su cultura de servicio.' },
+    { t: 'Líderes Formando Líderes', d: 'Programa de desarrollo, liderazgo y multiplicación de capacidades bajo estándares de Leadership Development y Train the Trainer: fortalece el liderazgo humano, integra inteligencia artificial aplicada y convierte a los líderes en multiplicadores del conocimiento organizacional.' }
+  ];
+  futLines.forEach((fl, idx) => {
+    const fx = margin + 6 + (futColW + 4) * idx;
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(7.4);
+    doc.setTextColor(...cDark);
+    doc.text(fl.t, fx, y + 42);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(6.5);
+    doc.setTextColor(...cGrayText);
+    doc.text(doc.splitTextToSize(fl.d, futColW), fx, y + 46);
+  });
+
+  // Tres soluciones digitales
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(7.2);
+  doc.setTextColor(...cBlue);
+  doc.text("TRES SOLUCIONES DIGITALES", margin + 6, y + 58);
+  const solW = (cw - 18) / 3;
+  const soluciones = [
+    { t: 'Sistema inteligente de atención y calidad', d: 'Medición de calidad (bueno, regular y malo) · buenas prácticas · preguntas y acompañamiento con IA · guías paso a paso por área · información para mejora continua.' },
+    { t: 'Software personalizado de inventarios', d: 'Inventarios con fotografías · marcas y categorías · roles y permisos · posible integración POS · tiempo real si es viable · posibilidades de IA · interfaz sencilla.' },
+    { t: 'Plataforma educativa propia', d: 'Integración propuesta con el sitio web o canales de Mundimotos · módulos personalizados · formación continua · seguimiento del aprendizaje · acceso móvil · posible aplicación.' }
+  ];
+  soluciones.forEach((sl, idx) => {
+    const sx = margin + 5 + (solW + 4) * idx;
+    doc.setFillColor(...cCardBg);
+    doc.setDrawColor(...cBorder);
+    doc.setLineWidth(0.3);
+    doc.roundedRect(sx, y + 61, solW, 22, 2, 2, 'FD');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(6.8);
+    doc.setTextColor(...cDark);
+    doc.text(doc.splitTextToSize(sl.t, solW - 6), sx + 3, y + 65.5);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(5.9);
+    doc.setTextColor(...cGrayText);
+    doc.text(doc.splitTextToSize(sl.d, solW - 6), sx + 3, y + 69.5);
+  });
+
+  doc.setFont('helvetica', 'italic');
+  doc.setFontSize(6.2);
+  doc.setTextColor(...cMuted);
+  doc.setFontSize(5.8);
+  const futureNote = "* Iniciativas propuestas para desarrollar en 2027; no son productos implementados ni forman parte del paquete comercial actual. Su viabilidad y funcionalidades dependerán de evaluación técnica.";
+  doc.text(doc.splitTextToSize(futureNote, cw - 12), margin + 6, y + 85.5);
+
+y += contH + 4;
+
+  // Condiciones Generales y Logística
+  const condH = 48;
+  doc.setFillColor(...cCardBg);
+  doc.setDrawColor(...cBorder);
+  doc.setLineWidth(0.4);
+  doc.roundedRect(margin, y, cw, condH, 3, 3, 'FD');
+
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(7.8);
+  doc.setTextColor(...cBlue);
+  doc.text("CONDICIONES COMERCIALES Y LOGÍSTICAS", margin + 6, y + 6);
+
+  const conditionCards = [
+    { title: "Servicios no incluidos", text: "Sesiones virtuales adicionales y encuentros presenciales adicionales se cotizan por separado." },
+    { title: "Modificaciones del cronograma", text: "Cualquier cambio de fechas, jornadas o distribución de actividades que genere costos adicionales de logística o viáticos deberá cotizarse y acordarse previamente con Mundimotos." },
+    { title: "Logística a cargo del cliente", text: "El cliente dispone los espacios físicos, los refrigerios y la convocatoria de los participantes." },
+    { title: "Propiedad intelectual", text: "Las metodologías, los contenidos y las herramientas pertenecen a GRUPO VE POR MÁS, conforme a las condiciones acordadas." }
+  ];
+  const conditionW = (cw - 18) / 2;
+  conditionCards.forEach((condition, idx) => {
+    const column = idx % 2;
+    const row = Math.floor(idx / 2);
+    const x = margin + 6 + column * (conditionW + 6);
+    const cardY = y + 10 + row * 20;
+    doc.setFillColor(255, 255, 255);
+    doc.setDrawColor(...cBorder);
+    doc.setLineWidth(0.3);
+    doc.roundedRect(x, cardY, conditionW, 17, 1.5, 1.5, 'FD');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(6.3);
+    doc.setTextColor(...cDark);
+    doc.text(condition.title, x + 3, cardY + 4.2);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(5.8);
+    doc.setTextColor(...cGrayText);
+    doc.text(doc.splitTextToSize(condition.text, conditionW - 6), x + 3, cardY + 7.5);
+  });
+
+  y += condH + 3;
+
+  // Cierre Ejecutivo, Punto de Contacto y Firma
+  const ctcH = 34;
+  doc.setFillColor(...cBlueBg);
+  doc.setDrawColor(...cBlueBorder);
+  doc.setLineWidth(0.6);
+  doc.roundedRect(margin, y, cw, ctcH, 3, 3, 'FD');
+
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(9.5);
+  doc.setTextColor(...cDark);
+  doc.text("Coordinemos el Inicio de la Experiencia", margin + 6, y + 6);
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(6.3);
+  doc.setTextColor(...cGrayText);
+  const contactIntro = "Estamos listos para agendar la sesión técnica con la dirección de Mundimotos, definir los detalles del encuentro, ajustar las fechas de ejecución en Bogotá y Antioquia y dar inicio al levantamiento metodológico.";
+  doc.text(doc.splitTextToSize(contactIntro, cw - 12), margin + 6, y + 10.5);
+
+  const ctcW = (cw - 12) / 3;
+  const contacts = [
+    { l: "CORREO ELECTRÓNICO", v: "ceo@pdpcomunica.com", href: "mailto:ceo@pdpcomunica.com" },
+    { l: "WHATSAPP / TELÉFONO", v: "+57 305 233 9865", href: "https://wa.me/573052339865" },
+    { l: "SITIO WEB OFICIAL", v: "pdpcomunica.com", href: "https://pdpcomunica.com/" }
+  ];
+
+  contacts.forEach((c, idx) => {
+    const cx = margin + 6 + ctcW * idx;
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(6.5);
+    doc.setTextColor(...cMuted);
+    doc.text(c.l, cx, y + 22);
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(8.2);
+    doc.setTextColor(...cDark);
+    doc.textWithLink(c.v, cx, y + 27.5, { url: c.href });
+  });
+
+  drawFooter(4);
+
+  return doc;
+    }
+
+    function downloadProposalPDF() {
+      const btn = document.getElementById('btn-export-pdf');
+      const label = document.getElementById('pdf-btn-label');
+
+      if (label) label.innerText = 'Generando...';
+      if (btn) btn.disabled = true;
+
+      try {
+        const jsPDFClass = (window.jspdf && window.jspdf.jsPDF) ? window.jspdf.jsPDF : null;
+        if (jsPDFClass) {
+          const doc = generateProposalDoc(jsPDFClass);
+          doc.save('Propuesta_Comercial_Mundimotos.pdf');
+          showToast('Propuesta descargada exitosamente en PDF.');
+        } else {
+          // Fallback a descarga directa de archivo pregenerado
+          const a = document.createElement('a');
+          a.href = 'Propuesta_Comercial_Mundimotos.pdf';
+          a.download = 'Propuesta_Comercial_Mundimotos.pdf';
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          showToast('Descargando archivo PDF precompilado.');
+        }
+      } catch (err) {
+        console.error('Error al generar PDF:', err);
+        const a = document.createElement('a');
+        a.href = 'Propuesta_Comercial_Mundimotos.pdf';
+        a.download = 'Propuesta_Comercial_Mundimotos.pdf';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      } finally {
+        if (label) label.innerText = 'Exportar PDF';
+        if (btn) btn.disabled = false;
+      }
+    }
+  </script>
+</body>
+</html>
