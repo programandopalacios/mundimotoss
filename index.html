@@ -604,57 +604,8 @@
       margin-bottom: 32px;
     }
 
-    .hero-stats-row {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-      width: 100%;
-      margin-top: 40px;
-      padding-top: 36px;
-      border-top: 1px solid var(--border-subtle);
-    }
-
-    .hero-stat-item {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      padding: 22px 24px;
-      transition: border-color var(--transition-fast), transform var(--transition-fast);
-    }
-
-    .hero-stat-item:hover {
-      border-color: var(--border-hover);
-      transform: translateY(-2px);
-    }
-
-    .hero-stat-num {
-      font-family: var(--font-mono);
-      font-size: 34px;
-      font-weight: 800;
-      color: var(--text-main);
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-
-    .hero-stat-lbl {
-      font-size: 13.5px;
-      font-weight: 700;
-      color: var(--mm-yellow);
-      margin-bottom: 3px;
-    }
-
-    .hero-stat-sub {
-      font-size: 12px;
-      color: var(--text-dim);
-    }
-
     @media (max-width: 900px) {
-      .hero-stats-row { grid-template-columns: repeat(2, 1fr); }
       .hero-bento { padding: 36px 24px; margin-top: 24px; }
-    }
-
-    @media (max-width: 480px) {
-      .hero-stats-row { grid-template-columns: 1fr; }
     }
 
     /* ---------------- SECTION HEADERS ---------------- */
@@ -1373,32 +1324,6 @@
           <span>Presenta: <strong>GRUPO VE POR MÁS</strong> · Juan Manuel Restrepo y Eduardo Gómez</span>
         </div>
 
-        <!-- Summary metrics: the single detailed meeting breakdown -->
-        <div class="hero-stats-row">
-          <div class="hero-stat-item">
-            <div class="hero-stat-num">9</div>
-            <div class="hero-stat-lbl">Encuentros Totales</div>
-            <div class="hero-stat-sub">Antioquia y Bogotá</div>
-          </div>
-
-          <div class="hero-stat-item">
-            <div class="hero-stat-num">Antioquia</div>
-            <div class="hero-stat-lbl">4 Encuentros</div>
-            <div class="hero-stat-sub">60 personas de referencia</div>
-          </div>
-
-          <div class="hero-stat-item">
-            <div class="hero-stat-num">Bogotá</div>
-            <div class="hero-stat-lbl">5 Encuentros</div>
-            <div class="hero-stat-sub">80 personas de referencia · jornadas 2-2-1</div>
-          </div>
-
-          <div class="hero-stat-item">
-            <div class="hero-stat-num">Fechas</div>
-            <div class="hero-stat-lbl">Cronograma</div>
-            <div class="hero-stat-sub">Por coordinar con Mundimotos</div>
-          </div>
-        </div>
       </div>
     </section>
 

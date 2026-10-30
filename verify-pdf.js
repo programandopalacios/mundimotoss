@@ -25,10 +25,13 @@ async function verifyProposalPDF() {
   if (/TRES PILARES INMEDIATOS/i.test(purposeSection)) {
     throw new Error('La sección web conserva el título eliminado sobre las fotografías.');
   }
-  const primarySummary = getHtmlSection('inicio');
-  for (const phrase of ['Encuentros Totales', '4 Encuentros', '5 Encuentros', '2-2-1']) {
-    if (!primarySummary.includes(phrase)) {
-      throw new Error(`El cuadro principal web no contiene "${phrase}".`);
+  const heroSection = getHtmlSection('inicio');
+  if (/hero-stats-row|Encuentros Totales|60 personas de referencia|80 personas de referencia|Por coordinar con Mundimotos/.test(heroSection)) {
+    throw new Error('La portada web todavía contiene el resumen de encuentros que debía quitarse.');
+  }
+  for (const phrase of ['EXPERIENCIA DE SERVICIO Y CONEXIÓN', 'Explorar la propuesta', 'GRUPO VE POR MÁS']) {
+    if (!heroSection.includes(phrase)) {
+      throw new Error(`La portada web perdió contenido existente: "${phrase}".`);
     }
   }
   for (const sectionId of ['cobertura', 'paquetes', 'condiciones']) {
@@ -36,7 +39,7 @@ async function verifyProposalPDF() {
       throw new Error(`La distribución de encuentros está repetida en la sección web "${sectionId}".`);
     }
   }
-  console.log('Verificación web: collage original, sin título, cantidades solo en el cuadro principal.');
+  console.log('Verificación web: collage original; resumen de encuentros retirado de la portada; contenido restante conservado.');
 
   // 1. Generate compressed PDF for final delivery
   const docCompressed = buildProposalPDF({
