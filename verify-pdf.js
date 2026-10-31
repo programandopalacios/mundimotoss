@@ -44,6 +44,9 @@ async function verifyProposalPDF() {
       throw new Error(`La portada web perdió contenido existente: "${phrase}".`);
     }
   }
+  if (!heroSection.includes('Eduardo Gómez y Juan Manuel Restrepo')) {
+    throw new Error('La portada debe presentar primero a Eduardo Gómez.');
+  }
   for (const sectionId of ['cobertura', 'paquetes', 'condiciones']) {
     if (/9 encuentros|4 encuentros|5 encuentros|4 Encuentros|5 Encuentros|2-2-1/i.test(getHtmlSection(sectionId))) {
       throw new Error(`La distribución de encuentros está repetida en la sección web "${sectionId}".`);
@@ -138,6 +141,7 @@ async function verifyProposalPDF() {
   const checkKeywords = [
     { page: 1, key: 'MUNDIMOTOS', label: 'Portada y Cliente Mundimotos' },
     { page: 1, key: '140', label: 'Cifra 140 Colaboradores' },
+    { page: 1, key: 'Eduardo Gómez & Juan Manuel Restrepo', label: 'Facilitadores en el orden solicitado' },
     { page: 1, key: 'Bogot', label: 'Presencia Bogotá y Antioquia' },
     { page: 1, key: '4 Encuentros', label: 'Cuatro encuentros en Antioquia' },
     { page: 1, key: '5 Encuentros', label: 'Cinco encuentros en Bogotá' },

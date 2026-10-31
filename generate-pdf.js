@@ -194,7 +194,7 @@ function buildProposalPDF(options = {}) {
   const colHalf = (cw - 12) / 2;
   const fRows = [
     { l: "CLIENTE:", v: "Mundimotos", rL: "PROPONENTE:", rV: "GRUPO VE POR MÁS" },
-    { l: "FACILITADORES:", v: "Juan Manuel Restrepo & Eduardo Gómez", rL: "RESPALDO:", rV: "Academia Punto D' Partida / Agencia PDP" },
+    { l: "FACILITADORES:", v: "Eduardo Gómez & Juan Manuel Restrepo", rL: "RESPALDO:", rV: "Academia Punto D' Partida / Agencia PDP" },
     { l: "POBLACIÓN:", v: "140 colaboradores de referencia", rL: "ALCANCE:", rV: "Programa presencial vivencial" },
     { l: "INVERSIÓN:", v: "$33.900.000 COP antes de IVA", rL: "MODALIDAD:", rV: "100% presencial vivencial y aplicado" }
   ];
