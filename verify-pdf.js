@@ -25,6 +25,10 @@ async function verifyProposalPDF() {
   if (/TRES PILARES INMEDIATOS/i.test(purposeSection)) {
     throw new Error('La sección web conserva el título eliminado sobre las fotografías.');
   }
+  const collageCaption = purposeSection.match(/<\/div>\s*<p class="pillar-photo-caption">([^<]+)<\/p>/);
+  if (!collageCaption || collageCaption[1].trim() !== 'Metodología vivencial 100% aplicable al puesto de trabajo.') {
+    throw new Error('La frase de metodología debe aparecer inmediatamente debajo del collage.');
+  }
   const heroSection = getHtmlSection('inicio');
   if (/hero-stats-row|Encuentros Totales|60 personas de referencia|80 personas de referencia|Por coordinar con Mundimotos/.test(heroSection)) {
     throw new Error('La portada web todavía contiene el resumen de encuentros que debía quitarse.');
