@@ -529,13 +529,11 @@ function buildProposalPDF(options = {}) {
   doc.setTextColor(...cGrayText);
   doc.text("Al finalizar y entregar el informe final: $16.950.000 COP.", rightX + 6, y + 66.5);
 
-  doc.setFont('helvetica', 'italic');
-  doc.setFontSize(6.2);
-  doc.setTextColor(...cMuted);
-  doc.text("Hasta 5 días hábiles tras recibir la documentación.", rightX + 6, y + 74);
+  const validityText = "Vigencia: Propuesta comercial formal válida por quince (15) días calendario a partir de su entrega formal.";
   doc.setFont('helvetica', 'bold');
+  doc.setFontSize(5.8);
   doc.setTextColor(...cDark);
-  doc.text("Vigencia de la propuesta: 15 días calendario.", rightX + 6, y + 79);
+  doc.text(doc.splitTextToSize(validityText, rightW - 12), rightX + 6, y + 74);
 
   // Botón simulado institucional
   doc.setFillColor(...cYellowBg);

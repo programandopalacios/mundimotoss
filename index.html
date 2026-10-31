@@ -1731,12 +1731,9 @@
                 </div>
               </div>
 
-              <div style="margin-top: 10px; font-size: 11px; color: var(--text-dim); line-height: 1.5;">
-                <em>* Hasta cinco (5) días hábiles para gestionar cada pago, una vez recibida la documentación correspondiente.</em>
-              </div>
               <div style="margin-top: 8px; display: flex; align-items: center; gap: 7px; font-size: 11.5px; font-weight: 700; color: var(--text-secondary);">
                 <i data-lucide="calendar-clock" class="w-3.5 h-3.5 text-amber-500"></i>
-                <span>Vigencia de la propuesta: quince (15) días calendario.</span>
+                <span><strong>Vigencia:</strong> Propuesta comercial formal válida por quince (15) días calendario a partir de su entrega formal.</span>
               </div>
             </div>
           </div>
@@ -2563,38 +2560,9 @@
       <div class="section-header">
         <span class="badge-pill">MARCO CONTRACTUAL Y LOGÍSTICO</span>
         <h2 class="section-title">Condiciones Comerciales y Logísticas</h2>
-        <p class="section-desc">
-          Transparencia y claridad en los compromisos mutuos, requerimientos operativos y alcance del servicio de Grupo Ve Por Más.
-        </p>
       </div>
 
       <div class="bento-grid">
-        <!-- Columna 1: Esquema de Pago & Modalidad -->
-        <div class="bento-card col-6">
-          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
-            <i data-lucide="receipt" class="w-5 h-5 text-amber-500"></i>
-            <h3 style="font-size: 17px; font-weight: 800;">Modalidad Comercial y Esquema de Pagos</h3>
-          </div>
-          <ul style="font-size: 13px; color: var(--text-secondary); line-height: 1.85; list-style: none; padding-left: 0;">
-            <li>• <strong>Inversión:</strong> $33.900.000 COP antes de IVA.</li>
-            <li>• <strong>Primer Pago (50%):</strong> Se gestiona cuando se alcance la mitad del proceso formativo ($16.950.000 COP).</li>
-            <li>• <strong>Segundo Pago (50% restante):</strong> Se gestiona al finalizar las actividades presenciales y contra entrega del informe final con evidencias y resultados ($16.950.000 COP).</li>
-            <li>• <strong>Plazo de Gestión:</strong> Hasta cinco (5) días hábiles para gestionar cada pago, una vez recibida la documentación correspondiente.</li>
-            <li>• <strong>Vigencia:</strong> Propuesta comercial formal válida por quince (15) días calendario a partir de su entrega formal.</li>
-          </ul>
-        </div>
-
-        <!-- Columna 2: Logística y Alcance Operativo -->
-        <div class="bento-card col-6">
-          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
-            <i data-lucide="truck" class="w-5 h-5 text-amber-500"></i>
-            <h3 style="font-size: 17px; font-weight: 800;">Condiciones Operativas y Territoriales</h3>
-          </div>
-          <ul style="font-size: 13px; color: var(--text-secondary); line-height: 1.85; list-style: none; padding-left: 0;">
-            <li>• <strong>Alcance operativo:</strong> Programa presencial para una población de referencia de 140 colaboradores; las fechas y la logística se coordinarán con Mundimotos.</li>
-          </ul>
-        </div>
-
         <!-- Cuatro condiciones comerciales y logísticas -->
         <div class="bento-card col-3 condition-card">
           <div style="width: 42px; height: 42px; border-radius: var(--radius-md); background: var(--badge-bg); display: flex; align-items: center; justify-content: center; color: var(--mm-yellow); margin-bottom: 14px;">
@@ -3490,13 +3458,11 @@
   doc.setTextColor(...cGrayText);
   doc.text("Al finalizar y entregar el informe final: $16.950.000 COP.", rightX + 6, y + 66.5);
 
-  doc.setFont('helvetica', 'italic');
-  doc.setFontSize(6.2);
-  doc.setTextColor(...cMuted);
-  doc.text("Hasta 5 días hábiles tras recibir la documentación.", rightX + 6, y + 74);
+  const validityText = "Vigencia: Propuesta comercial formal válida por quince (15) días calendario a partir de su entrega formal.";
   doc.setFont('helvetica', 'bold');
+  doc.setFontSize(5.8);
   doc.setTextColor(...cDark);
-  doc.text("Vigencia de la propuesta: 15 días calendario.", rightX + 6, y + 79);
+  doc.text(doc.splitTextToSize(validityText, rightW - 12), rightX + 6, y + 74);
 
   // Botón simulado institucional
   doc.setFillColor(...cYellowBg);

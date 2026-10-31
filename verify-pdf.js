@@ -49,6 +49,21 @@ async function verifyProposalPDF() {
       throw new Error(`La distribución de encuentros está repetida en la sección web "${sectionId}".`);
     }
   }
+  const conditionsSection = getHtmlSection('condiciones');
+  if (/Transparencia y claridad|Modalidad Comercial y Esquema de Pagos|Condiciones Operativas y Territoriales|Alcance operativo|Plazo de Gestión/.test(conditionsSection)) {
+    throw new Error('Las condiciones web conservan información comercial u operativa retirada.');
+  }
+  for (const title of ['Servicios no incluidos', 'Modificaciones del cronograma', 'Logística a cargo del cliente', 'Propiedad intelectual']) {
+    if (!conditionsSection.includes(title)) {
+      throw new Error(`Se perdió una tarjeta de condiciones aprobada: "${title}".`);
+    }
+  }
+  const packageSection = getHtmlSection('paquetes');
+  const validityText = 'Vigencia:</strong> Propuesta comercial formal válida por quince (15) días calendario a partir de su entrega formal.';
+  if (!packageSection.includes(validityText)
+    || /Hasta cinco \(5\) días hábiles para gestionar cada pago|Hasta 5 días hábiles tras recibir la documentación/.test(packageSection)) {
+    throw new Error('El bloque de pagos debe conservar solo la vigencia solicitada, sin el plazo de gestión.');
+  }
   console.log('Verificación web: collage original; resumen de encuentros retirado de la portada; contenido restante conservado.');
 
   // 1. Generate compressed PDF for final delivery
@@ -147,9 +162,9 @@ async function verifyProposalPDF() {
     { page: 3, key: '$16.950.000', label: 'Valores de cada pago' },
     { page: 3, key: 'A mitad del proceso:', label: 'Primer pago a mitad del proceso' },
     { page: 3, key: 'Al finalizar y entregar el informe final', label: 'Segundo pago contra entrega del informe' },
-    { page: 3, key: 'Hasta 5 días hábiles tras recibir la documentación.', label: 'Plazo de gestión de cada pago' },
     { page: 3, key: 'cualitativos y cuantitativos', label: 'Resultados del informe final' },
-    { page: 3, key: '15 días calendario', label: 'Vigencia de la propuesta' },
+    { page: 3, key: 'Vigencia: Propuesta comercial formal válida por quince', label: 'Vigencia de la propuesta' },
+    { page: 3, key: 'días calendario a partir de su entrega formal.', label: 'Vigencia desde entrega formal' },
     { page: 4, key: 'JUAN MANUEL RESTREPO', label: 'Facilitador Juan Manuel' },
     { page: 4, key: 'EDUARDO G', label: 'Facilitador Eduardo Gómez' },
     { page: 4, key: 'CREER', label: 'Continuidad 2027 CREER' },
@@ -198,6 +213,9 @@ async function verifyProposalPDF() {
   if (rawContent.includes('Seis Competencias Clave para la Cultura Organizacional de Mundimotos')
     || rawContent.includes('SEIS TEMAS TRANSVERSALES DEL PRIMER ENCUENTRO')) {
     throw new Error('El PDF conserva un encabezado secundario eliminado de los temas transversales.');
+  }
+  if (/Hasta 5 días hábiles tras recibir la documentación|Hasta cinco \(5\) días hábiles para gestionar cada pago/.test(rawContent)) {
+    throw new Error('El PDF conserva el plazo de gestión de pagos que debía retirarse.');
   }
   for (const [label, pattern] of [
     ['4 encuentros en Antioquia', /4 Encuentros/g],
