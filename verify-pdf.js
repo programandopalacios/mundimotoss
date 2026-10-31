@@ -62,6 +62,11 @@ async function verifyProposalPDF() {
     }
   }
   const packageSection = getHtmlSection('paquetes');
+  for (const label of ['Coordinación de jornadas presenciales:', 'Programación de fechas y distribución operativa:']) {
+    if (!packageSection.includes(`<strong>${label}</strong>`)) {
+      throw new Error(`El componente de alcance debe presentar en negrilla "${label}".`);
+    }
+  }
   const validityText = 'Vigencia:</strong> Propuesta comercial formal válida por quince (15) días calendario a partir de su entrega formal.';
   if (!packageSection.includes(validityText)
     || /Hasta cinco \(5\) días hábiles para gestionar cada pago|Hasta 5 días hábiles tras recibir la documentación/.test(packageSection)) {

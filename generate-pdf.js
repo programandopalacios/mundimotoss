@@ -444,8 +444,8 @@ function buildProposalPDF(options = {}) {
   doc.text("Paquete Integral de Experiencia y Servicio", margin + 6, y + 15);
 
   const itemsIncluidos = [
-    "Coordinación de jornadas presenciales en las sedes acordadas, conforme al cuadro principal de encuentros.",
-    "Programación de fechas y distribución operativa con Mundimotos, según el alcance indicado en el cuadro principal.",
+    "Coordinación de jornadas presenciales: en las sedes acordadas, conforme al cuadro principal de encuentros.",
+    "Programación de fechas y distribución operativa: con Mundimotos, según el alcance indicado en el cuadro principal.",
     "Planeación, diseño pedagógico y facilitación directiva senior en vivo.",
     "Herramientas vivenciales y recursos didácticos para todas las actividades.",
     "Formatos organizados y control riguroso de asistencia por jornada y sede.",
@@ -458,12 +458,28 @@ function buildProposalPDF(options = {}) {
     doc.setFillColor(...cYellow);
     doc.circle(margin + 8, iy - 1, 1.2, 'F');
 
-    doc.setFont('helvetica', 'normal');
     doc.setFontSize(7.5);
     doc.setTextColor(...cGrayText);
-    const splitIt = doc.splitTextToSize(it, leftW - 14);
-    doc.text(splitIt, margin + 12, iy);
-    iy += (splitIt.length > 1 ? 9.5 : 7.5);
+    const boldLabel = ['Coordinación de jornadas presenciales:', 'Programación de fechas y distribución operativa:']
+      .find(label => it.startsWith(label));
+    if (boldLabel) {
+      const remainder = it.slice(boldLabel.length).trimStart();
+      doc.setFont('helvetica', 'bold');
+      doc.text(boldLabel, margin + 12, iy);
+      const remainderX = margin + 12 + doc.getTextWidth(boldLabel) + 1;
+      const remainderLines = doc.splitTextToSize(remainder, margin + leftW - 14 - remainderX);
+      doc.setFont('helvetica', 'normal');
+      doc.text(remainderLines[0], remainderX, iy);
+      if (remainderLines.length > 1) {
+        doc.text(remainderLines.slice(1), margin + 12, iy + 3.5);
+      }
+      iy += (remainderLines.length > 1 ? 9.5 : 7.5);
+    } else {
+      doc.setFont('helvetica', 'normal');
+      const splitIt = doc.splitTextToSize(it, leftW - 14);
+      doc.text(splitIt, margin + 12, iy);
+      iy += (splitIt.length > 1 ? 9.5 : 7.5);
+    }
   });
 
   doc.setFont('helvetica', 'italic');
