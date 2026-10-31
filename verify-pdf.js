@@ -29,6 +29,12 @@ async function verifyProposalPDF() {
   if (!collageCaption || collageCaption[1].trim() !== 'Metodología vivencial 100% aplicable al puesto de trabajo.') {
     throw new Error('La frase de metodología debe aparecer inmediatamente debajo del collage.');
   }
+  const experienceSection = getHtmlSection('experiencia');
+  if (!experienceSection.includes('Seis Temas Transversales del primer encuentro')
+    || experienceSection.includes('Seis Competencias Clave para la Cultura Organizacional de Mundimotos')
+    || experienceSection.includes('SEIS TEMAS TRANSVERSALES DEL PRIMER ENCUENTRO</span>')) {
+    throw new Error('El encabezado de temas transversales debe mostrar solo el título negro solicitado.');
+  }
   const heroSection = getHtmlSection('inicio');
   if (/hero-stats-row|Encuentros Totales|60 personas de referencia|80 personas de referencia|Por coordinar con Mundimotos/.test(heroSection)) {
     throw new Error('La portada web todavía contiene el resumen de encuentros que debía quitarse.');
@@ -129,7 +135,7 @@ async function verifyProposalPDF() {
     { page: 2, key: 'Reflexión grupal sobre la experiencia', label: 'Reflexión grupal del momento 06' },
     { page: 2, key: 'aportes de quienes', label: 'Reconocimiento de participantes del momento 06' },
     { page: 2, key: 'fortalecer la cultura', label: 'Cultura organizacional en el momento 06' },
-    { page: 2, key: 'TRANSVERSALES', label: 'Ejes Temáticos Transversales' },
+    { page: 2, key: 'Seis Temas Transversales del primer encuentro', label: 'Título de temas transversales' },
     { page: 3, key: 'Paquete Integral de Experiencia y Servicio', label: 'Paquete Integral de Experiencia y Servicio' },
     { page: 3, key: 'Coordinación de jornadas presenciales', label: 'Alcance remitido al cuadro principal' },
     { page: 3, key: 'Herramientas vivenciales', label: 'Herramientas de trabajo' },
@@ -188,6 +194,10 @@ async function verifyProposalPDF() {
 
   if (rawContent.includes('TRES PILARES INMEDIATOS')) {
     throw new Error('El PDF no debe mostrar el título eliminado sobre las fotografías.');
+  }
+  if (rawContent.includes('Seis Competencias Clave para la Cultura Organizacional de Mundimotos')
+    || rawContent.includes('SEIS TEMAS TRANSVERSALES DEL PRIMER ENCUENTRO')) {
+    throw new Error('El PDF conserva un encabezado secundario eliminado de los temas transversales.');
   }
   for (const [label, pattern] of [
     ['4 encuentros en Antioquia', /4 Encuentros/g],

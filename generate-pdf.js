@@ -374,14 +374,9 @@ function buildProposalPDF(options = {}) {
   doc.roundedRect(margin, y, cw, temH, 3, 3, 'FD');
 
   doc.setFont('helvetica', 'bold');
-  doc.setFontSize(8);
-  doc.setTextColor(...cBlue);
-  doc.text("SEIS TEMAS TRANSVERSALES DEL PRIMER ENCUENTRO", margin + 6, y + 7.5);
-
-  doc.setFont('helvetica', 'bold');
   doc.setFontSize(12);
   doc.setTextColor(...cDark);
-  doc.text("Seis Competencias Clave para la Cultura Organizacional de Mundimotos", margin + 6, y + 15.5);
+  doc.text("Seis Temas Transversales del primer encuentro", margin + 6, y + 12.5);
 
   const tColW = (cw - 18) / 2;
   const temas = [
