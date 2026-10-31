@@ -239,6 +239,23 @@
       width: 100%;
     }
 
+    .facilitator-photo {
+      width: 120px;
+      height: 120px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 2px solid var(--border-hover);
+      flex: 0 0 120px;
+      background: #ffffff;
+    }
+
+    .facilitator-photo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
     @media (max-width: 1080px) {
       .col-12, .col-11, .col-10, .col-9, .col-8, .col-7, .col-6, .col-5, .col-4, .col-3, .col-2, .col-1 { grid-column: span 12; }
       .bento-grid { gap: 18px; }
@@ -255,6 +272,14 @@
     @media (max-width: 768px) {
       .container { padding: 0 16px; }
       .bento-grid { gap: 16px; }
+    }
+
+    @media (max-width: 480px) {
+      .facilitator-photo {
+        width: 96px;
+        height: 96px;
+        flex-basis: 96px;
+      }
     }
 
     /* ---------------- BENTO CARDS ---------------- */
@@ -1767,8 +1792,8 @@
         <!-- Eduardo Gómez Card -->
         <div class="bento-card col-6" style="padding: 34px;">
           <div style="display: flex; gap: 20px; align-items: center; margin-bottom: 22px;">
-            <div style="width: 82px; height: 82px; border-radius: var(--radius-lg); overflow: hidden; border: 2px solid var(--border-hover); flex-shrink: 0; background: #ffffff;">
-              <img src="assets/facilitators/eduardo.jpeg" alt="Eduardo Gómez" style="width: 100%; height: 100%; object-fit: cover; object-position: center 15%; display: block;" />
+            <div class="facilitator-photo">
+              <img src="assets/facilitators/eduardo.jpeg" alt="Eduardo Gómez" style="object-position: center 15%;" />
             </div>
             <div>
               <span class="badge-pill" style="font-size: 10px; margin-bottom: 4px;">FACILITADOR EXPERIENCIAL</span>
@@ -1796,8 +1821,8 @@
         <!-- Juan Manuel Restrepo Card -->
         <div class="bento-card col-6" style="padding: 34px;">
           <div style="display: flex; gap: 20px; align-items: center; margin-bottom: 22px;">
-            <div style="width: 82px; height: 82px; border-radius: var(--radius-lg); overflow: hidden; border: 2px solid var(--border-hover); flex-shrink: 0;">
-              <img src="assets/facilitators/juan-manuel.png" alt="Juan Manuel Restrepo" style="width: 100%; height: 100%; object-fit: cover;" />
+            <div class="facilitator-photo">
+              <img src="assets/facilitators/juan-manuel.png" alt="Juan Manuel Restrepo" />
             </div>
             <div>
               <span class="badge-pill" style="font-size: 10px; margin-bottom: 4px;">CONSULTOR & FORMADOR</span>
