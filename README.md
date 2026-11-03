@@ -1,56 +1,163 @@
-# Propuesta Digital Corporativa · Mundimotos
-## «Experiencia de Servicio y Conexión» · Cierre de Año 2026
-**Proponente:** Grupo Ve Por Más S.A.S. (Juan Manuel Restrepo & Eduardo Gómez)  
-**Respaldo Institucional:** Academia Punto D’ Partida · Agencia PDP · Pro Juan Manuel  
-**Cliente:** Mundimotos (Bogotá D.C. & Antioquia)  
-**Población de Referencia:** 140 Colaboradores (80 Bogotá · 60 Antioquia)
+# Propuesta Corporativa Mundimotos
+
+Sitio web de presentación de **«Experiencia de Servicio y Conexión»**, una propuesta comercial y metodológica de Grupo Ve Por Más S.A.S. para los equipos de Mundimotos en Bogotá y Antioquia.
+
+El proyecto reúne la presentación de la experiencia, su metodología, los facilitadores, la trayectoria y las condiciones comerciales en una página web adaptable a distintos dispositivos.
+
+## Sitio web
+
+**Producción:** [https://propuesta-mundimotos.vercel.app/](https://propuesta-mundimotos.vercel.app/)
+
+**Repositorio:** [https://github.com/programandopalacios/mundimotoss](https://github.com/programandopalacios/mundimotoss)
+
+## Descripción del proyecto
+
+La página presenta una propuesta de cierre de año 2026 para Mundimotos, dirigida a una población de referencia de 140 colaboradores en Antioquia y Bogotá.
+
+El sitio combina información sobre el propósito y la cobertura de la experiencia con una metodología participativa, perfiles de facilitadores, evidencia fotográfica, condiciones comerciales y canales de contacto. También incluye una opción para generar y descargar la propuesta en PDF.
+
+## Objetivos
+
+- Presentar la propuesta de experiencia de servicio y conexión para Mundimotos.
+- Explicar el propósito, la cobertura territorial y la metodología de trabajo.
+- Dar a conocer a los facilitadores y su trayectoria.
+- Mostrar fotografías de experiencias y talleres.
+- Presentar el alcance, las condiciones comerciales y la continuidad propuesta para 2027.
+- Facilitar el contacto con Grupo Ve Por Más.
+- Ofrecer una experiencia de navegación adaptable a móviles y computadores.
+
+## Secciones
+
+### Inicio
+
+Presentación de la propuesta, sus objetivos y acceso a las principales secciones.
+
+### Propósito
+
+Explica el sentido de la experiencia y su relación con la cultura de servicio, la comunicación, la colaboración y la experiencia del cliente.
+
+### Cobertura
+
+Presenta la planificación territorial para los equipos de Antioquia y Bogotá, con una población de referencia de 140 colaboradores.
+
+### Experiencia
+
+Describe la metodología en seis momentos: conectar, reconocer, escuchar, experimentar, fortalecer y cerrar; además de los temas transversales del encuentro.
+
+### Paquete integral
+
+Resume el alcance de la propuesta, sus componentes metodológicos y los entregables contemplados.
+
+### Facilitadores
+
+Presenta los perfiles de Eduardo Gómez y Juan Manuel Restrepo.
+
+### Trayectoria
+
+Muestra marcas y organizaciones relacionadas con la experiencia profesional de los facilitadores.
+
+### Galería
+
+Galería fotográfica de actividades, encuentros y talleres.
+
+### Continuidad 2027
+
+Expone líneas de continuidad y soluciones propuestas para evaluar en 2027.
+
+### Condiciones comerciales y contacto
+
+Reúne las condiciones comerciales y logísticas de la propuesta y los canales de contacto de Grupo Ve Por Más.
+
+## Tecnologías utilizadas
+
+- HTML5
+- CSS3
+- JavaScript
+- [jsPDF](https://github.com/parallax/jsPDF) para la generación del PDF en el navegador y desde Node.js
+- Node.js y npm para los scripts auxiliares de generación y verificación del PDF
+- Git y GitHub
+- Vercel
+
+## Diseño y experiencia
+
+La interfaz utiliza una identidad visual basada en los colores corporativos de Mundimotos, una composición modular tipo Bento Grid y temas claro y oscuro. La preferencia de tema se guarda en el navegador.
+
+Incluye un carrusel de marcas, una galería con visor de imágenes y navegación mediante controles y teclado, y una presentación adaptable a diferentes tamaños de pantalla.
+
+## Estructura del proyecto
+
+```text
+mundimotos/
+├── assets/
+│   ├── facilitators/
+│   ├── gallery/
+│   ├── images/
+│   ├── logos/
+│   └── pilares/
+├── generate-pdf.js
+├── index.html
+├── package.json
+├── package-lock.json
+├── Propuesta_Comercial_Mundimotos.pdf
+├── vercel.json
+└── verify-pdf.js
+```
+
+La página principal está implementada en `index.html`; las imágenes y marcas utilizadas se encuentran en `assets/`.
+
+## Ejecución local
+
+Clona el repositorio y entra al directorio:
+
+```bash
+git clone https://github.com/programandopalacios/mundimotoss.git
+cd mundimotoss
+```
+
+Instala las dependencias necesarias para los scripts del PDF:
+
+```bash
+npm install
+```
+
+Inicia el servidor local:
+
+```bash
+npm run dev
+```
+
+También puedes abrir `index.html` directamente en un navegador.
+
+## PDF
+
+Para generar el documento PDF desde Node.js:
+
+```bash
+node generate-pdf.js
+```
+
+Para ejecutar la verificación automatizada:
+
+```bash
+node verify-pdf.js
+```
+
+## Despliegue
+
+El sitio está publicado en Vercel: [https://propuesta-mundimotos.vercel.app/](https://propuesta-mundimotos.vercel.app/).
+
+La configuración del proyecto para Vercel se encuentra en `vercel.json`. La publicación automática después de cambios en GitHub depende de que el proyecto de Vercel esté conectado al repositorio.
+
+## Autoría y créditos
+
+Propuesta presentada por **Grupo Ve Por Más S.A.S.**, con la participación de Eduardo Gómez y Juan Manuel Restrepo.
+
+El contenido, las fotografías, los logotipos y las marcas pertenecen a sus respectivos titulares y se utilizan en el contexto de la propuesta.
+
+## Estado del proyecto
+
+Sitio publicado y disponible en producción como presentación de la propuesta comercial y técnica para Mundimotos.
 
 ---
 
-### 🚀 Resumen del Proyecto
-
-Propuesta comercial y técnica digital desarrollada como landing ejecutiva de alto impacto para **Mundimotos**.
-
-El diseño está construido con máxima fidelidad al referente corporativo [Formando Líderes](https://formando-lideres-m.vercel.app/), incorporando:
-- **Sistema Bento Grid:** Grilla modular de 12 columnas con tarjetas de cristal (`--border-subtle`), resplandor interno (*inner glow*) y radios suaves.
-- **Tema Dual (Light / Dark):** Modo claro predeterminado, con modo oscuro disponible desde la barra superior y preferencia guardada en `localStorage`.
-- **Paleta Oficial Mundimotos:** Azul profundo (`#123F70`), Azul vivo (`#0D5B99`), Amarillo acento (`#F5A900`), Carbón (`#17212B`) y Blanco (`#FFFFFF`).
-- **Carrusel Infinito (*Marquee*):** Riel animado continuo con 8 marcas institucionales y empresariales autorizadas.
-- **Galería Editorial con Lightbox:** Mosaico fotográfico bento con fotos reales de talleres en vivo y visor modal a pantalla completa con navegación por teclado y botones.
-- **Propuesta Comercial Integral:** Alcance de 9 encuentros presenciales, inversión, condiciones de pago y canales directos de contacto.
-- **Exportación Vectorial a PDF:** Motor integrado con `jsPDF` que genera y descarga en milisegundos un documento corporativo A4 de 4 páginas (`Propuesta_Comercial_Mundimotos.pdf`).
-
----
-
-### 📐 Las 10 Secciones del Documento Maestro Implementadas
-
-El bloque 10 agrupa Condiciones Comerciales y Contacto; en el HTML se presentan como dos secciones consecutivas.
-
-1. **Hero / Inicio (`#inicio`):** Eyebrows oficiales, título principal, subtítulo, descriptor, 4 bloques métricos (140 colaboradores, 80 Bogotá, 60 Antioquia y cronograma por coordinar) y CTAs.
-2. **Propósito (`#proposito`):** Sentido de la experiencia de cierre de año para hacer una pausa, reconocer el trabajo y abrir conversaciones para el crecimiento.
-3. **Cobertura (`#cobertura`):** Desglose de 140 colaboradores (80 Bogotá / 60 Antioquia), cuatro encuentros en Antioquia y cinco en Bogotá distribuidos en jornadas 2-2-1; fechas por coordinar.
-4. **Metodología & Experiencia (`#experiencia`):**
-   * **6 Momentos:** 01 Conectar, 02 Reconocer, 03 Escuchar, 04 Experimentar, 05 Fortalecer, 06 Cerrar.
-   * **6 Temas Transversales:** Cultura de servicio, Comunicación/empatía, Confianza, Conversaciones difíciles, Colaboración y Mejora continua.
-5. **Paquete Integral de Experiencia y Servicio (`#paquetes`):** 9 encuentros presenciales (4 Antioquia y 5 Bogotá, con distribución 2-2-1), herramientas de trabajo, registro de asistencia, encuestas e informe final con evidencias fotográficas, hallazgos y resultados cualitativos y cuantitativos.
-6. **Facilitadores (`#facilitadores`):** Perfiles y fotografías de alta resolución de Juan Manuel Restrepo y Eduardo Gómez.
-7. **Trayectoria (`#trayectoria`):** Carrusel animado de marcas institucionales (Cámara de Comercio, Leonisa, Fenalco, Univ. de Medellín, Alcaldía de Itagüí, Finanzas Consulting, Coca-Cola, Proyecto Matuna).
-8. **Galería de Experiencias (`#galeria`):** Mosaico con fotografías reales de talleres en vivo y visor modal Lightbox.
-9. **Continuidad 2027 (`#continuidad`):** CREER · CREAR · CRECER, dos líneas independientes de desarrollo y tres soluciones digitales propuestas, no implementadas.
-10. **Condiciones Comerciales & Contacto (`#condiciones`, `#contacto`):** Inversión y pagos, cuatro condiciones comerciales, logística de Mundimotos y canales directos de contacto.
-
----
-
-### 💻 Cómo Ejecutar Localmente
-
-- **Visualización Directa:** Abre `index.html` en Google Chrome o Microsoft Edge.
-- **Servidor Local de Desarrollo:**
-  ```bash
-  npx serve .
-  ```
-- **Verificación Automatizada del PDF:**
-  ```bash
-  node verify-pdf.js
-  ```
-
----
+© 2026 Grupo Ve Por Más S.A.S. · Propuesta preparada para Mundimotos.
