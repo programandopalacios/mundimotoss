@@ -150,7 +150,9 @@ La configuración del proyecto para Vercel se encuentra en `vercel.json`. La pub
 
 ## Autoría y créditos
 
-Propuesta presentada por **Grupo Ve Por Más S.A.S.**, con la participación de Eduardo Gómez y Juan Manuel Restrepo.
+Sitio web realizado por **Marlon David Palacios Parra** para **Grupo Ve Por Más S.A.S.**, como presentación de su propuesta comercial y metodológica para Mundimotos.
+
+La propuesta cuenta con la participación de Eduardo Gómez y Juan Manuel Restrepo.
 
 El contenido, las fotografías, los logotipos y las marcas pertenecen a sus respectivos titulares y se utilizan en el contexto de la propuesta.
 
@@ -160,4 +162,4 @@ Sitio publicado y disponible en producción como presentación de la propuesta c
 
 ---
 
-© 2026 Grupo Ve Por Más S.A.S. · Propuesta preparada para Mundimotos.
+© 2026 Grupo Ve Por Más S.A.S. · Sitio web realizado por Marlon David Palacios Parra para Mundimotos.
